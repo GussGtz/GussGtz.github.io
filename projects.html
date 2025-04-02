@@ -1,119 +1,150 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Proyectos</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <!-- Custom Google font-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
-    <!-- Bootstrap icons-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Proyectos | Gustavo Gutierrez</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f8f9fa;
+    }
+    .text-gradient {
+      background: linear-gradient(to right, #FA6363, #F1EFE5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hover-zoom:hover {
+      transform: scale(1.02);
+      transition: transform 0.3s ease;
+    }
+  </style>
 </head>
-<body class="d-flex flex-column h-100 bg-light">
-    <main class="flex-shrink-0">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
-            <div class="container px-5">
-                <a class="navbar-brand" href="index.html"><span class="fw-bolder text-primary">Gustavo Gutierrez</span></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="resume.html">Currículum</a></li>
-                        <li class="nav-item"><a class="nav-link" href="projects.html">Proyectos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- Projects Section-->
-        <section class="py-5">
-            <div class="container px-5 mb-5">
-                <div class="text-center mb-5">
-                    <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Proyectos</span></h1>
-                </div>
-                <div class="row gx-5 justify-content-center">
-                    <div class="col-lg-11 col-xl-9 col-xxl-8">
-                        <!-- Project Card 1-->
-                        <div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
-                            <div class="card-body p-0">
-                                <div class="d-flex align-items-center">
-                                    <div class="p-5">
-                                        <h2 class="fw-bolder">Tienda Deportiva en Línea</h2>
-                                        <p>E-Commerce, especializada en la venta de artículos deportivos de marcas reconocidas como Nike, Puma y Adidas. Este proyecto integra funcionalidades clave para la operación de una tienda en línea, como la capacidad de realizar compras directamente desde el sitio web, con opciones de pago a través de PayPal y Mercado Pago. Implementé un sistema de gestión de pedidos eficiente, con funcionalidades de envío a nivel nacional.
+<body class="d-flex flex-column h-100">
+<main class="flex-shrink-0">
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm" data-aos="fade-down">
+    <div class="container px-5">
+      <a class="navbar-brand fw-bold text-primary" href="index.html">Gustavo Gutierrez</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="resume.html">Currículum</a></li>
+          <li class="nav-item"><a class="nav-link active" href="projects.html">Proyectos</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-                                            El backend está equipado con un sistema de dashboard robusto que permite la gestión de productos, seguimiento de pedidos, y análisis de ventas, ofreciendo así una solución integral y funcional para el comercio electrónico en el ámbito deportivo.</p>
-                                    </div>
-                                    <img class="img-fluid" src="assets/tienda.jpg" alt="..." />
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Project Card 2-->
-                        <div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
-                            <div class="card-body p-0">
-                                <div class="d-flex align-items-center">
-                                    <div class="p-5">
-                                        <h2 class="fw-bolder">Sistema de Gestión para Taller Mecánico</h2>
-                                        <p>Sistema de gestión avanzado para un taller mecánico, diseñado para optimizar la organización y seguimiento de trabajos y mecánicos. El sistema permite agregar y asignar trabajos, gestionar el personal mecánico, y monitorear el estado actual de cada tarea, incorporando las operaciones fundamentales de un CRUD (Crear, Leer, Actualizar, Eliminar).
+  <!-- Projects Section -->
+  <section class="py-5">
+    <div class="container px-5 mb-5">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h1 class="display-5 fw-bold text-gradient">Proyectos</h1>
+      </div>
+      <div class="row gx-5 justify-content-center">
+        <div class="col-lg-11 col-xl-9 col-xxl-8">
 
-                                            Para garantizar la integridad y seguridad de los datos, implementé servicios de seguridad de vanguardia, incluyendo cifrado en la base de datos, conexión segura a través de HTTPS, certificados SSL, autenticación multifactor y control de acceso basado en roles. Este enfoque en la seguridad asegura que tanto los datos sensibles del taller como la información del cliente están protegidos contra accesos no autorizados y posibles vulnerabilidades.</p>
-                                    </div>
-                                    <img class="img-fluid" src="assets/taller.jpg"/>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Project Card 3-->
-                        <div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
-                            <div class="card-body p-0">
-                                <div class="d-flex align-items-center">
-                                    <div class="p-5">
-                                        <h2 class="fw-bolder">Plataforma de Gestión para Producción de Quesos Artesanales</h2>
-             
-                                            <p>Plataforma integral para la gestión de la producción de quesos artesanales. Este sistema innovador facilita la administración de ingredientes y el seguimiento de recetas artesanales, permitiendo a los productores seleccionar y cargar recetas, gestionar inventarios y controlar el proceso de producción.
+          <!-- Project: FluxSYS -->
+          <div class="card overflow-hidden shadow rounded-4 border-0 mb-5 hover-zoom" data-aos="zoom-in">
+            <div class="row g-0">
+              <div class="col-md-8 p-4">
+                <h2 class="fw-bolder">FluxSYS – Gestión Inteligente de Inventarios</h2>
+                <p>Sistema que automatiza el control de inventario, genera reportes en tiempo real y previene desabastecimientos. Utiliza cifrado de datos, autenticación por roles y conexiones HTTPS para máxima seguridad.</p>
+              </div>
+              <div class="col-md-4 d-flex align-items-center justify-content-center">
+                <img class="img-fluid" src="assets/fluxsys.jpg" alt="FluxSYS" />
+              </div>
+            </div>
+          </div>
 
-                                                Una de las características destacadas de la plataforma es el módulo de estadísticas de calidad, que proporciona análisis detallados para asegurar la excelencia del producto final. Además, incluye una funcionalidad de checklist para mantener un control riguroso de cada etapa de la producción, desde la selección de ingredientes hasta el producto terminado.
-                                                
-                                                Esta herramienta está diseñada para mejorar la eficiencia operativa y garantizar la consistencia de la calidad en la producción de quesos, facilitando así a los artesanos mantener y elevar los estándares de sus exquisitos productos.</p>
-                                    </div>
-                                    <img class="img-fluid" src="assets/QUESO.jpg"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          <!-- Project: InfoCancún -->
+          <div class="card overflow-hidden shadow rounded-4 border-0 mb-5 hover-zoom" data-aos="zoom-in">
+            <div class="row g-0">
+              <div class="col-md-8 p-4">
+                <h2 class="fw-bolder">Sistema de Información para la Localidad de Cancún</h2>
+                <p>App web que integra APIs de clima, transporte y turismo para ofrecer información en tiempo real a turistas y residentes. Desarrollada con React, Node.js, Express y MySQL.</p>
+              </div>
+              <div class="col-md-4 d-flex align-items-center justify-content-center">
+                <img class="img-fluid" src="assets/cancun.jpg" alt="Sistema de Información Cancún" />
+              </div>
             </div>
-        </section>
-        <!-- Call to action section-->
-        <section class="py-5 bg-gradient-primary-to-secondary text-white">
-            <div class="container px-5 my-5">
-                <div class="text-center">
-                    <h2 class="display-4 fw-bolder mb-4">¡Construyamos algo juntos!</h2>
-                    <a class="btn btn-outline-light btn-lg px-5 py-3 fs-6 fw-bolder" href="contact.html">Contactame</a>
-                </div>
+          </div>
+
+          <!-- Project: Glass Caribe -->
+          <div class="card overflow-hidden shadow rounded-4 border-0 mb-5 hover-zoom" data-aos="zoom-in">
+            <div class="row g-0">
+              <div class="col-md-8 p-4">
+                <h2 class="fw-bolder">Sistema de Gestión de Pedidos · Glass Caribe</h2>
+                <p>Aplicación web para administración de pedidos, clientes y proveedores. Incorpora extracción de datos XML, gráficas en tiempo real, WebSockets y panel administrativo. Desarrollado con React, MySQL, Express y Node.js.</p>
+              </div>
+              <div class="col-md-4 d-flex align-items-center justify-content-center">
+                <img class="img-fluid" src="assets/glass.jpg" alt="Glass Caribe" />
+              </div>
             </div>
-        </section>
-    </main>
-    <!-- Footer-->
-    <footer class="bg-white py-4 mt-auto">
-        <div class="container px-5">
-            <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-                <div class="col-auto"><div class="small m-0">Copyright &copy;GussGtz 2024</div></div>
-                <div class="col-auto">
-                </div>
+          </div>
+
+          <!-- Project: E-Commerce Deportivo -->
+          <div class="card overflow-hidden shadow rounded-4 border-0 mb-5 hover-zoom" data-aos="zoom-in">
+            <div class="row g-0">
+              <div class="col-md-8 p-4">
+                <h2 class="fw-bolder">E-Commerce Deportivo</h2>
+                <p>Tienda online con catálogo de productos de marcas reconocidas (Nike, Puma, Adidas), gestión de inventario y pagos vía PayPal y Mercado Pago. Dashboard administrativo para seguimiento de pedidos y ventas.</p>
+              </div>
+              <div class="col-md-4 d-flex align-items-center justify-content-center">
+                <img class="img-fluid" src="assets/tienda.PNG" alt="E-Commerce Deportivo" />
+              </div>
             </div>
+          </div>
+
+          <!-- Project: Sistema de Gestión para Taller Mecánico -->
+          <div class="card overflow-hidden shadow rounded-4 border-0 mb-5 hover-zoom" data-aos="zoom-in">
+            <div class="row g-0">
+              <div class="col-md-8 p-4">
+                <h2 class="fw-bolder">Sistema de Gestión para Taller Mecánico</h2>
+                <p>Sistema CRUD seguro para organización de tareas, personal y clientes. Incluye cifrado de datos, autenticación multifactor, conexión HTTPS y gestión de accesos por roles. Seguimiento del estado de trabajos en tiempo real.</p>
+              </div>
+              <div class="col-md-4 d-flex align-items-center justify-content-center">
+                <img class="img-fluid" src="assets/taller.PNG" alt="Taller Mecánico" />
+              </div>
+            </div>
+          </div>
+
         </div>
-    </footer>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-5 bg-gradient-primary-to-secondary text-white">
+    <div class="container px-5 text-center" data-aos="fade-up">
+      <h2 class="display-4 fw-bold mb-4">¡Construyamos algo juntos!</h2>
+      <a class="btn btn-outline-light btn-lg px-5 py-3 fs-6 fw-bolder" href="contact.html">Contáctame</a>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-white text-center py-4 mt-auto shadow-sm">
+  <div class="container small">© Gustavo Gutierrez 2024</div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init();</script>
+<script src="js/scripts.js"></script>
 </body>
 </html>
