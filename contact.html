@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <title>Contacto | Gustavo Gutierrez</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -26,13 +26,16 @@
             transform: scale(1.02);
             transition: transform 0.3s ease;
         }
+        a {
+            word-break: break-word;
+        }
     </style>
 </head>
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column min-vh-100">
 <main class="flex-shrink-0">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm" data-aos="fade-down">
-        <div class="container px-5">
+        <div class="container px-3">
             <a class="navbar-brand fw-bold text-primary" href="index.html">Gustavo Gutierrez</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -50,26 +53,43 @@
 
     <!-- Contact Section -->
     <section class="py-5">
-        <div class="container px-5">
+        <div class="container px-3">
             <div class="text-center mb-5" data-aos="fade-up">
                 <h1 class="display-5 fw-bold text-gradient">Contáctame</h1>
                 <p class="lead fw-normal text-muted mb-0">¡Conversemos sobre tu próximo proyecto!</p>
             </div>
-            <div class="row gx-5 justify-content-center">
-                <div class="col-lg-8">
-                    <div class="bg-light rounded-4 shadow p-5 hover-zoom" data-aos="zoom-in">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10 col-lg-8">
+                    <div class="bg-light rounded-4 shadow p-4 p-md-5 hover-zoom" data-aos="zoom-in">
                         <h3 class="fw-bold mb-4">Información de Contacto</h3>
-                        <p class="mb-2"><i class="bi bi-envelope me-2"></i><strong>Email:</strong> <a href="mailto:gutierrezgustavocanul@gmail.com">gutierrezgustavocanul@gmail.com</a></p>
-                        <p class="mb-2"><i class="bi bi-telephone me-2"></i><strong>Teléfono:</strong> (+52) 998 349 0952</p>
-                        <p class="mb-2"><i class="bi bi-linkedin me-2"></i><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/gustavo-gutierrez-b5b895290" target="_blank">linkedin.com/in/gustavo-gutierrez</a></p>
-                        <p class="mb-2"><i class="bi bi-github me-2"></i><strong>GitHub:</strong> <a href="https://github.com/gussgtz" target="_blank">github.com/gussgtz</a></p>
-                        <p class="mb-0"><i class="bi bi-globe me-2"></i><strong>Portafolio:</strong> <a href="https://gussgtz.github.io/" target="_blank">gussgtz.github.io</a></p>
+                        <p class="mb-2"><i class="bi bi-envelope me-2"></i><strong>Email:</strong> 
+                            <a href="mailto:gutierrezgustavocanul@gmail.com" class="text-break">gutierrezgustavocanul@gmail.com</a>
+                        </p>
+                        <p class="mb-2"><i class="bi bi-telephone me-2"></i><strong>Teléfono:</strong> 
+                            <span class="text-break">(+52) 998 349 0952</span>
+                        </p>
+                        <p class="mb-2"><i class="bi bi-linkedin me-2"></i><strong>LinkedIn:</strong> 
+                            <a href="https://www.linkedin.com/in/gustavo-gutierrez-b5b895290" target="_blank" class="text-break">
+                                linkedin.com/in/gustavo-gutierrez
+                            </a>
+                        </p>
+                        <p class="mb-2"><i class="bi bi-github me-2"></i><strong>GitHub:</strong> 
+                            <a href="https://github.com/gussgtz" target="_blank" class="text-break">
+                                github.com/gussgtz
+                            </a>
+                        </p>
+                        <p class="mb-0"><i class="bi bi-globe me-2"></i><strong>Portafolio:</strong> 
+                            <a href="https://gussgtz.github.io/" target="_blank" class="text-break">
+                                gussgtz.github.io
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 </main>
+
 <!-- Footer -->
 <footer class="bg-white text-center py-4 mt-auto shadow-sm">
     <div class="container small">© Gustavo Gutierrez 2024</div>
