@@ -43,8 +43,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
                     <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="resume.html">Currículum</a></li>
-                    <li class="nav-item"><a class="nav-link" href="projects.html">Proyectos</a></li>
+
                     <li class="nav-item"><a class="nav-link active" href="contact.html">Contacto</a></li>
                 </ul>
             </div>
@@ -53,40 +52,83 @@
 
     <!-- Contact Section -->
     <section class="py-5">
-        <div class="container px-3">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h1 class="display-5 fw-bold text-gradient">Contáctame</h1>
-                <p class="lead fw-normal text-muted mb-0">¡Conversemos sobre tu próximo proyecto!</p>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-10 col-lg-8">
-                    <div class="bg-light rounded-4 shadow p-4 p-md-5 hover-zoom" data-aos="zoom-in">
-                        <h3 class="fw-bold mb-4">Información de Contacto</h3>
-                        <p class="mb-2"><i class="bi bi-envelope me-2"></i><strong>Email:</strong> 
-                            <a href="mailto:gutierrezgustavocanul@gmail.com" class="text-break">gutierrezgustavocanul@gmail.com</a>
-                        </p>
-                        <p class="mb-2"><i class="bi bi-telephone me-2"></i><strong>Teléfono:</strong> 
-                            <span class="text-break">(+52) 998 349 0952</span>
-                        </p>
-                        <p class="mb-2"><i class="bi bi-linkedin me-2"></i><strong>LinkedIn:</strong> 
-                            <a href="https://www.linkedin.com/in/gustavo-gutierrez-canul-607341267/" target="_blank" class="text-break">
-                                linkedin.com/in/gustavo-gutierrez
-                            </a>
-                        </p>
-                        <p class="mb-2"><i class="bi bi-github me-2"></i><strong>GitHub:</strong> 
-                            <a href="https://github.com/gussgtz" target="_blank" class="text-break">
-                                github.com/gussgtz
-                            </a>
-                        </p>
-                        <p class="mb-0"><i class="bi bi-globe me-2"></i><strong>Portafolio:</strong> 
-                            <a href="https://gussgtz.github.io/" target="_blank" class="text-break">
-                                gussgtz.github.io
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+          <style>
+            body {
+              background-color: #f2f2f2;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 100vh;
+              font-family: 'Segoe UI', sans-serif;
+              margin: 0;
+            }
+        
+            form {
+              background-color: #fff;
+              padding: 25px 30px;
+              border-radius: 12px;
+              box-shadow: 0 0 10px rgba(0,0,0,0.1);
+              width: 100%;
+              max-width: 400px;
+              display: flex;
+              flex-direction: column;
+              gap: 15px;
+            }
+        
+            h2 {
+              margin-bottom: 10px;
+              font-size: 1.5rem;
+              text-align: center;
+            }
+        
+            label {
+              font-weight: bold;
+              font-size: 0.9rem;
+            }
+        
+            input, textarea {
+              padding: 10px;
+              border: 1px solid #ccc;
+              border-radius: 8px;
+              font-size: 0.95rem;
+              resize: vertical;
+            }
+        
+            button {
+              background-color: #111;
+              color: #fff;
+              padding: 10px;
+              border: none;
+              border-radius: 8px;
+              font-size: 1rem;
+              cursor: pointer;
+              transition: background 0.3s ease;
+            }
+        
+            button:hover {
+              background-color: #333;
+            }
+          </style>
+        </head>
+        <body>
+        
+          <form action="https://formspree.io/f/your-form-id" method="POST">
+            <h2>Contáctame</h2>
+        
+            <label for="name">Nombre</label>
+            <input type="text" id="name" name="name" required>
+        
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" required>
+        
+            <label for="message">Mensaje</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+        
+            <button type="submit">Enviar</button>
+          </form>
+        
+    
+        
     </section>
 </main>
 
