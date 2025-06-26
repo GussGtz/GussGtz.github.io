@@ -101,39 +101,151 @@
         </div>
     </div>
 </section>
-
-  <!-- Contact Section -->
+<!-- Contact Section -->
 <section class="py-5" style="background: linear-gradient(135deg, #f8f9fa, #e0e0e0);">
-    <div class="container">
-      <div class="form-contacto mx-auto" data-aos="zoom-in" style="max-width: 50000px; background: #fff; border-radius: 16px; padding: 35px; box-shadow: 0 8px 24px rgba(0,0,0,0.1);">
-        <h2 class="text-center mb-4 fw-bold text-gradient">Contáctame</h2>
-        <form action="http://localhost:3001/api/contact" method="POST">
-          <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" name="nombre" id="nombre" class="form-control form-control-lg input-focus" placeholder="Tu nombre" required />
-          </div>
-          <div class="mb-3">
-            <label for="correo" class="form-label">Correo</label>
-            <input type="email" name="correo" id="correo" class="form-control form-control-lg input-focus" placeholder="Tu correo" required />
-          </div>
-          <div class="mb-3">
-            <label for="telefono" class="form-label">Teléfono</label>
-            <input type="tel" name="telefono" id="telefono" class="form-control form-control-lg input-focus" placeholder="Tu teléfono" />
-          </div>
-          <div class="mb-3">
-            <label for="mensaje" class="form-label">Mensaje</label>
-            <textarea name="mensaje" id="mensaje" class="form-control form-control-lg input-focus" rows="4" placeholder="Tu mensaje"></textarea>
-          </div>
-          <div class="d-grid">
-            <button type="submit" class="btn btn-gradient btn-lg fw-bold">
-              <i class="bi bi-send-fill me-2"></i>Enviar Mensaje
-            </button>
-          </div>
-        </form>
+  <div class="container">
+    <div class="form-contacto mx-auto" data-aos="zoom-in" style="max-width: 600px; background: #fff; border-radius: 16px; padding: 35px; box-shadow: 0 8px 24px rgba(0,0,0,0.1);">
+      <h2 class="text-center mb-4 fw-bold text-gradient">Contáctame</h2>
+      <form action="http://localhost:3001/api/contact" method="POST">
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input type="text" name="nombre" id="nombre" class="form-control form-control-lg input-focus" placeholder="Tu nombre" required />
+        </div>
+        <div class="mb-3">
+          <label for="correo" class="form-label">Correo</label>
+          <input type="email" name="correo" id="correo" class="form-control form-control-lg input-focus" placeholder="Tu correo" required />
+        </div>
+        <div class="mb-3">
+          <label for="telefono" class="form-label">Teléfono</label>
+          <input type="tel" name="telefono" id="telefono" class="form-control form-control-lg input-focus" placeholder="Tu teléfono" />
+        </div>
+        <div class="mb-3">
+          <label for="mensaje" class="form-label">Mensaje</label>
+          <textarea name="mensaje" id="mensaje" class="form-control form-control-lg input-focus" rows="4" placeholder="Tu mensaje"></textarea>
+        </div>
+
+        <!-- Checkbox de privacidad y términos con modales -->
+        <div class="form-check mb-4">
+          <input class="form-check-input" type="checkbox" id="terminos" name="terminos" required>
+          <label class="form-check-label" for="terminos" style="font-size: 0.95rem;">
+            He leído y acepto el 
+            <a href="#" data-bs-toggle="modal" data-bs-target="#modalPrivacidad" style="text-decoration: underline; color: #007bff;">Aviso de Privacidad</a> y los 
+            <a href="#" data-bs-toggle="modal" data-bs-target="#modalTerminos" style="text-decoration: underline; color: #007bff;">Términos y Condiciones</a>.
+          </label>
+        </div>
+
+        <div class="d-grid">
+          <button type="submit" class="btn btn-gradient btn-lg fw-bold">
+            <i class="bi bi-send-fill me-2"></i>Enviar Mensaje
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Modal: Aviso de Privacidad -->
+<div class="modal fade" id="modalPrivacidad" tabindex="-1" aria-labelledby="modalPrivacidadLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content rounded-4">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold" id="modalPrivacidadLabel">Aviso de Privacidad</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <p>
+  De conformidad con lo establecido en la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, el responsable del tratamiento de sus datos personales es [Tu Nombre o el Nombre de tu Sitio Web].
+</p>
+
+<p>
+  La información que recopilamos a través de este formulario de contacto incluye: nombre, correo electrónico, número de teléfono (opcional) y mensaje. Esta información será utilizada exclusivamente para dar seguimiento a las solicitudes o comentarios realizados a través del formulario.
+</p>
+
+<h6>Finalidad del Tratamiento de Datos</h6>
+<ul>
+  <li>Responder a solicitudes o dudas enviadas mediante el formulario.</li>
+  <li>Establecer comunicación directa si así lo requiere el mensaje enviado.</li>
+  <li>No se utilizarán los datos con fines publicitarios ni se transferirán a terceros sin consentimiento expreso.</li>
+</ul>
+
+<h6>Protección y Confidencialidad</h6>
+<p>
+  Nos comprometemos a proteger su información mediante medidas administrativas, técnicas y físicas adecuadas para evitar su daño, pérdida, alteración, destrucción o el uso no autorizado.
+</p>
+
+<h6>Derechos ARCO</h6>
+<p>
+  Usted tiene derecho a Acceder, Rectificar, Cancelar u Oponerse (ARCO) al tratamiento de sus datos personales. Para ejercer estos derechos, puede enviar un correo electrónico a: <strong>privacidad@tusitio.com</strong> con el asunto “Derechos ARCO” y una breve descripción de su solicitud.
+</p>
+
+<h6>Modificaciones al Aviso</h6>
+<p>
+  Este Aviso de Privacidad puede ser modificado en cualquier momento para cumplir con cambios legales o necesidades internas. La versión actualizada estará disponible en este mismo sitio.
+</p>
+
+<p class="mt-3">
+  Última actualización: junio 2025.
+</p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
       </div>
     </div>
-  </section>
-  
+  </div>
+</div>
+
+<!-- Modal: Términos y Condiciones -->
+<div class="modal fade" id="modalTerminos" tabindex="-1" aria-labelledby="modalTerminosLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content rounded-4">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold" id="modalTerminosLabel">Términos y Condiciones</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <p>
+  De conformidad con lo establecido en la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, el responsable del tratamiento de sus datos personales es [Tu Nombre o el Nombre de tu Sitio Web].
+</p>
+
+<p>
+  La información que recopilamos a través de este formulario de contacto incluye: nombre, correo electrónico, número de teléfono (opcional) y mensaje. Esta información será utilizada exclusivamente para dar seguimiento a las solicitudes o comentarios realizados a través del formulario.
+</p>
+
+<h6>Finalidad del Tratamiento de Datos</h6>
+<ul>
+  <li>Responder a solicitudes o dudas enviadas mediante el formulario.</li>
+  <li>Establecer comunicación directa si así lo requiere el mensaje enviado.</li>
+  <li>No se utilizarán los datos con fines publicitarios ni se transferirán a terceros sin consentimiento expreso.</li>
+</ul>
+
+<h6>Protección y Confidencialidad</h6>
+<p>
+  Nos comprometemos a proteger su información mediante medidas administrativas, técnicas y físicas adecuadas para evitar su daño, pérdida, alteración, destrucción o el uso no autorizado.
+</p>
+
+<h6>Derechos ARCO</h6>
+<p>
+  Usted tiene derecho a Acceder, Rectificar, Cancelar u Oponerse (ARCO) al tratamiento de sus datos personales. Para ejercer estos derechos, puede enviar un correo electrónico a: <strong>privacidad@tusitio.com</strong> con el asunto “Derechos ARCO” y una breve descripción de su solicitud.
+</p>
+
+<h6>Modificaciones al Aviso</h6>
+<p>
+  Este Aviso de Privacidad puede ser modificado en cualquier momento para cumplir con cambios legales o necesidades internas. La versión actualizada estará disponible en este mismo sitio.
+</p>
+
+<p class="mt-3">
+  Última actualización: junio 2025.
+</p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </main>
 
     </main>
