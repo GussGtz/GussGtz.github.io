@@ -15,28 +15,39 @@
   <!-- AOS CSS -->
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
 
-  <!-- Tu hoja de estilos -->
-  <link href="css/styles.css" rel="stylesheet" />
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!-- reCAPTCHA -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
+  <!-- Estilos personalizados -->
   <style>
     body {
-      background: linear-gradient(to right, #f1f4f9, #ffffff);
+      background-image: url('assets/fondologin.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       font-family: 'Plus Jakarta Sans', sans-serif;
+      backdrop-filter: brightness(0.95);
     }
 
     .login-panel {
       min-height: 600px;
       border-radius: 1.5rem;
       overflow: hidden;
-      box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+      background-color: rgba(255, 255, 255, 0.95);
+      animation: fadeInUp 1s ease;
     }
 
     .left-panel {
       background: linear-gradient(to bottom right, #0d6efd, #20c997);
       color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     .left-panel h2 {
@@ -48,14 +59,36 @@
       opacity: 0.95;
     }
 
-    .right-panel {
-      background-color: #ffffff;
-    }
-
     .text-gradient {
       background: linear-gradient(to right, #0d6efd, #20c997);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .form-control:focus {
+      border-color: #20c997;
+      box-shadow: 0 0 0 0.25rem rgba(32, 201, 151, 0.25);
+    }
+
+    .btn-primary {
+      background: linear-gradient(to right, #0d6efd, #20c997);
+      border: none;
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 18px rgba(13, 110, 253, 0.25);
     }
   </style>
 </head>
@@ -66,8 +99,8 @@
       <div class="col-lg-10">
         <div class="row login-panel">
           <!-- Panel Izquierdo -->
-          <div class="col-md-6 d-flex flex-column justify-content-center align-items-center text-center p-5 left-panel" data-aos="fade-right">
-            <h2 class="display-5 mb-3">CREATIVIDAD y CONEXIÒN</h2>
+          <div class="col-md-6 text-center p-5 left-panel" data-aos="fade-right">
+            <h2 class="display-5 mb-3">CREATIVIDAD y CONEXIÓN</h2>
             <p>"<strong>Desarrollando el mañana</strong>"</p>
           </div>
 
@@ -78,13 +111,13 @@
               <p class="text-muted small">Accede a tu cuenta con tu correo y contraseña</p>
             </div>
 
-            <form action="http://localhost:3001/api/login" method="POST">
+            <form id="loginForm" novalidate>
               <!-- Email -->
               <div class="mb-3">
                 <label for="email" class="form-label">Correo electrónico</label>
                 <div class="input-group">
                   <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                  <input type="email" name="email" class="form-control" id="email" required placeholder="ejemplo@correo.com">
+                  <input type="email" name="email" class="form-control" id="email" required placeholder="ejemplo@correo.com" />
                 </div>
               </div>
 
@@ -93,20 +126,21 @@
                 <label for="password" class="form-label">Contraseña</label>
                 <div class="input-group">
                   <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                  <input type="password" name="password" class="form-control" id="password" required placeholder="">
+                  <input type="password" name="password" class="form-control" id="password" required />
                 </div>
               </div>
 
-              <!-- Checkbox -->
-              <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" id="terms" required>
-                <label class="form-check-label" for="terms">
-                  Acepto los <a href="/terminos" class="text-decoration-none text-primary">términos y condiciones</a>
-                </label>
+              <!-- reCAPTCHA -->
+              <div class="mb-4 text-center">
+                <div class="g-recaptcha d-inline-block" data-sitekey="6Ldw6m4rAAAAADtbFaL-1FKCL_3Hp5J485ZQO-1e"></div>
               </div>
 
-              <!-- reCAPTCHA -->
-              <div class="g-recaptcha mb-4" data-sitekey="6Ldw6m4rAAAAADtbFaL-1FKCL_3Hp5J485ZQO-1e"></div>
+              <!-- Enlace para registro -->
+              <div class="text-center mb-4">
+                <a href="register.html" class="text-decoration-none fw-semibold text-primary">
+                  ¿No tienes cuenta? <span class="text-decoration-underline">Crea tu cuenta</span>
+                </a>
+              </div>
 
               <!-- Botón Enviar -->
               <div class="d-grid">
@@ -115,10 +149,6 @@
                 </button>
               </div>
             </form>
-
-            <div class="text-center mt-4">
-              
-            </div>
           </div>
         </div>
       </div>
@@ -132,6 +162,90 @@
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 1000, once: true });
+  </script>
+
+  <!-- Script de Login con validaciones y sanitización -->
+  <script>
+    function sanitizeInput(input) {
+      const temp = document.createElement("div");
+      temp.textContent = input;
+      return temp.innerHTML.trim();
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.getElementById("loginForm");
+
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const captchaResponse = grecaptcha.getResponse();
+        if (!captchaResponse) {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Completa el reCAPTCHA',
+            text: 'Verifica que no eres un robot antes de continuar.',
+            confirmButtonColor: '#0d6efd'
+          });
+          return;
+        }
+
+        const email = sanitizeInput(document.getElementById("email").value);
+        const password = sanitizeInput(document.getElementById("password").value);
+
+        if (!email || !password) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Campos vacíos',
+            text: 'Por favor, completa todos los campos.',
+            confirmButtonColor: '#0d6efd'
+          });
+          return;
+        }
+
+        try {
+          const response = await fetch("http://localhost:3001/api/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, password, captcha: captchaResponse })
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("usuario", data.user.nombre);
+
+            Swal.fire({
+              icon: 'success',
+              title: `¡Bienvenid@, ${data.user.nombre}!`,
+              text: 'Has iniciado sesión correctamente.',
+              confirmButtonColor: '#20c997',
+              timer: 2000,
+              showConfirmButton: false
+            }).then(() => {
+              window.location.href = "landingPage.html";
+            });
+          } else {
+            const error = await response.json();
+            Swal.fire({
+              icon: 'error',
+              title: 'Acceso denegado',
+              text: error.message || 'Credenciales incorrectas. Intenta de nuevo.',
+              confirmButtonColor: '#dc3545'
+            });
+          }
+        } catch (err) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error del servidor',
+            text: 'No se pudo conectar. Intenta más tarde.',
+            confirmButtonColor: '#dc3545'
+          });
+          console.error(err);
+        }
+      });
+    });
   </script>
 </body>
 </html>

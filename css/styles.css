@@ -299,6 +299,7 @@ kbd kbd {
   font-size: 1em;
 }
 
+
 figure {
   margin: 0 0 1rem;
 }
@@ -1279,7 +1280,7 @@ progress {
     width: 25%;
   }
   .col-lg-4 {
-    flex: 0 0 auto;
+            flex: 0 0 auto;
     width: 33.33333333%;
   }
   .col-lg-5 {
@@ -11756,4 +11757,27 @@ html {
   background: linear-gradient(to right, #F1EFE5, #FA6363);
   transform: scale(1.03);
   color: #000;
+}
+
+.logout-btn {
+  transition: all 0.3s ease-in-out;
+  animation: fadeInDown 0.6s ease-out;
+}
+
+.logout-btn:hover {
+  background-color: #dc3545;
+  color: white;
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(220, 53, 69, 0.3);
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
