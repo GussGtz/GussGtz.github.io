@@ -19,6 +19,9 @@
   <link href="css/styles.css" rel="stylesheet" />
   <!-- AOS CSS -->
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body class="d-flex flex-column h-100">
@@ -85,7 +88,7 @@
                 Introduce tus datos de contacto, responde a unas preguntas rápidas y descubre cómo empezar tu carrera en la industria tecnológica en 2025
               </p>
               <div data-aos="fade-up" data-aos-delay="200">
-                <a href="https://gussgtz.github.io/contact.html" class="btn btn-primary btn-lg px-5 py-2 rounded-pill fw-bold shadow-sm">
+                <a class="btn btn-primary btn-lg px-5 py-2 rounded-pill fw-bold shadow-sm">
                   <i class="bi bi-envelope-fill me-2"></i>Contacto
                 </a>
               </div>
@@ -105,7 +108,7 @@
       <div class="container">
         <div class="form-contacto mx-auto" data-aos="zoom-in" style="max-width: 600px; background: #fff; border-radius: 16px; padding: 35px; box-shadow: 0 8px 24px rgba(0,0,0,0.1);">
           <h2 class="text-center mb-4 fw-bold text-gradient">Contáctame</h2>
-          <form action="http://localhost:3001/api/contact" method="POST">
+<form id="form-contacto">
             <div class="mb-3">
               <label for="nombre" class="form-label">Nombre</label>
               <input type="text" name="nombre" class="form-control form-control-lg input-focus" placeholder="Tu nombre" required />
@@ -188,5 +191,72 @@
       });
     });
   </script>
+
+  <script>
+  document.getElementById('form-contacto').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+const nombre = this.nombre.value.trim();
+const correo = this.correo.value.trim();
+const telefono = this.telefono.value.trim();
+const mensaje = this.mensaje.value.trim();
+const terminos = this.terminos.checked;
+const recaptcha = grecaptcha.getResponse();
+
+if (!nombre || !correo || !mensaje || !terminos || !recaptcha) {
+  Swal.fire({
+    icon: 'warning',
+    title: 'Campos incompletos',
+    text: 'Por favor, completa todos los campos obligatorios y acepta los términos.',
+  });
+  return;
+}
+
+try {
+  const response = await fetch('http://localhost:3001/api/contact', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      nombre,
+      correo,
+      telefono,
+      mensaje,
+      terminos,
+      'g-recaptcha-response': recaptcha
+    }),
+  });
+
+  const result = await response.json();
+
+  if (response.ok) {
+    Swal.fire({
+      icon: 'success',
+      title: 'Mensaje enviado',
+      text: result.message || 'Gracias por contactarnos.',
+    });
+    this.reset();
+    grecaptcha.reset();
+  } else {
+    console.log(result);
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: result.error || 'No se pudo enviar el mensaje.',
+    });
+  }
+} catch (err) {
+  console.error('Error de red:', err);
+  Swal.fire({
+    icon: 'error',
+    title: 'Error',
+    text: 'Ocurrió un error al enviar el formulario. Intenta más tarde.',
+  });
+}
+
+  });
+</script>
+
 </body>
 </html>

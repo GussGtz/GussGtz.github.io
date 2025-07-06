@@ -130,46 +130,48 @@
       tbody.innerHTML = '';
       data.leads.forEach(lead => {
         const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td>${lead.nombre}</td>
-          <td>${lead.correo}</td>
-          <td>${lead.telefono}</td>
-          <td>${lead.estado}</td>
-          <td>
-            <select class="form-select form-select-sm mb-2" data-id="${lead.id}">
-              <option value="nuevo" ${lead.estado === 'nuevo' ? 'selected' : ''}>Nuevo</option>
-              <option value="contactado" ${lead.estado === 'contactado' ? 'selected' : ''}>Contactado</option>
-              <option value="descartado" ${lead.estado === 'descartado' ? 'selected' : ''}>Descartado</option>
-            </select>
-            <button class="btn btn-sm btn-danger btn-eliminar" data-id="${lead.id}">
-              <i class="bi bi-trash"></i> Eliminar
-            </button>
-          </td>
-        `;
+tr.innerHTML = `
+  <td>${lead.nombre}</td>
+  <td>${lead.correo}</td>
+  <td>${lead.telefono}</td>
+  <td>
+    <select class="form-select form-select-sm" data-id="${lead.id}">
+      <option value="nuevo" ${lead.estado === 'nuevo' ? 'selected' : ''}>Nuevo</option>
+      <option value="contactado" ${lead.estado === 'contactado' ? 'selected' : ''}>Contactado</option>
+      <option value="descartado" ${lead.estado === 'descartado' ? 'selected' : ''}>Descartado</option>
+    </select>
+  </td>
+  <td>
+    <button class="btn btn-sm btn-danger btn-eliminar" data-id="${lead.id}">
+      <i class="bi bi-trash"></i> Eliminar
+    </button>
+  </td>
+`;
         tbody.appendChild(tr);
 
         // Cambio de estado
         const select = tr.querySelector('select');
-        select.addEventListener('change', async (e) => {
-          const nuevoEstado = e.target.value;
-          const id = e.target.getAttribute('data-id');
+select.addEventListener('change', async (e) => {
+  const nuevoEstado = e.target.value;
+  const id = e.target.getAttribute('data-id');
 
-          const resp = await fetch(`http://localhost:3001/api/leads/${id}/estado`, {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': 'Bearer ' + token
-            },
-            body: JSON.stringify({ estado: nuevoEstado })
-          });
+  const resp = await fetch(`http://localhost:3001/api/leads/${id}/estado`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    },
+    body: JSON.stringify({ estado: nuevoEstado })
+  });
 
-          if (!resp.ok) {
-            Swal.fire('Error', 'No se pudo actualizar el estado.', 'error');
-          } else {
-            tr.querySelector('td:nth-child(4)').textContent = nuevoEstado;
-            Swal.fire('Actualizado', 'El estado del lead ha sido actualizado.', 'success');
-          }
-        });
+  if (!resp.ok) {
+    Swal.fire('Error', 'No se pudo actualizar el estado.', 'error');
+  } else {
+    // No toques el DOM, solo notifica
+    Swal.fire('Actualizado', 'El estado del lead ha sido actualizado.', 'success');
+  }
+});
+
 
         // Eliminar lead con SweetAlert2
         const eliminarBtn = tr.querySelector('.btn-eliminar');
