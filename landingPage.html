@@ -213,7 +213,7 @@ if (!nombre || !correo || !mensaje || !terminos || !recaptcha) {
 }
 
 try {
-  const response = await fetch('http://localhost:3001/api/contact', {
+  const response = await fetch('https://api-backend-a01.onrender.com/api/contact', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
