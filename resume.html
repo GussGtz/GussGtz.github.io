@@ -3,149 +3,314 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Currículum de Gustavo Gutierrez - Desarrollador Full Stack" />
-  <meta name="author" content="Gustavo Gutierrez" />
   <title>Currículum | Gustavo Gutierrez</title>
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet" />
+  <!-- AOS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #f8f9fa;
+      background-color: #111418;
+      color: #f5f5f5;
+      line-height: 1.7;
     }
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 1s ease-out forwards;
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
     }
-    @keyframes fadeInUp {
-      to { opacity: 1; transform: translateY(0); }
+
+    /* ===== NAVBAR STICKY ===== */
+    header {
+      width: 100%;
+      padding: 16px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      backdrop-filter: blur(12px);
+      background: rgba(17, 20, 24, 0.85);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
-    .hover-zoom:hover {
-      transform: scale(1.02);
-      transition: transform 0.3s ease;
+    header .logo {
+      font-weight: 800;
+      color: #00ff99;
+      font-size: 1.2rem;
     }
-    .hover-fade:hover {
-      background-color: #f1f1f1 !important;
-      transition: background-color 0.3s ease;
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 28px;
     }
-    .text-gradient {
-      background: linear-gradient(to right, #FA6363, #F1EFE5);
+    nav ul li a {
+      color: #ccc;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: #00ff99;
+    }
+    .btn-brief {
+      background: #fff;
+      color: #111;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .btn-brief:hover {
+      background: #00ff99;
+      color: #111;
+    }
+
+    /* ===== TITULOS ===== */
+    .title-gradient {
+      font-size: 2.6rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #00ff99 0%, #7bffbf 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    h2.section-title {
+      color: #00ff99;
+      font-weight: 700;
+      margin-bottom: 28px;
+      font-size: 1.8rem;
+    }
+
+    section {
+      margin: 90px 0;
+    }
+
+    /* ===== CARDS ===== */
+    .card-custom {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+      transition: transform 0.3s ease;
+    }
+    .card-custom:hover { transform: translateY(-4px); }
+
+    /* ===== HABILIDADES ===== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 20px;
+    }
+    .skill-card {
+      background: #1a1f25;
+      border: 1px solid #2b323a;
+      border-radius: 10px;
+      padding: 22px 14px;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+    .skill-card i {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: #00ff99;
+      transition: transform 0.3s ease;
+    }
+    .skill-card p {
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin: 0;
+    }
+    .skill-card:hover {
+      background: #00ff99;
+      color: #111;
+      transform: translateY(-6px);
+    }
+    .skill-card:hover i {
+      color: #111;
+      transform: scale(1.2);
+    }
+
+    /* ===== CTA ===== */
+    .contact-section {
+      background: linear-gradient(90deg, #00ff99 0%, #009966 100%);
+      border-radius: 12px;
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+      color: #111;
+    }
+    .contact-section h2 {
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0d1117;
+      color: #aaa;
+      font-size: 0.9rem;
+      padding: 40px 20px;
+      margin-top: 90px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      max-width: 1100px;
+      margin: 0 auto 30px;
+    }
+    .footer-grid h4 {
+      color: #00ff99;
+      margin-bottom: 16px;
+      font-size: 1.1rem;
+    }
+    .footer-grid p, .footer-grid a {
+      color: #ccc;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+    .footer-grid a:hover { color: #00ff99; }
+    .footer-bottom {
+      border-top: 1px solid #222;
+      padding-top: 20px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    @media (max-width: 768px) {
+      header { flex-direction: column; gap: 16px; padding: 16px 24px; }
+      .title-gradient { font-size: 2.1rem; }
+      section { margin: 70px 0; }
     }
   </style>
 </head>
-<body class="d-flex flex-column h-100">
-  <main class="flex-shrink-0">
-    <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm" data-aos="fade-down">
-      <div class="container px-5">
-        <a class="navbar-brand fw-bold text-primary" href="index.html">Gustavo Gutierrez</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
-            <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-            <li class="nav-item"><a class="nav-link" href="resume.html">Currículum</a></li>
-            <li class="nav-item"><a class="nav-link" href="projects.html">Proyectos</a></li>
-            <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
-           
-      
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <section class="container px-5 my-5" id="inicio">
-      <div class="text-center mb-5" data-aos="zoom-in">
-        <h1 class="display-4 fw-bolder mb-3"><span class="text-gradient">Desarrollador Full Stack</span></h1>
-        <p class="lead">Soy Gustavo Gutierrez, desarrollador con enfoque en soluciones seguras, multiplataforma y escalables.</p>
-        <a class="btn btn-outline-primary px-4 py-2 mt-3" href="assets/CV GUSTAVO.pdf" target="_blank"><i class="bi bi-download"></i> Descargar CV en PDF</a>
-      </div>
-    </section>
-
-    <section class="container px-5" id="experiencia">
-      <h2 class="fw-bold text-primary mb-4" data-aos="fade-right">Experiencia</h2>
-      <div class="card mb-4 shadow-sm hover-zoom" data-aos="fade-up">
-        <div class="card-body">
-          <h5 class="fw-bold">Experiencia en Desarrollo</h5>
-          <p class="mb-0">He participado activamente en el desarrollo de diversos sistemas como parte de mis estudios universitarios, adquiriendo experiencia práctica en la creación de aplicaciones web completas. Destaca mi trabajo que realice para <strong>  Glass Caribe SA. DE CV.</strong> Desarrolle  una solución de gestión de pedidos que incluye extracción de datos desde archivos XML, generación de gráficos en tiempo real, paneles administrativos y operaciones CRUD completas. Estas experiencias me han permitido fortalecer mis competencias como desarrollador full stack.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="container px-5" id="educacion">
-      <h2 class="fw-bold text-secondary mb-4" data-aos="fade-right">Educación</h2>
-      <div class="row g-4">
-        <div class="col-md-6" data-aos="fade-up">
-          <div class="bg-white shadow-sm p-4 rounded-4">
-            <h6 class="fw-bold text-secondary">TSU · Desarrollo de Software Multiplataforma</h6>
-            <p class="mb-1">Universidad Tecnológica de Cancún (2022 - 2024)</p>
-          </div>
-        </div>
-        <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-          <div class="bg-white shadow-sm p-4 rounded-4">
-            <h6 class="fw-bold text-secondary">Técnico en Programación</h6>
-            <p class="mb-1">CBTIS 111 · Cancún (2018 - 2021)</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="container px-5 my-5" id="proyectos">
-      <h2 class="fw-bold text-primary mb-4" data-aos="fade-right">Proyectos Destacados</h2>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item" data-aos="fade-up"><strong>FluxSYS</strong>: Sistema inteligente de inventarios con reportes en tiempo real, autenticación por roles y cifrado de datos.</li>
-        <li class="list-group-item" data-aos="fade-up" data-aos-delay="100"><strong>InfoCancún</strong>: App turística con APIs de clima y transporte, desarrollada con React, Node.js y MySQL.</li>
-        <li class="list-group-item" data-aos="fade-up" data-aos-delay="200"><strong>Glass Caribe</strong>: Gestión de pedidos con extracción desde XML y gráficos en tiempo real.</li>
-        <li class="list-group-item" data-aos="fade-up" data-aos-delay="300"><strong>E-Commerce Deportivo</strong>: Tienda con pagos integrados (PayPal, Mercado Pago), panel administrativo y gestión de productos.</li>
-        <li class="list-group-item" data-aos="fade-up" data-aos-delay="400"><strong>Taller Mecánico</strong>: Sistema CRUD seguro con roles, autenticación multifactor y monitoreo de mecánicos y trabajos.</li>
+<body>
+  <!-- NAVBAR -->
+  <header>
+    <div class="logo">&lt;/Gustavo Gutierrez&gt;</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="resume.html" class="active">Currículum</a></li>
+        <li><a href="projects.html">Proyectos</a></li>
+        <li><a href="contact.html">Contacto</a></li>
       </ul>
-    </section>
+    </nav>
+    <a href="assets/CV GUSTAVO.pdf" class="btn-brief" target="_blank">Currículum</a>
+  </header>
 
-    <section class="container px-5 mb-5" id="habilidades">
-      <h2 class="fw-bold text-secondary mb-4" data-aos="fade-right">Habilidades Técnicas</h2>
-      <div class="row row-cols-2 row-cols-md-4 g-3">
-        <div class="col" data-aos="zoom-in"><div class="bg-light p-3 rounded-3 text-center hover-fade">JavaScript</div></div>
-        <div class="col" data-aos="zoom-in"><div class="bg-light p-3 rounded-3 text-center hover-fade">React / React Native</div></div>
-        <div class="col" data-aos="zoom-in"><div class="bg-light p-3 rounded-3 text-center hover-fade">Node.js / Express</div></div>
-        <div class="col" data-aos="zoom-in"><div class="bg-light p-3 rounded-3 text-center hover-fade">.NET</div></div>
-        <div class="col" data-aos="zoom-in"><div class="bg-light p-3 rounded-3 text-center hover-fade">PHP</div></div>
-        <div class="col" data-aos="zoom-in"><div class="bg-light p-3 rounded-3 text-center hover-fade">Tailwind CSS</div></div>
-        <div class="col" data-aos="zoom-in"><div class="bg-light p-3 rounded-3 text-center hover-fade">SQL / MySQL</div></div>
-        <div class="col" data-aos="zoom-in"><div class="bg-light p-3 rounded-3 text-center hover-fade">Git / GitHub</div></div>
-        <div class="col" data-aos="zoom-in"><div class="bg-light p-3 rounded-3 text-center hover-fade">Bootstrap</div></div>
-        <div class="col" data-aos="zoom-in"><div class="bg-light p-3 rounded-3 text-center hover-fade">HTML5 / CSS3</div></div>
-        <div class="col" data-aos="zoom-in"><div class="bg-light p-3 rounded-3 text-center hover-fade">Firebase</div></div>
-        <div class="col" data-aos="zoom-in"><div class="bg-light p-3 rounded-3 text-center hover-fade">APIs REST</div></div>
-      </div>
-    </section>
+  
 
-    <section class="bg-white py-5" id="contacto">
-      <div class="container px-5 text-center" data-aos="fade-up">
-        <h2 class="fw-bold mb-3">¿Te interesa colaborar?</h2>
-        <p class="mb-4">Puedes escribirme o revisar mis redes:</p>
-        <div class="d-flex justify-content-center gap-4">
-          <a class="btn btn-dark btn-lg rounded-circle" href="https://github.com/gussgtz" target="_blank"><i class="bi bi-github"></i></a>
-          <a class="btn btn-primary btn-lg rounded-circle" href="mailto:gutierrezgustavocanul@gmail.com"><i class="bi bi-envelope"></i></a>
-          <a class="btn btn-info btn-lg rounded-circle text-white" href="https://gussgtz.github.io/" target="_blank"><i class="bi bi-globe"></i></a>
+  <!-- EXPERIENCIA -->
+  <section class="container" id="experiencia">
+    <h2 class="section-title" data-aos="fade-right">Experiencia Laboral</h2>
+    <div class="card-custom" data-aos="fade-up">
+      <h5 class="fw-bold mb-2">Experiencia en Desarrollo</h5>
+      <p>He participado en el desarrollo de sistemas como parte de mis estudios universitarios, adquiriendo experiencia práctica en aplicaciones web completas. Destaca mi trabajo en <strong>Glass Caribe SA. DE CV.</strong> donde desarrollé un sistema de gestión de pedidos con extracción de datos XML, gráficos en tiempo real, panel administrativo y operaciones CRUD.</p>
+    </div>
+  </section>
+
+  <!-- EDUCACIÓN -->
+  <section class="container" id="educacion">
+    <h2 class="section-title" data-aos="fade-right">Educación</h2>
+    <div class="row g-4">
+      <div class="col-md-6" data-aos="fade-up">
+        <div class="card-custom">
+          <h6 class="fw-bold">TSU · Desarrollo de Software Multiplataforma</h6>
+          <p>Universidad Tecnológica de Cancún (2022 - 2024)</p>
         </div>
       </div>
-    </section>
-  </main>
-  <footer class="bg-white text-center py-4 mt-auto shadow-sm">
-    <div class="container small">© Gustavo Gutierrez 2024</div>
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="card-custom">
+          <h6 class="fw-bold">Técnico en Programación</h6>
+          <p>CBTIS 111 · Cancún (2018 - 2021)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROYECTOS -->
+  <section class="container" id="proyectos">
+    <h2 class="section-title" data-aos="fade-right">Proyectos Destacados</h2>
+    <ul class="list-custom">
+      <li data-aos="fade-up"><strong>FluxSYS</strong>: Inventarios inteligentes con reportes en tiempo real.</li>
+      <li data-aos="fade-up" data-aos-delay="100"><strong>InfoCancún</strong>: App turística con APIs en React y Node.js.</li>
+      <li data-aos="fade-up" data-aos-delay="200"><strong>Glass Caribe</strong>: Gestión de pedidos con XML y gráficas.</li>
+      <li data-aos="fade-up" data-aos-delay="300"><strong>E-Commerce Deportivo</strong>: Tienda con pagos y panel admin.</li>
+      <li data-aos="fade-up" data-aos-delay="400"><strong>Taller Mecánico</strong>: CRUD seguro con roles y monitoreo.</li>
+    </ul>
+  </section>
+
+  <!-- HABILIDADES -->
+  <section class="container" id="habilidades">
+    <h2 class="section-title" data-aos="fade-right">Habilidades Técnicas</h2>
+    <div class="skills-grid">
+      <div class="skill-card" data-aos="zoom-in"><i class="bi bi-code-slash"></i><p>JavaScript</p></div>
+      <div class="skill-card" data-aos="zoom-in"><i class="bi bi-phone"></i><p>React / RN</p></div>
+      <div class="skill-card" data-aos="zoom-in"><i class="bi bi-server"></i><p>Node.js</p></div>
+      <div class="skill-card" data-aos="zoom-in"><i class="bi bi-windows"></i><p>.NET</p></div>
+      <div class="skill-card" data-aos="zoom-in"><i class="bi bi-file-code"></i><p>PHP</p></div>
+      <div class="skill-card" data-aos="zoom-in"><i class="bi bi-palette"></i><p>Tailwind</p></div>
+      <div class="skill-card" data-aos="zoom-in"><i class="bi bi-database"></i><p>SQL / MySQL</p></div>
+      <div class="skill-card" data-aos="zoom-in"><i class="bi bi-github"></i><p>Git</p></div>
+      <div class="skill-card" data-aos="zoom-in"><i class="bi bi-bootstrap"></i><p>Bootstrap</p></div>
+      <div class="skill-card" data-aos="zoom-in"><i class="bi bi-filetype-html"></i><p>HTML/CSS</p></div>
+      <div class="skill-card" data-aos="zoom-in"><i class="bi bi-fire"></i><p>Firebase</p></div>
+      <div class="skill-card" data-aos="zoom-in"><i class="bi bi-plug"></i><p>APIs REST</p></div>
+    </div>
+  </section>
+
+ 
+
+  <!-- FOOTER UNIFICADO -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h4>Sobre mí</h4>
+        <p>Ingeniero de Software con enfoque en soluciones seguras y escalables.</p>
+      </div>
+      <div>
+        <h4>Servicios</h4>
+        <p>Desarrollo Web</p>
+        <p>APIs & Backend</p>
+        <p>Integraciones Cloud</p>
+      </div>
+      <div>
+        <h4>Tecnologías</h4>
+        <p>JavaScript / React</p>
+        <p>Node.js / Express</p>
+        <p>.NET · SQL</p>
+      </div>
+      <div>
+        <h4>Conectar</h4>
+        <p><a href="https://github.com/gussgtz" target="_blank">GitHub</a></p>
+        <p><a href="mailto:gutierrezgustavocanul@gmail.com">Email</a></p>
+        <p><a href="https://www.linkedin.com/in/gustavo-gutierrez-b5b895290" target="_blank">LinkedIn</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Gustavo Gutierrez - Todos los derechos reservados
+    </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>AOS.init();</script>
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>AOS.init({ duration: 800, once: true });</script>
 </body>
 </html>
