@@ -235,31 +235,51 @@
     .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
 
     .hero-right { flex: 1; min-width: 260px; display: flex; justify-content: center; align-items: center; z-index: 1; }
-    .hero-photo-wrap { position: relative; width: 300px; height: 300px; }
+
+    /* ── Square photo frame ── */
+    .hero-photo-wrap {
+      position: relative; width: 300px; height: 300px;
+      border-radius: 22px;
+    }
+    /* Animated border ring — dark mode */
     .hero-photo-wrap::before {
-      content: ''; position: absolute; inset: -3px; border-radius: 50%;
-      background: conic-gradient(var(--accent) 0deg, rgba(0,255,153,0.1) 180deg, var(--accent) 360deg);
-      animation: spinRing 10s linear infinite;
+      content: ''; position: absolute; inset: -3px;
+      border-radius: 25px;
+      background: conic-gradient(var(--accent) 0deg, rgba(0,255,153,0.08) 160deg, var(--accent) 360deg);
+      animation: spinRing 8s linear infinite;
     }
     @keyframes spinRing { to { transform: rotate(360deg); } }
-    .hero-photo-wrap::after  { content: ''; position: absolute; inset: 3px; border-radius: 50%; background: var(--bg); transition: background 0.3s ease; }
-    .hero-photo { position: absolute; inset: 6px; z-index: 1; border-radius: 50%; object-fit: cover; animation: floatY 6s ease-in-out infinite; }
-    @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    /* Gap between ring and photo */
+    .hero-photo-wrap::after {
+      content: ''; position: absolute; inset: 3px;
+      border-radius: 19px;
+      background: var(--bg);
+      transition: background 0.3s ease;
+    }
+    /* Photo itself */
+    .hero-photo {
+      position: absolute; inset: 7px; z-index: 1;
+      border-radius: 14px; object-fit: cover; object-position: center top;
+      animation: floatY 7s ease-in-out infinite;
+    }
+    @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+    /* Light mode: swap neon ring for a clean accent border + soft glow */
+    body.light .hero-photo-wrap::before {
+      background: conic-gradient(#008a50 0deg, rgba(0,138,80,0.08) 160deg, #008a50 360deg);
+      animation: spinRing 8s linear infinite;
+    }
+    body.light .hero-photo-wrap::after { background: var(--bg); }
+    body.light .hero-photo { box-shadow: 0 0 0 1px rgba(0,138,80,0.15); }
 
     /* ============================================================
        ABOUT
     ============================================================ */
-    .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 60px; align-items: center; }
-    .about-photo-col { position: relative; }
-    .about-photo-img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--border); }
-    .about-photo-overlay {
-      position: absolute; bottom: 0; left: 0; right: 0; padding: 20px;
-      background: linear-gradient(0deg, rgba(10,12,14,0.92), transparent);
-      display: flex; gap: 8px; flex-wrap: wrap;
-      border-radius: 0 0 var(--radius) var(--radius);
-    }
+    .about-grid { display: grid; grid-template-columns: 1fr; gap: 32px; max-width: 780px; }
     .tag { background: rgba(0,255,153,0.1); border: 1px solid rgba(0,255,153,0.25); color: var(--accent); font-size: 0.74rem; font-weight: 700; padding: 4px 10px; border-radius: 100px; }
     body.light .tag { background: rgba(0,138,80,0.1); border-color: rgba(0,138,80,0.25); }
+    /* Tags row shown inline below highlights */
+    .about-tags-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
     .about-text { color: var(--muted); margin-bottom: 14px; font-size: 0.95rem; }
     .about-highlights { list-style: none; display: grid; gap: 10px; margin-bottom: 28px; }
     .about-highlights li { display: flex; align-items: center; gap: 10px; color: var(--text); font-size: 0.92rem; }
@@ -414,15 +434,16 @@
        RESPONSIVE
     ============================================================ */
     @media (max-width: 1024px) {
-      .about-grid  { grid-template-columns: 1fr; gap: 36px; }
-      .about-photo-col { max-width: 320px; margin: 0 auto; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 768px) {
       section { padding: 64px var(--gap); }
       .hero { flex-direction: column; text-align: center; min-height: auto; padding: 48px var(--gap); gap: 36px; }
       .hero-right { order: -1; }
-      .hero-photo-wrap { width: 200px; height: 200px; }
+      .hero-photo-wrap { width: 220px; height: 220px; border-radius: 18px; }
+      .hero-photo-wrap::before { border-radius: 21px; }
+      .hero-photo-wrap::after  { border-radius: 15px; }
+      .hero-photo { border-radius: 11px; }
       .hero-stats { justify-content: center; }
       .hero-cta   { justify-content: center; }
       .hero-desc  { margin: 0 auto 32px; }
@@ -466,6 +487,7 @@
 
   <div class="nav-controls">
     <!-- Dark / Light toggle -->
+    <!-- Starts as moon (light mode active, click to go dark) -->
     <button class="icon-btn" id="themeToggle" aria-label="Cambiar tema">
       <i class="bi bi-moon-fill" id="themeIcon" aria-hidden="true"></i>
     </button>
@@ -530,7 +552,7 @@
 
   <div class="hero-right" data-aos="fade-left" data-aos-duration="700" data-aos-delay="100">
     <div class="hero-photo-wrap">
-      <img src="assets/gusbyn.PNG" alt="Gustavo Gutiérrez" class="hero-photo" width="288" height="288" loading="eager" />
+      <img src="assets/gus-hero.png" alt="Gustavo Gutiérrez" class="hero-photo" width="286" height="286" loading="eager" />
     </div>
   </div>
 </section>
@@ -540,44 +562,42 @@
      SOBRE MÍ
 ============================================================ -->
 <section id="about" class="container">
-  <div class="about-grid">
+  <div class="about-grid" data-aos="fade-up">
+    <span class="section-label" data-i18n="about.label">Sobre Mí</span>
+    <h2 class="section-title" data-i18n="about.title">Apasionado por construir soluciones que importan</h2>
+    <p class="about-text" data-i18n-html="about.p1">
+      Soy <strong>Gustavo Gutiérrez</strong>, TSU en Desarrollo de Software Multiplataforma por la
+      <strong>Universidad Tecnológica de Cancún</strong>. Me especializo en el desarrollo de sistemas
+      web completos, desde la arquitectura del backend hasta la interfaz de usuario.
+    </p>
+    <p class="about-text" style="margin-bottom:20px;" data-i18n="about.p2">
+      Disfruto convertir problemas complejos en soluciones elegantes. Trabajo con código limpio,
+      buenas prácticas y siempre orientado a resultados reales para el negocio.
+    </p>
 
-    <div class="about-photo-col" data-aos="fade-right">
-      <img src="assets/GusLap.png" alt="Gustavo trabajando" class="about-photo-img" loading="lazy" />
-      <div class="about-photo-overlay">
-        <span class="tag">Node.js</span>
-        <span class="tag">PostgreSQL</span>
-        <span class="tag">React</span>
-        <span class="tag">JWT</span>
-      </div>
+    <div class="about-tags-row">
+      <span class="tag">Node.js</span>
+      <span class="tag">PostgreSQL</span>
+      <span class="tag">React</span>
+      <span class="tag">JWT</span>
+      <span class="tag">Express</span>
+      <span class="tag">REST APIs</span>
     </div>
 
-    <div data-aos="fade-left" data-aos-delay="100">
-      <span class="section-label" data-i18n="about.label">Sobre Mí</span>
-      <h2 class="section-title" data-i18n="about.title">Apasionado por construir soluciones que importan</h2>
-      <p class="about-text" data-i18n-html="about.p1">
-        Soy <strong>Gustavo Gutiérrez</strong>, TSU en Desarrollo de Software Multiplataforma por la
-        <strong>Universidad Tecnológica de Cancún</strong>. Me especializo en el desarrollo de sistemas
-        web completos, desde la arquitectura del backend hasta la interfaz de usuario.
-      </p>
-      <p class="about-text" style="margin-bottom:24px;" data-i18n="about.p2">
-        Disfruto convertir problemas complejos en soluciones elegantes. Trabajo con código limpio,
-        buenas prácticas y siempre orientado a resultados reales para el negocio.
-      </p>
-      <ul class="about-highlights">
-        <li data-i18n="about.hl1">Backend con Node.js, Express y APIs RESTful seguras</li>
-        <li data-i18n="about.hl2">Bases de datos relacionales: MySQL y PostgreSQL optimizados</li>
-        <li data-i18n="about.hl3">Frontend con React, HTML/CSS y JavaScript ES6+</li>
-        <li data-i18n="about.hl4">Autenticación JWT, gestión de roles y seguridad web</li>
-        <li data-i18n="about.hl5">Disponible para trabajo remoto, híbrido y proyectos freelance</li>
-      </ul>
-      <div class="socials-row">
-        <a href="https://github.com/GussGtz" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub"><i class="bi bi-github"></i></a>
-        <a href="https://www.linkedin.com/in/gustavo-gutierrez-canul-607341267/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-        <a href="https://twitter.com/GustavoGtzzz" target="_blank" rel="noopener" class="social-btn" aria-label="Twitter / X"><i class="bi bi-twitter-x"></i></a>
-        <a href="mailto:gutierrezgustavocanul@gmail.com" class="social-btn" aria-label="Email"><i class="bi bi-envelope"></i></a>
-        <a href="./assets/CV GUSTAVO.pdf" target="_blank" rel="noopener" class="social-btn" aria-label="CV"><i class="bi bi-file-earmark-person"></i></a>
-      </div>
+    <ul class="about-highlights">
+      <li data-i18n="about.hl1">Backend con Node.js, Express y APIs RESTful seguras</li>
+      <li data-i18n="about.hl2">Bases de datos relacionales: MySQL y PostgreSQL optimizados</li>
+      <li data-i18n="about.hl3">Frontend con React, HTML/CSS y JavaScript ES6+</li>
+      <li data-i18n="about.hl4">Autenticación JWT, gestión de roles y seguridad web</li>
+      <li data-i18n="about.hl5">Disponible para trabajo remoto, híbrido y proyectos freelance</li>
+    </ul>
+
+    <div class="socials-row">
+      <a href="https://github.com/GussGtz" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub"><i class="bi bi-github"></i></a>
+      <a href="https://www.linkedin.com/in/gustavo-gutierrez-canul-607341267/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+      <a href="https://twitter.com/GustavoGtzzz" target="_blank" rel="noopener" class="social-btn" aria-label="Twitter / X"><i class="bi bi-twitter-x"></i></a>
+      <a href="mailto:gutierrezgustavocanul@gmail.com" class="social-btn" aria-label="Email"><i class="bi bi-envelope"></i></a>
+      <a href="./assets/CV GUSTAVO.pdf" target="_blank" rel="noopener" class="social-btn" aria-label="CV"><i class="bi bi-file-earmark-person"></i></a>
     </div>
   </div>
 </section>
@@ -1353,7 +1373,8 @@ applyLang(currentLang);
 /* ================================================================
    THEME SYSTEM
 ================================================================ */
-let isDark = localStorage.getItem('theme') !== 'light';
+// Default: light mode. Only go dark if user explicitly chose dark before.
+let isDark = localStorage.getItem('theme') === 'dark';
 
 function applyTheme(dark) {
   isDark = dark;
