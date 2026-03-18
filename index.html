@@ -7,20 +7,15 @@
   <meta name="description" content="Full Stack Developer especializado en Node.js, JavaScript y PostgreSQL. Construyo sistemas escalables y APIs robustas desde Cancún, México." />
   <link rel="icon" type="image/x-icon" href="assets/Captura.ico" />
 
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
-  <!-- Devicons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
-  <!-- AOS -->
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-  <!-- iziToast -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast/dist/css/iziToast.min.css" />
 
   <style>
     /* ============================================================
-       VARIABLES
+       VARIABLES — DARK (default)
     ============================================================ */
     :root {
       --bg:           #0a0c0e;
@@ -31,14 +26,62 @@
       --text:         #e8eaec;
       --accent:       #00ff99;
       --accent-dim:   rgba(0,255,153,0.10);
-      --accent-glow:  rgba(0,255,153,0.06);
       --max-width:    1100px;
       --gap:          24px;
       --radius:       14px;
       --card-bg:      linear-gradient(145deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
       --card-shadow:  0 8px 32px rgba(0,0,0,0.5);
       --transition:   all 0.22s ease;
+      --header-bg:    rgba(10,12,14,0.88);
+      --footer-bg:    #070809;
     }
+
+    /* ============================================================
+       VARIABLES — LIGHT MODE
+    ============================================================ */
+    body.light {
+      --bg:           #f4f6f8;
+      --bg-2:         #ffffff;
+      --panel:        rgba(0,0,0,0.03);
+      --border:       rgba(0,0,0,0.09);
+      --muted:        #6b7280;
+      --text:         #1a1d20;
+      --accent:       #008a50;
+      --accent-dim:   rgba(0,138,80,0.10);
+      --card-bg:      linear-gradient(145deg, #ffffff, #f8fafa);
+      --card-shadow:  0 8px 32px rgba(0,0,0,0.07);
+      --header-bg:    rgba(244,246,248,0.92);
+      --footer-bg:    #e8eaec;
+    }
+
+    /* Extra overrides for light mode */
+    body.light .hero-name,
+    body.light .section-title {
+      background: linear-gradient(135deg, #111 40%, #3a5a50);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    body.light header    { background: var(--header-bg); }
+    body.light footer    { background: var(--footer-bg); }
+    body.light .hero::before { background: radial-gradient(700px 400px at 0% 0%, rgba(0,138,80,0.04), transparent); }
+    body.light .hero-photo-wrap::before { background: conic-gradient(var(--accent) 0deg, rgba(0,138,80,0.1) 180deg, var(--accent) 360deg); }
+    body.light .hero-photo-wrap::after  { background: var(--bg); }
+    body.light .exp-timeline::before    { background: linear-gradient(180deg, var(--accent), transparent); }
+    body.light .exp-dot  { border-color: var(--bg); }
+    body.light .skill-bar { background: rgba(0,0,0,0.08); }
+    body.light .form-input { background: #fff; border-color: rgba(0,0,0,0.12); color: var(--text); }
+    body.light .form-input::placeholder { color: #aaa; }
+    body.light .form-input:focus { border-color: rgba(0,138,80,0.45); background: #fff; box-shadow: 0 0 0 3px rgba(0,138,80,0.08); }
+    body.light select.form-input option { background: #fff; color: #1a1d20; }
+    body.light .nav-list a       { color: var(--muted); }
+    body.light .nav-list a:hover { color: var(--text); background: rgba(0,0,0,0.04); }
+    body.light .nav-list a.active { color: var(--accent); background: var(--accent-dim); }
+    body.light .available-badge  { background: rgba(0,138,80,0.08); border-color: rgba(0,138,80,0.2); }
+    body.light .project-overlay  { background: rgba(244,246,248,0.75); }
+    body.light .overlay-btn.ghost { background: rgba(0,0,0,0.1); color: #333; border-color: rgba(0,0,0,0.15); }
+    body.light .about-photo-overlay { background: linear-gradient(0deg, rgba(244,246,248,0.95), transparent); }
+    body.light .nav-list.open { background: rgba(244,246,248,0.98); border-color: var(--border); }
+    body.light .footer-brand p, body.light .footer-col a, body.light .footer-bottom span, body.light .footer-bottom a { color: var(--muted); }
+    body.light .footer-col h5 { color: var(--text); }
 
     /* ============================================================
        RESET
@@ -47,11 +90,10 @@
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      background: var(--bg); color: var(--text);
       -webkit-font-smoothing: antialiased;
-      line-height: 1.65;
-      overflow-x: hidden;
+      line-height: 1.65; overflow-x: hidden;
+      transition: background 0.3s ease, color 0.3s ease;
     }
     :focus { outline: none; }
     :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
@@ -68,16 +110,14 @@
     section { padding: 90px var(--gap); max-width: var(--max-width); margin: 0 auto; }
 
     /* ============================================================
-       TYPOGRAPHY HELPERS
+       TYPOGRAPHY
     ============================================================ */
     .section-label {
       display: inline-flex; align-items: center; gap: 8px;
       color: var(--accent); font-size: 0.78rem; font-weight: 700;
       letter-spacing: 1.8px; text-transform: uppercase; margin-bottom: 12px;
     }
-    .section-label::before {
-      content: ''; width: 22px; height: 2px; background: var(--accent); border-radius: 2px;
-    }
+    .section-label::before { content: ''; width: 22px; height: 2px; background: var(--accent); border-radius: 2px; }
     .section-title {
       font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; margin-bottom: 16px;
       background: linear-gradient(100deg, #fff 30%, #b0c4bc);
@@ -90,29 +130,49 @@
     ============================================================ */
     header {
       position: sticky; top: 0; z-index: 1000;
-      background: rgba(10,12,14,0.88);
+      background: var(--header-bg);
       backdrop-filter: blur(14px) saturate(1.5);
       -webkit-backdrop-filter: blur(14px) saturate(1.5);
       border-bottom: 1px solid var(--border);
-      padding: 0 var(--gap);
-      height: 64px;
+      padding: 0 var(--gap); height: 64px;
       display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.3s ease;
     }
     .logo { font-weight: 800; font-size: 1.1rem; color: var(--accent); letter-spacing: 0.5px; }
     nav { display: flex; align-items: center; gap: 32px; }
     .nav-list { display: flex; gap: 4px; list-style: none; }
-    .nav-list a {
-      color: var(--muted); font-weight: 500; font-size: 0.9rem;
-      padding: 6px 12px; border-radius: 8px; transition: var(--transition);
-    }
+    .nav-list a { color: var(--muted); font-weight: 500; font-size: 0.9rem; padding: 6px 12px; border-radius: 8px; transition: var(--transition); }
     .nav-list a:hover { color: var(--text); background: var(--panel); }
     .nav-list a.active { color: var(--accent); background: var(--accent-dim); }
-    .btn-hire {
-      background: var(--accent); color: #0a0c0e;
-      padding: 8px 20px; border-radius: 8px;
-      font-weight: 700; font-size: 0.88rem; transition: var(--transition);
-    }
+
+    /* Controls row (right side of navbar) */
+    .nav-controls { display: flex; align-items: center; gap: 8px; }
+    .btn-hire { background: var(--accent); color: #0a0c0e; padding: 8px 18px; border-radius: 8px; font-weight: 700; font-size: 0.88rem; transition: var(--transition); }
     .btn-hire:hover { opacity: 0.85; transform: translateY(-2px); }
+    body.light .btn-hire { color: #fff; }
+
+    /* Icon button (theme / lang) */
+    .icon-btn {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: var(--panel); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); font-size: 1rem; cursor: pointer; transition: var(--transition);
+    }
+    .icon-btn:hover { color: var(--accent); border-color: rgba(0,255,153,0.3); background: var(--accent-dim); }
+    body.light .icon-btn:hover { border-color: rgba(0,138,80,0.3); background: var(--accent-dim); }
+
+    /* Language pill */
+    .lang-btn {
+      height: 36px; padding: 0 12px; border-radius: 8px;
+      background: var(--panel); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); font-size: 0.8rem; font-weight: 700;
+      cursor: pointer; transition: var(--transition); letter-spacing: 0.8px;
+      gap: 5px;
+    }
+    .lang-btn:hover { color: var(--accent); border-color: rgba(0,255,153,0.3); background: var(--accent-dim); }
+    body.light .lang-btn:hover { border-color: rgba(0,138,80,0.3); background: var(--accent-dim); }
+
     .nav-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.3rem; cursor: pointer; padding: 4px; }
 
     /* ============================================================
@@ -125,10 +185,9 @@
       position: relative; overflow: hidden;
     }
     .hero::before {
-      content: '';
-      position: absolute; inset: 0; pointer-events: none;
+      content: ''; position: absolute; inset: 0; pointer-events: none;
       background:
-        radial-gradient(700px 400px at 0% 0%,   rgba(0,255,153,0.04) 0%, transparent 70%),
+        radial-gradient(700px 400px at 0% 0%,    rgba(0,255,153,0.04) 0%, transparent 70%),
         radial-gradient(500px 300px at 100% 100%, rgba(0,255,153,0.025) 0%, transparent 70%);
     }
     .hero-left { flex: 1; min-width: 280px; z-index: 1; }
@@ -139,10 +198,7 @@
       color: var(--accent); padding: 6px 14px; border-radius: 100px;
       font-size: 0.8rem; font-weight: 600; margin-bottom: 24px;
     }
-    .available-badge .dot {
-      width: 8px; height: 8px; background: var(--accent);
-      border-radius: 50%; animation: pulse 2s ease-in-out infinite;
-    }
+    .available-badge .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
 
     .hero-name {
@@ -151,23 +207,15 @@
       background: linear-gradient(135deg, #fff 40%, #a0b8b0);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    .hero-role {
-      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-      font-weight: 600; color: var(--accent); margin-bottom: 18px;
-    }
-    .hero-desc {
-      color: var(--muted); max-width: 480px;
-      margin-bottom: 32px; font-size: 0.97rem;
-    }
+    .hero-role { font-size: clamp(1.1rem, 2.5vw, 1.4rem); font-weight: 600; color: var(--accent); margin-bottom: 18px; }
+    .hero-desc { color: var(--muted); max-width: 480px; margin-bottom: 32px; font-size: 0.97rem; }
 
-    /* Stats */
     .hero-stats { display: flex; gap: 28px; margin-bottom: 36px; flex-wrap: wrap; align-items: center; }
-    .stat-item { display: flex; flex-direction: column; gap: 2px; }
+    .stat-item   { display: flex; flex-direction: column; gap: 2px; }
     .stat-number { font-size: 1.9rem; font-weight: 800; color: var(--accent); line-height: 1; }
     .stat-label  { font-size: 0.75rem; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.8px; }
-    .stat-divider { width: 1px; height: 40px; background: var(--border); }
+    .stat-divider{ width: 1px; height: 40px; background: var(--border); }
 
-    /* CTA buttons */
     .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
     .btn-primary {
       background: var(--accent); color: #0a0c0e;
@@ -177,6 +225,7 @@
       position: relative; overflow: hidden; border: none; cursor: pointer;
     }
     .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 40px rgba(0,255,153,0.22); }
+    body.light .btn-primary { color: #fff; }
     .btn-outline {
       background: transparent; color: var(--text);
       padding: 13px 26px; border-radius: 10px; font-weight: 600; font-size: 0.95rem;
@@ -185,7 +234,6 @@
     }
     .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
 
-    /* Photo ring */
     .hero-right { flex: 1; min-width: 260px; display: flex; justify-content: center; align-items: center; z-index: 1; }
     .hero-photo-wrap { position: relative; width: 300px; height: 300px; }
     .hero-photo-wrap::before {
@@ -194,15 +242,8 @@
       animation: spinRing 10s linear infinite;
     }
     @keyframes spinRing { to { transform: rotate(360deg); } }
-    .hero-photo-wrap::after {
-      content: ''; position: absolute; inset: 3px;
-      border-radius: 50%; background: var(--bg);
-    }
-    .hero-photo {
-      position: absolute; inset: 6px; z-index: 1;
-      border-radius: 50%; object-fit: cover;
-      animation: floatY 6s ease-in-out infinite;
-    }
+    .hero-photo-wrap::after  { content: ''; position: absolute; inset: 3px; border-radius: 50%; background: var(--bg); transition: background 0.3s ease; }
+    .hero-photo { position: absolute; inset: 6px; z-index: 1; border-radius: 50%; object-fit: cover; animation: floatY 6s ease-in-out infinite; }
     @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
 
     /* ============================================================
@@ -210,30 +251,19 @@
     ============================================================ */
     .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 60px; align-items: center; }
     .about-photo-col { position: relative; }
-    .about-photo-img {
-      width: 100%; aspect-ratio: 4/5; object-fit: cover;
-      border-radius: var(--radius); border: 1px solid var(--border);
-    }
+    .about-photo-img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--border); }
     .about-photo-overlay {
       position: absolute; bottom: 0; left: 0; right: 0; padding: 20px;
       background: linear-gradient(0deg, rgba(10,12,14,0.92), transparent);
-      display: flex; gap: 8px; flex-wrap: wrap; border-radius: 0 0 var(--radius) var(--radius);
+      display: flex; gap: 8px; flex-wrap: wrap;
+      border-radius: 0 0 var(--radius) var(--radius);
     }
-    .tag {
-      background: rgba(0,255,153,0.1); border: 1px solid rgba(0,255,153,0.25);
-      color: var(--accent); font-size: 0.74rem; font-weight: 700;
-      padding: 4px 10px; border-radius: 100px;
-    }
+    .tag { background: rgba(0,255,153,0.1); border: 1px solid rgba(0,255,153,0.25); color: var(--accent); font-size: 0.74rem; font-weight: 700; padding: 4px 10px; border-radius: 100px; }
+    body.light .tag { background: rgba(0,138,80,0.1); border-color: rgba(0,138,80,0.25); }
     .about-text { color: var(--muted); margin-bottom: 14px; font-size: 0.95rem; }
     .about-highlights { list-style: none; display: grid; gap: 10px; margin-bottom: 28px; }
-    .about-highlights li {
-      display: flex; align-items: center; gap: 10px;
-      color: var(--text); font-size: 0.92rem;
-    }
-    .about-highlights li::before {
-      content: ''; width: 6px; height: 6px; border-radius: 50%;
-      background: var(--accent); flex-shrink: 0;
-    }
+    .about-highlights li { display: flex; align-items: center; gap: 10px; color: var(--text); font-size: 0.92rem; }
+    .about-highlights li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
     .socials-row { display: flex; gap: 8px; flex-wrap: wrap; }
     .social-btn {
       width: 42px; height: 42px; border-radius: 10px;
@@ -242,6 +272,7 @@
       color: var(--muted); font-size: 1.1rem; transition: var(--transition);
     }
     .social-btn:hover { color: var(--accent); border-color: rgba(0,255,153,0.3); background: var(--accent-dim); transform: translateY(-4px); }
+    body.light .social-btn:hover { border-color: rgba(0,138,80,0.3); }
 
     /* ============================================================
        SERVICES
@@ -252,169 +283,102 @@
       border-radius: var(--radius); padding: 28px 24px;
       transition: var(--transition); position: relative; overflow: hidden;
     }
-    .service-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, var(--accent), transparent);
-      opacity: 0; transition: var(--transition);
-    }
+    .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); opacity: 0; transition: var(--transition); }
     .service-card:hover { transform: translateY(-6px); border-color: rgba(0,255,153,0.2); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+    body.light .service-card:hover { border-color: rgba(0,138,80,0.25); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
     .service-card:hover::before { opacity: 1; }
     .service-icon { font-size: 2rem; color: var(--accent); margin-bottom: 16px; display: block; }
     .service-card h3 { font-size: 1.02rem; font-weight: 700; margin-bottom: 8px; }
     .service-card p  { color: var(--muted); font-size: 0.88rem; line-height: 1.65; }
 
     /* ============================================================
-       EXPERIENCE  (timeline)
+       EXPERIENCE
     ============================================================ */
     .exp-timeline { position: relative; padding-left: 28px; }
-    .exp-timeline::before {
-      content: ''; position: absolute; left: 0; top: 8px; bottom: 8px;
-      width: 2px; background: linear-gradient(180deg, var(--accent), transparent);
-    }
+    .exp-timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(180deg, var(--accent), transparent); }
     .exp-item { position: relative; margin-bottom: 44px; }
     .exp-item:last-child { margin-bottom: 0; }
-    .exp-dot {
-      position: absolute; left: -34px; top: 6px;
-      width: 12px; height: 12px; border-radius: 50%;
-      background: var(--accent); border: 2px solid var(--bg);
-      box-shadow: 0 0 0 4px rgba(0,255,153,0.12);
-    }
-    .exp-header {
-      display: flex; align-items: flex-start; justify-content: space-between;
-      gap: 16px; margin-bottom: 8px; flex-wrap: wrap;
-    }
+    .exp-dot { position: absolute; left: -34px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); box-shadow: 0 0 0 4px rgba(0,255,153,0.12); transition: border-color 0.3s; }
+    .exp-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 8px; flex-wrap: wrap; }
     .exp-role    { font-size: 1.02rem; font-weight: 700; }
     .exp-company { color: var(--accent); font-size: 0.88rem; font-weight: 600; margin-top: 2px; }
-    .exp-period  {
-      background: var(--accent-dim); color: var(--accent);
-      padding: 4px 12px; border-radius: 100px; font-size: 0.76rem; font-weight: 600; white-space: nowrap;
-    }
-    .exp-desc { color: var(--muted); font-size: 0.9rem; margin-bottom: 12px; }
+    .exp-period  { background: var(--accent-dim); color: var(--accent); padding: 4px 12px; border-radius: 100px; font-size: 0.76rem; font-weight: 600; white-space: nowrap; }
+    .exp-desc  { color: var(--muted); font-size: 0.9rem; margin-bottom: 12px; }
     .exp-tags  { display: flex; gap: 6px; flex-wrap: wrap; }
-    .tech-tag  {
-      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
-      color: var(--muted); font-size: 0.74rem; padding: 3px 9px; border-radius: 100px;
-    }
+    .tech-tag  { background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--muted); font-size: 0.74rem; padding: 3px 9px; border-radius: 100px; }
+    body.light .tech-tag { background: rgba(0,0,0,0.03); }
 
     /* ============================================================
        SKILLS
     ============================================================ */
     .skills-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px,1fr)); gap: 32px; }
-    .skill-category h4 {
-      font-size: 0.77rem; font-weight: 700; color: var(--accent);
-      text-transform: uppercase; letter-spacing: 1.4px; margin-bottom: 18px;
-      padding-bottom: 8px; border-bottom: 1px solid var(--border);
-    }
+    .skill-category h4 { font-size: 0.77rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1.4px; margin-bottom: 18px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
     .skill-list { display: flex; flex-direction: column; gap: 16px; }
-    .skill-info {
-      display: flex; align-items: center; justify-content: space-between; margin-bottom: 7px;
-    }
+    .skill-info { display: flex; align-items: center; justify-content: space-between; margin-bottom: 7px; }
     .skill-name { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; font-weight: 600; }
     .skill-name i { font-size: 1.1rem; }
     .skill-pct  { font-size: 0.76rem; color: var(--muted); }
     .skill-bar  { height: 4px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
-    .skill-fill {
-      height: 100%; width: 0%;
-      background: linear-gradient(90deg, var(--accent), rgba(0,255,153,0.45));
-      border-radius: 4px; transition: width 1.1s cubic-bezier(.4,0,.2,1);
-    }
+    .skill-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), rgba(0,255,153,0.45)); border-radius: 4px; transition: width 1.1s cubic-bezier(.4,0,.2,1); }
+    body.light .skill-fill { background: linear-gradient(90deg, var(--accent), rgba(0,138,80,0.45)); }
 
     /* ============================================================
        PROJECTS
     ============================================================ */
     .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px,1fr)); gap: 24px; }
-    .project-card {
-      background: var(--card-bg); border: 1px solid var(--border);
-      border-radius: var(--radius); overflow: hidden;
-      transition: var(--transition); display: flex; flex-direction: column;
-    }
+    .project-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: var(--transition); display: flex; flex-direction: column; }
     .project-card:hover { transform: translateY(-8px); border-color: rgba(0,255,153,0.2); box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
+    body.light .project-card:hover { border-color: rgba(0,138,80,0.2); box-shadow: 0 24px 60px rgba(0,0,0,0.1); }
     .project-thumb { position: relative; overflow: hidden; }
     .project-thumb img { width: 100%; height: 200px; object-fit: cover; transition: transform 0.5s ease; display: block; }
     .project-card:hover .project-thumb img { transform: scale(1.05); }
-    .project-overlay {
-      position: absolute; inset: 0; background: rgba(10,12,14,0.72);
-      display: flex; align-items: center; justify-content: center; gap: 12px;
-      opacity: 0; transition: var(--transition);
-    }
+    .project-overlay { position: absolute; inset: 0; background: rgba(10,12,14,0.72); display: flex; align-items: center; justify-content: center; gap: 12px; opacity: 0; transition: var(--transition); }
     .project-card:hover .project-overlay { opacity: 1; }
-    .overlay-btn {
-      width: 44px; height: 44px; border-radius: 10px;
-      display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
-      background: var(--accent); color: #0a0c0e; transition: var(--transition);
-    }
+    .overlay-btn { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; background: var(--accent); color: #0a0c0e; transition: var(--transition); }
     .overlay-btn:hover { transform: scale(1.1); }
-    .overlay-btn.ghost {
-      background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2);
-    }
+    .overlay-btn.ghost { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+    body.light .btn-primary { color: #fff; }
     .project-body { padding: 20px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
-    .project-body h3 { font-size: 1rem; font-weight: 700; }
+    .project-body h3  { font-size: 1rem; font-weight: 700; }
     .project-body p   { color: var(--muted); font-size: 0.87rem; line-height: 1.6; flex: 1; }
-    .project-metric {
-      display: flex; align-items: center; gap: 6px;
-      font-size: 0.8rem; color: var(--accent); font-weight: 600;
-    }
-    .project-stack { display: flex; gap: 6px; flex-wrap: wrap; }
+    .project-metric   { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--accent); font-weight: 600; }
+    .project-stack    { display: flex; gap: 6px; flex-wrap: wrap; }
 
     /* ============================================================
        CONTACT
     ============================================================ */
     .contact-grid { display: grid; grid-template-columns: 1fr 1.7fr; gap: 32px; align-items: start; }
     .contact-info { display: flex; flex-direction: column; gap: 16px; }
-    .contact-card {
-      background: var(--card-bg); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 24px;
-    }
+    .contact-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
     .contact-card h3 { font-weight: 700; margin-bottom: 18px; font-size: 1rem; }
     .contact-item { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
     .contact-item:last-child { margin-bottom: 0; }
-    .ci-icon {
-      width: 40px; height: 40px; border-radius: 10px;
-      background: var(--accent-dim); color: var(--accent);
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.1rem;
-    }
-    .ci-text small { display: block; color: var(--muted); font-size: 0.73rem; margin-bottom: 2px; letter-spacing: 0.5px; }
+    .ci-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--accent-dim); color: var(--accent); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.1rem; }
+    .ci-text small { display: block; color: var(--muted); font-size: 0.73rem; margin-bottom: 2px; }
     .ci-text a, .ci-text span { font-size: 0.88rem; color: var(--text); }
     .ci-text a:hover { color: var(--accent); }
-
-    .quick-action {
-      display: flex; align-items: center; gap: 10px;
-      padding: 11px 14px; border-radius: 10px;
-      border: 1px solid var(--border); background: var(--panel);
-      transition: var(--transition); color: var(--muted); font-size: 0.88rem; font-weight: 500; margin-bottom: 8px;
-    }
+    .quick-action { display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--panel); transition: var(--transition); color: var(--muted); font-size: 0.88rem; font-weight: 500; margin-bottom: 8px; }
     .quick-action:last-child { margin-bottom: 0; }
     .quick-action:hover { border-color: rgba(0,255,153,0.3); color: var(--accent); background: var(--accent-dim); }
+    body.light .quick-action:hover { border-color: rgba(0,138,80,0.3); }
     .quick-action i { font-size: 1.05rem; }
-
-    /* Form */
     .form-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; }
     .form-card h3 { font-weight: 700; margin-bottom: 20px; }
     .form-row   { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
     .form-group { margin-bottom: 14px; }
     .form-label { font-size: 0.78rem; font-weight: 600; color: var(--muted); display: block; margin-bottom: 6px; }
-    .form-input {
-      width: 100%; background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border); color: var(--text);
-      border-radius: 8px; padding: 11px 14px; font-size: 0.9rem;
-      font-family: inherit; transition: var(--transition);
-    }
+    .form-input { width: 100%; background: rgba(255,255,255,0.03); border: 1px solid var(--border); color: var(--text); border-radius: 8px; padding: 11px 14px; font-size: 0.9rem; font-family: inherit; transition: var(--transition); }
     .form-input::placeholder { color: #555; }
     .form-input:focus { border-color: rgba(0,255,153,0.4); background: rgba(0,255,153,0.02); outline: none; box-shadow: 0 0 0 3px rgba(0,255,153,0.06); }
     textarea.form-input { resize: vertical; min-height: 110px; }
     select.form-input option { background: #1a1d20; }
-
     .spinner { width: 16px; height: 16px; border: 2px solid rgba(0,0,0,0.15); border-top-color: #111; border-radius: 50%; animation: spinAnim 0.7s linear infinite; display: inline-block; }
     @keyframes spinAnim { to { transform: rotate(360deg); } }
 
     /* ============================================================
        FOOTER
     ============================================================ */
-    footer {
-      background: #070809;
-      border-top: 1px solid var(--border);
-      padding: 64px var(--gap) 32px;
-    }
+    footer { background: var(--footer-bg); border-top: 1px solid var(--border); padding: 64px var(--gap) 32px; transition: background 0.3s ease; }
     .footer-inner { max-width: var(--max-width); margin: 0 auto; }
     .footer-grid  { display: grid; grid-template-columns: 2fr repeat(3,1fr); gap: 40px; margin-bottom: 44px; }
     .footer-brand .logo { font-size: 1.2rem; margin-bottom: 12px; display: block; }
@@ -423,12 +387,8 @@
     .footer-col h5 { font-size: 0.76rem; font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 14px; }
     .footer-col a  { display: block; color: var(--muted); font-size: 0.87rem; margin-bottom: 9px; transition: var(--transition); }
     .footer-col a:hover { color: var(--accent); }
-    .footer-bottom {
-      border-top: 1px solid var(--border); padding-top: 20px;
-      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
-    }
-    .footer-bottom span { color: var(--muted); font-size: 0.82rem; }
-    .footer-bottom a   { color: var(--muted); font-size: 0.82rem; transition: var(--transition); }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+    .footer-bottom span, .footer-bottom a { color: var(--muted); font-size: 0.82rem; transition: var(--transition); }
     .footer-bottom a:hover { color: var(--accent); }
 
     /* ============================================================
@@ -443,14 +403,11 @@
       opacity: 0; pointer-events: none; transform: translateY(12px);
       transition: opacity 0.28s, transform 0.28s;
     }
+    body.light .back-to-top { color: #fff; }
     .back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
 
     /* Ripple */
-    .ripple {
-      position: absolute; border-radius: 50%; pointer-events: none;
-      transform: scale(0); animation: rippleAnim 600ms linear;
-      background: rgba(255,255,255,0.28);
-    }
+    .ripple { position: absolute; border-radius: 50%; pointer-events: none; transform: scale(0); animation: rippleAnim 600ms linear; background: rgba(255,255,255,0.28); }
     @keyframes rippleAnim { to { transform: scale(4); opacity: 0; } }
 
     /* ============================================================
@@ -474,6 +431,7 @@
       .footer-grid { grid-template-columns: 1fr; gap: 24px; }
       nav .nav-list { display: none; }
       .nav-toggle   { display: flex; }
+      .btn-hire     { display: none; }
       .nav-list.open {
         display: flex; flex-direction: column;
         position: absolute; top: 64px; left: 0; right: 0;
@@ -498,16 +456,28 @@
 
   <nav aria-label="Navegación principal">
     <ul class="nav-list" id="navList">
-      <li><a href="#about"      class="nav-link">Sobre Mí</a></li>
-      <li><a href="#services"   class="nav-link">Servicios</a></li>
-      <li><a href="#experience" class="nav-link">Experiencia</a></li>
-      <li><a href="#projects"   class="nav-link">Proyectos</a></li>
-      <li><a href="#contact"    class="nav-link">Contacto</a></li>
+      <li><a href="#about"      class="nav-link" data-i18n="nav.about">Sobre Mí</a></li>
+      <li><a href="#services"   class="nav-link" data-i18n="nav.services">Servicios</a></li>
+      <li><a href="#experience" class="nav-link" data-i18n="nav.experience">Experiencia</a></li>
+      <li><a href="#projects"   class="nav-link" data-i18n="nav.projects">Proyectos</a></li>
+      <li><a href="#contact"    class="nav-link" data-i18n="nav.contact">Contacto</a></li>
     </ul>
   </nav>
 
-  <div style="display:flex;align-items:center;gap:12px;">
-    <a href="#contact" class="btn-hire">Contrátame</a>
+  <div class="nav-controls">
+    <!-- Dark / Light toggle -->
+    <button class="icon-btn" id="themeToggle" aria-label="Cambiar tema">
+      <i class="bi bi-moon-fill" id="themeIcon" aria-hidden="true"></i>
+    </button>
+
+    <!-- Language toggle -->
+    <button class="lang-btn" id="langToggle" aria-label="Switch language">
+      <i class="bi bi-translate" aria-hidden="true"></i>
+      <span id="langLabel">EN</span>
+    </button>
+
+    <a href="#contact" class="btn-hire" data-i18n="nav.hire">Contrátame</a>
+
     <button class="nav-toggle" id="navToggle" aria-label="Menú" aria-expanded="false" aria-controls="navList">
       <i class="bi bi-list" aria-hidden="true"></i>
     </button>
@@ -520,42 +490,40 @@
 ============================================================ -->
 <section id="inicio" class="hero container">
   <div class="hero-left" data-aos="fade-right" data-aos-duration="700">
-
     <div class="available-badge">
       <span class="dot"></span>
-      Disponible para proyectos
+      <span data-i18n="hero.badge">Disponible para proyectos</span>
     </div>
-
     <h1 class="hero-name">Gustavo<br>Gutiérrez</h1>
-    <p class="hero-role">Full Stack Developer</p>
-    <p class="hero-desc">
+    <p class="hero-role" data-i18n="hero.role">Full Stack Developer</p>
+    <p class="hero-desc" data-i18n="hero.desc">
       Construyo sistemas web escalables, APIs robustas y experiencias de usuario fluidas.
       Especializado en Node.js, JavaScript y PostgreSQL.
     </p>
-
     <div class="hero-stats">
       <div class="stat-item">
         <span class="stat-number">3+</span>
-        <span class="stat-label">Años codificando</span>
+        <span class="stat-label" data-i18n="hero.stat1">Años codificando</span>
       </div>
       <div class="stat-divider"></div>
       <div class="stat-item">
         <span class="stat-number">5+</span>
-        <span class="stat-label">Proyectos</span>
+        <span class="stat-label" data-i18n="hero.stat2">Proyectos</span>
       </div>
       <div class="stat-divider"></div>
       <div class="stat-item">
         <span class="stat-number">3+</span>
-        <span class="stat-label">Clientes</span>
+        <span class="stat-label" data-i18n="hero.stat3">Clientes</span>
       </div>
     </div>
-
     <div class="hero-cta">
       <a href="#contact" class="btn-primary" data-ripple>
-        <i class="bi bi-envelope-fill" aria-hidden="true"></i> Iniciar Proyecto
+        <i class="bi bi-envelope-fill" aria-hidden="true"></i>
+        <span data-i18n="hero.cta1">Iniciar Proyecto</span>
       </a>
       <a href="#projects" class="btn-outline">
-        <i class="bi bi-grid-1x2" aria-hidden="true"></i> Ver Proyectos
+        <i class="bi bi-grid-1x2" aria-hidden="true"></i>
+        <span data-i18n="hero.cta2">Ver Proyectos</span>
       </a>
     </div>
   </div>
@@ -585,45 +553,32 @@
     </div>
 
     <div data-aos="fade-left" data-aos-delay="100">
-      <span class="section-label">Sobre Mí</span>
-      <h2 class="section-title">Apasionado por construir soluciones que importan</h2>
-      <p class="about-text">
+      <span class="section-label" data-i18n="about.label">Sobre Mí</span>
+      <h2 class="section-title" data-i18n="about.title">Apasionado por construir soluciones que importan</h2>
+      <p class="about-text" data-i18n-html="about.p1">
         Soy <strong>Gustavo Gutiérrez</strong>, TSU en Desarrollo de Software Multiplataforma por la
         <strong>Universidad Tecnológica de Cancún</strong>. Me especializo en el desarrollo de sistemas
         web completos, desde la arquitectura del backend hasta la interfaz de usuario.
       </p>
-      <p class="about-text" style="margin-bottom:24px;">
+      <p class="about-text" style="margin-bottom:24px;" data-i18n="about.p2">
         Disfruto convertir problemas complejos en soluciones elegantes. Trabajo con código limpio,
         buenas prácticas y siempre orientado a resultados reales para el negocio.
       </p>
-
       <ul class="about-highlights">
-        <li>Backend con Node.js, Express y APIs RESTful seguras</li>
-        <li>Bases de datos relacionales: MySQL y PostgreSQL optimizados</li>
-        <li>Frontend con React, HTML/CSS y JavaScript ES6+</li>
-        <li>Autenticación JWT, gestión de roles y seguridad web</li>
-        <li>Disponible para trabajo remoto, híbrido y proyectos freelance</li>
+        <li data-i18n="about.hl1">Backend con Node.js, Express y APIs RESTful seguras</li>
+        <li data-i18n="about.hl2">Bases de datos relacionales: MySQL y PostgreSQL optimizados</li>
+        <li data-i18n="about.hl3">Frontend con React, HTML/CSS y JavaScript ES6+</li>
+        <li data-i18n="about.hl4">Autenticación JWT, gestión de roles y seguridad web</li>
+        <li data-i18n="about.hl5">Disponible para trabajo remoto, híbrido y proyectos freelance</li>
       </ul>
-
       <div class="socials-row">
-        <a href="https://github.com/GussGtz" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub">
-          <i class="bi bi-github" aria-hidden="true"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/gustavo-gutierrez-canul-607341267/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">
-          <i class="bi bi-linkedin" aria-hidden="true"></i>
-        </a>
-        <a href="https://twitter.com/GustavoGtzzz" target="_blank" rel="noopener" class="social-btn" aria-label="Twitter / X">
-          <i class="bi bi-twitter-x" aria-hidden="true"></i>
-        </a>
-        <a href="mailto:gutierrezgustavocanul@gmail.com" class="social-btn" aria-label="Email">
-          <i class="bi bi-envelope" aria-hidden="true"></i>
-        </a>
-        <a href="./assets/CV GUSTAVO.pdf" target="_blank" rel="noopener" class="social-btn" aria-label="Descargar CV">
-          <i class="bi bi-file-earmark-person" aria-hidden="true"></i>
-        </a>
+        <a href="https://github.com/GussGtz" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub"><i class="bi bi-github"></i></a>
+        <a href="https://www.linkedin.com/in/gustavo-gutierrez-canul-607341267/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        <a href="https://twitter.com/GustavoGtzzz" target="_blank" rel="noopener" class="social-btn" aria-label="Twitter / X"><i class="bi bi-twitter-x"></i></a>
+        <a href="mailto:gutierrezgustavocanul@gmail.com" class="social-btn" aria-label="Email"><i class="bi bi-envelope"></i></a>
+        <a href="./assets/CV GUSTAVO.pdf" target="_blank" rel="noopener" class="social-btn" aria-label="CV"><i class="bi bi-file-earmark-person"></i></a>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -632,32 +587,31 @@
      SERVICIOS
 ============================================================ -->
 <section id="services" class="container">
-  <span class="section-label" data-aos="fade-up">Servicios</span>
-  <h2 class="section-title" data-aos="fade-up" data-aos-delay="50">¿Cómo puedo ayudarte?</h2>
-  <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+  <span class="section-label" data-aos="fade-up" data-i18n="services.label">Servicios</span>
+  <h2 class="section-title" data-aos="fade-up" data-aos-delay="50" data-i18n="services.title">¿Cómo puedo ayudarte?</h2>
+  <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100" data-i18n="services.subtitle">
     Soluciones de desarrollo adaptadas a las necesidades reales de tu negocio o proyecto.
   </p>
-
   <div class="services-grid">
     <div class="service-card" data-aos="fade-up" data-aos-delay="0">
       <i class="bi bi-server service-icon" aria-hidden="true"></i>
-      <h3>Desarrollo Backend</h3>
-      <p>APIs RESTful con Node.js y Express. Autenticación JWT, gestión de roles y arquitecturas seguras y escalables.</p>
+      <h3 data-i18n="s1.title">Desarrollo Backend</h3>
+      <p data-i18n="s1.desc">APIs RESTful con Node.js y Express. Autenticación JWT, gestión de roles y arquitecturas seguras y escalables.</p>
     </div>
     <div class="service-card" data-aos="fade-up" data-aos-delay="80">
       <i class="bi bi-layers service-icon" aria-hidden="true"></i>
-      <h3>Desarrollo Full Stack</h3>
-      <p>Aplicaciones web completas desde la base de datos hasta la interfaz, con React o HTML/CSS puro.</p>
+      <h3 data-i18n="s2.title">Desarrollo Full Stack</h3>
+      <p data-i18n="s2.desc">Aplicaciones web completas desde la base de datos hasta la interfaz, con React o HTML/CSS puro.</p>
     </div>
     <div class="service-card" data-aos="fade-up" data-aos-delay="160">
       <i class="bi bi-database service-icon" aria-hidden="true"></i>
-      <h3>Gestión de Datos</h3>
-      <p>Diseño e implementación de bases de datos MySQL y PostgreSQL, consultas optimizadas y dashboards en tiempo real.</p>
+      <h3 data-i18n="s3.title">Gestión de Datos</h3>
+      <p data-i18n="s3.desc">Diseño e implementación de bases de datos MySQL y PostgreSQL, consultas optimizadas y dashboards en tiempo real.</p>
     </div>
     <div class="service-card" data-aos="fade-up" data-aos-delay="240">
       <i class="bi bi-plug service-icon" aria-hidden="true"></i>
-      <h3>Integración de APIs</h3>
-      <p>Conexión con servicios de terceros, pasarelas de pago (PayPal, Mercado Pago) y WebSockets para datos en vivo.</p>
+      <h3 data-i18n="s4.title">Integración de APIs</h3>
+      <p data-i18n="s4.desc">Conexión con servicios de terceros, pasarelas de pago (PayPal, Mercado Pago) y WebSockets para datos en vivo.</p>
     </div>
   </div>
 </section>
@@ -667,8 +621,8 @@
      EXPERIENCIA
 ============================================================ -->
 <section id="experience" class="container">
-  <span class="section-label" data-aos="fade-up">Experiencia</span>
-  <h2 class="section-title" data-aos="fade-up" data-aos-delay="50">Trayectoria</h2>
+  <span class="section-label" data-aos="fade-up" data-i18n="exp.label">Experiencia</span>
+  <h2 class="section-title" data-aos="fade-up" data-aos-delay="50" data-i18n="exp.title">Trayectoria</h2>
 
   <div class="exp-timeline" data-aos="fade-up" data-aos-delay="100">
 
@@ -676,23 +630,20 @@
       <span class="exp-dot"></span>
       <div class="exp-header">
         <div>
-          <div class="exp-role">Desarrollador Full Stack</div>
+          <div class="exp-role" data-i18n="exp1.role">Desarrollador Full Stack</div>
           <div class="exp-company">Glass Caribe SA de CV · Cancún</div>
         </div>
         <span class="exp-period">2023 – 2024</span>
       </div>
-      <p class="exp-desc">
+      <p class="exp-desc" data-i18n="exp1.desc">
         Diseñé y construí de cero un sistema de gestión de pedidos interno. Implementé extracción de datos XML,
         gráficas en tiempo real con Chart.js, WebSockets, panel administrativo con roles diferenciados
         (admin / colaborador) y CRUD completo sobre PostgreSQL desplegado en Render.
       </p>
       <div class="exp-tags">
-        <span class="tech-tag">Node.js</span>
-        <span class="tech-tag">Express</span>
-        <span class="tech-tag">PostgreSQL</span>
-        <span class="tech-tag">JWT</span>
-        <span class="tech-tag">WebSockets</span>
-        <span class="tech-tag">Chart.js</span>
+        <span class="tech-tag">Node.js</span><span class="tech-tag">Express</span>
+        <span class="tech-tag">PostgreSQL</span><span class="tech-tag">JWT</span>
+        <span class="tech-tag">WebSockets</span><span class="tech-tag">Chart.js</span>
         <span class="tech-tag">Render</span>
       </div>
     </div>
@@ -701,24 +652,20 @@
       <span class="exp-dot"></span>
       <div class="exp-header">
         <div>
-          <div class="exp-role">Proyectos Académicos & Freelance</div>
+          <div class="exp-role" data-i18n="exp2.role">Proyectos Académicos & Freelance</div>
           <div class="exp-company">Universidad Tecnológica de Cancún</div>
         </div>
         <span class="exp-period">2022 – 2024</span>
       </div>
-      <p class="exp-desc">
+      <p class="exp-desc" data-i18n="exp2.desc">
         Desarrollo de 5+ proyectos web completos: sistemas de inventario, e-commerce con pasarelas de pago,
         apps turísticas con APIs externas y sistemas CRUD con autenticación multifactor.
         Enfoque en código limpio, buenas prácticas y entrega real al cliente.
       </p>
       <div class="exp-tags">
-        <span class="tech-tag">React</span>
-        <span class="tech-tag">PHP</span>
-        <span class="tech-tag">.NET / C#</span>
-        <span class="tech-tag">MySQL</span>
-        <span class="tech-tag">Firebase</span>
-        <span class="tech-tag">Bootstrap</span>
-        <span class="tech-tag">Tailwind</span>
+        <span class="tech-tag">React</span><span class="tech-tag">PHP</span>
+        <span class="tech-tag">.NET / C#</span><span class="tech-tag">MySQL</span>
+        <span class="tech-tag">Firebase</span><span class="tech-tag">Tailwind</span>
       </div>
     </div>
 
@@ -726,23 +673,20 @@
       <span class="exp-dot"></span>
       <div class="exp-header">
         <div>
-          <div class="exp-role">Técnico en Programación</div>
+          <div class="exp-role" data-i18n="exp3.role">Técnico en Programación</div>
           <div class="exp-company">CBTIS 111 · Cancún</div>
         </div>
         <span class="exp-period">2018 – 2021</span>
       </div>
-      <p class="exp-desc">
+      <p class="exp-desc" data-i18n="exp3.desc">
         Formación técnica en fundamentos de programación, bases de datos relacionales
         y desarrollo de aplicaciones web. Base sólida para el desarrollo profesional posterior.
       </p>
       <div class="exp-tags">
-        <span class="tech-tag">HTML / CSS</span>
-        <span class="tech-tag">JavaScript</span>
-        <span class="tech-tag">MySQL</span>
-        <span class="tech-tag">PHP</span>
+        <span class="tech-tag">HTML / CSS</span><span class="tech-tag">JavaScript</span>
+        <span class="tech-tag">MySQL</span><span class="tech-tag">PHP</span>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -751,136 +695,92 @@
      HABILIDADES
 ============================================================ -->
 <section id="skills" class="container">
-  <span class="section-label" data-aos="fade-up">Habilidades</span>
-  <h2 class="section-title" data-aos="fade-up" data-aos-delay="50">Stack Técnico</h2>
-  <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+  <span class="section-label" data-aos="fade-up" data-i18n="skills.label">Habilidades</span>
+  <h2 class="section-title" data-aos="fade-up" data-aos-delay="50" data-i18n="skills.title">Stack Técnico</h2>
+  <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100" data-i18n="skills.subtitle">
     Tecnologías que uso para construir soluciones completas, escalables y mantenibles.
   </p>
 
   <div class="skills-wrapper" data-aos="fade-up" data-aos-delay="120">
-
     <div class="skill-category">
-      <h4>Lenguajes & Frameworks</h4>
+      <h4 data-i18n="skills.cat1">Lenguajes & Frameworks</h4>
       <div class="skill-list">
         <div class="skill-item">
-          <div class="skill-info">
-            <span class="skill-name"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
-            <span class="skill-pct">90%</span>
-          </div>
+          <div class="skill-info"><span class="skill-name"><i class="devicon-javascript-plain colored"></i> JavaScript</span><span class="skill-pct">90%</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-info">
-            <span class="skill-name"><i class="devicon-nodejs-plain colored"></i> Node.js</span>
-            <span class="skill-pct">85%</span>
-          </div>
+          <div class="skill-info"><span class="skill-name"><i class="devicon-nodejs-plain colored"></i> Node.js</span><span class="skill-pct">85%</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-info">
-            <span class="skill-name"><i class="devicon-react-original colored"></i> React</span>
-            <span class="skill-pct">75%</span>
-          </div>
+          <div class="skill-info"><span class="skill-name"><i class="devicon-react-original colored"></i> React</span><span class="skill-pct">75%</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-info">
-            <span class="skill-name"><i class="devicon-php-plain colored"></i> PHP</span>
-            <span class="skill-pct">70%</span>
-          </div>
+          <div class="skill-info"><span class="skill-name"><i class="devicon-php-plain colored"></i> PHP</span><span class="skill-pct">70%</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="70"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-info">
-            <span class="skill-name"><i class="devicon-dotnetcore-plain colored"></i> .NET / C#</span>
-            <span class="skill-pct">60%</span>
-          </div>
+          <div class="skill-info"><span class="skill-name"><i class="devicon-dotnetcore-plain colored"></i> .NET / C#</span><span class="skill-pct">60%</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="60"></div></div>
         </div>
       </div>
     </div>
 
     <div class="skill-category">
-      <h4>Bases de Datos</h4>
+      <h4 data-i18n="skills.cat2">Bases de Datos</h4>
       <div class="skill-list">
         <div class="skill-item">
-          <div class="skill-info">
-            <span class="skill-name"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
-            <span class="skill-pct">85%</span>
-          </div>
+          <div class="skill-info"><span class="skill-name"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span><span class="skill-pct">85%</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-info">
-            <span class="skill-name"><i class="devicon-mysql-plain colored"></i> MySQL</span>
-            <span class="skill-pct">85%</span>
-          </div>
+          <div class="skill-info"><span class="skill-name"><i class="devicon-mysql-plain colored"></i> MySQL</span><span class="skill-pct">85%</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-info">
-            <span class="skill-name"><i class="devicon-firebase-plain colored"></i> Firebase</span>
-            <span class="skill-pct">65%</span>
-          </div>
+          <div class="skill-info"><span class="skill-name"><i class="devicon-firebase-plain colored"></i> Firebase</span><span class="skill-pct">65%</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="65"></div></div>
         </div>
       </div>
     </div>
 
     <div class="skill-category">
-      <h4>Frontend & UI</h4>
+      <h4 data-i18n="skills.cat3">Frontend & UI</h4>
       <div class="skill-list">
         <div class="skill-item">
-          <div class="skill-info">
-            <span class="skill-name"><i class="devicon-html5-plain colored"></i> HTML / CSS</span>
-            <span class="skill-pct">90%</span>
-          </div>
+          <div class="skill-info"><span class="skill-name"><i class="devicon-html5-plain colored"></i> HTML / CSS</span><span class="skill-pct">90%</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-info">
-            <span class="skill-name"><i class="devicon-bootstrap-plain colored"></i> Bootstrap</span>
-            <span class="skill-pct">85%</span>
-          </div>
+          <div class="skill-info"><span class="skill-name"><i class="devicon-bootstrap-plain colored"></i> Bootstrap</span><span class="skill-pct">85%</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-info">
-            <span class="skill-name"><i class="devicon-tailwindcss-plain colored"></i> Tailwind CSS</span>
-            <span class="skill-pct">70%</span>
-          </div>
+          <div class="skill-info"><span class="skill-name"><i class="devicon-tailwindcss-plain colored"></i> Tailwind CSS</span><span class="skill-pct">70%</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="70"></div></div>
         </div>
       </div>
     </div>
 
     <div class="skill-category">
-      <h4>Herramientas</h4>
+      <h4 data-i18n="skills.cat4">Herramientas</h4>
       <div class="skill-list">
         <div class="skill-item">
-          <div class="skill-info">
-            <span class="skill-name"><i class="devicon-git-plain colored"></i> Git / GitHub</span>
-            <span class="skill-pct">85%</span>
-          </div>
+          <div class="skill-info"><span class="skill-name"><i class="devicon-git-plain colored"></i> Git / GitHub</span><span class="skill-pct">85%</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-info">
-            <span class="skill-name"><i class="bi bi-cloud-arrow-up" style="color:var(--accent)"></i> REST APIs</span>
-            <span class="skill-pct">88%</span>
-          </div>
+          <div class="skill-info"><span class="skill-name"><i class="bi bi-cloud-arrow-up" style="color:var(--accent)"></i> REST APIs</span><span class="skill-pct">88%</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-info">
-            <span class="skill-name"><i class="devicon-docker-plain colored"></i> Docker (básico)</span>
-            <span class="skill-pct">45%</span>
-          </div>
+          <div class="skill-info"><span class="skill-name"><i class="devicon-docker-plain colored"></i> Docker</span><span class="skill-pct">45%</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="45"></div></div>
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -889,124 +789,102 @@
      PROYECTOS
 ============================================================ -->
 <section id="projects" class="container">
-  <span class="section-label" data-aos="fade-up">Proyectos</span>
-  <h2 class="section-title" data-aos="fade-up" data-aos-delay="50">Trabajo Destacado</h2>
-  <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+  <span class="section-label" data-aos="fade-up" data-i18n="proj.label">Proyectos</span>
+  <h2 class="section-title" data-aos="fade-up" data-aos-delay="50" data-i18n="proj.title">Trabajo Destacado</h2>
+  <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100" data-i18n="proj.subtitle">
     Proyectos reales que demuestran capacidad para construir soluciones escalables de principio a fin.
   </p>
 
   <div class="projects-grid">
-
     <div class="project-card" data-aos="fade-up" data-aos-delay="0">
       <div class="project-thumb">
-        <img src="assets/glass.PNG" alt="Glass Caribe - Sistema de gestión de pedidos" loading="lazy" />
+        <img src="assets/glass.PNG" alt="Glass Caribe" loading="lazy" />
         <div class="project-overlay">
-          <a href="https://github.com/GussGtz" target="_blank" rel="noopener" class="overlay-btn ghost" aria-label="Ver código en GitHub">
-            <i class="bi bi-github" aria-hidden="true"></i>
-          </a>
+          <a href="https://github.com/GussGtz" target="_blank" rel="noopener" class="overlay-btn ghost" aria-label="GitHub"><i class="bi bi-github"></i></a>
         </div>
       </div>
       <div class="project-body">
-        <h3>Glass Caribe · Gestión de Pedidos</h3>
-        <p>Sistema interno con panel admin, gráficas en tiempo real con Chart.js, WebSockets, extracción de datos XML y 2 roles diferenciados sobre PostgreSQL.</p>
-        <div class="project-metric"><i class="bi bi-graph-up-arrow" aria-hidden="true"></i> 2 roles · CRUD completo · Tiempo real</div>
+        <h3 data-i18n="p1.title">Glass Caribe · Gestión de Pedidos</h3>
+        <p data-i18n="p1.desc">Sistema interno con panel admin, gráficas en tiempo real con Chart.js, WebSockets, extracción de datos XML y 2 roles diferenciados sobre PostgreSQL.</p>
+        <div class="project-metric"><i class="bi bi-graph-up-arrow"></i> <span data-i18n="p1.metric">2 roles · CRUD completo · Tiempo real</span></div>
         <div class="project-stack">
-          <span class="tech-tag">Node.js</span>
-          <span class="tech-tag">PostgreSQL</span>
-          <span class="tech-tag">JWT</span>
-          <span class="tech-tag">Chart.js</span>
-          <span class="tech-tag">WebSockets</span>
+          <span class="tech-tag">Node.js</span><span class="tech-tag">PostgreSQL</span>
+          <span class="tech-tag">JWT</span><span class="tech-tag">Chart.js</span><span class="tech-tag">WS</span>
         </div>
       </div>
     </div>
 
     <div class="project-card" data-aos="fade-up" data-aos-delay="80">
       <div class="project-thumb">
-        <img src="assets/fluxsys.PNG" alt="FluxSYS - Inventarios Inteligentes" loading="lazy" />
+        <img src="assets/fluxsys.PNG" alt="FluxSYS" loading="lazy" />
         <div class="project-overlay">
-          <a href="https://github.com/GussGtz" target="_blank" rel="noopener" class="overlay-btn ghost" aria-label="Ver código en GitHub">
-            <i class="bi bi-github" aria-hidden="true"></i>
-          </a>
+          <a href="https://github.com/GussGtz" target="_blank" rel="noopener" class="overlay-btn ghost" aria-label="GitHub"><i class="bi bi-github"></i></a>
         </div>
       </div>
       <div class="project-body">
-        <h3>FluxSYS · Inventarios Inteligentes</h3>
-        <p>Sistema de gestión de inventario con alertas de desabastecimiento automáticas y reportes en tiempo real para toma de decisiones ágil.</p>
-        <div class="project-metric"><i class="bi bi-graph-up-arrow" aria-hidden="true"></i> Alertas automáticas · Dashboard en vivo</div>
+        <h3 data-i18n="p2.title">FluxSYS · Inventarios Inteligentes</h3>
+        <p data-i18n="p2.desc">Sistema de gestión de inventario con alertas de desabastecimiento automáticas y reportes en tiempo real para toma de decisiones ágil.</p>
+        <div class="project-metric"><i class="bi bi-graph-up-arrow"></i> <span data-i18n="p2.metric">Alertas automáticas · Dashboard en vivo</span></div>
         <div class="project-stack">
-          <span class="tech-tag">JavaScript</span>
-          <span class="tech-tag">MySQL</span>
-          <span class="tech-tag">Node.js</span>
-          <span class="tech-tag">Bootstrap</span>
+          <span class="tech-tag">JavaScript</span><span class="tech-tag">MySQL</span>
+          <span class="tech-tag">Node.js</span><span class="tech-tag">Bootstrap</span>
         </div>
       </div>
     </div>
 
     <div class="project-card" data-aos="fade-up" data-aos-delay="160">
       <div class="project-thumb">
-        <img src="assets/cancun.PNG" alt="Sistema de Información Cancún" loading="lazy" />
+        <img src="assets/cancun.PNG" alt="InfoCancún" loading="lazy" />
         <div class="project-overlay">
-          <a href="https://github.com/GussGtz" target="_blank" rel="noopener" class="overlay-btn ghost" aria-label="Ver código en GitHub">
-            <i class="bi bi-github" aria-hidden="true"></i>
-          </a>
+          <a href="https://github.com/GussGtz" target="_blank" rel="noopener" class="overlay-btn ghost" aria-label="GitHub"><i class="bi bi-github"></i></a>
         </div>
       </div>
       <div class="project-body">
-        <h3>Sistema de Información · Cancún</h3>
-        <p>App web turística que integra 3+ APIs externas de clima, transporte y puntos de interés con datos en tiempo real para visitantes.</p>
-        <div class="project-metric"><i class="bi bi-graph-up-arrow" aria-hidden="true"></i> 3+ APIs integradas · Datos en tiempo real</div>
+        <h3 data-i18n="p3.title">Sistema de Información · Cancún</h3>
+        <p data-i18n="p3.desc">App web turística que integra 3+ APIs externas de clima, transporte y puntos de interés con datos en tiempo real para visitantes.</p>
+        <div class="project-metric"><i class="bi bi-graph-up-arrow"></i> <span data-i18n="p3.metric">3+ APIs integradas · Datos en tiempo real</span></div>
         <div class="project-stack">
-          <span class="tech-tag">React</span>
-          <span class="tech-tag">Node.js</span>
-          <span class="tech-tag">APIs REST</span>
-          <span class="tech-tag">Tailwind</span>
+          <span class="tech-tag">React</span><span class="tech-tag">Node.js</span>
+          <span class="tech-tag">APIs REST</span><span class="tech-tag">Tailwind</span>
         </div>
       </div>
     </div>
 
     <div class="project-card" data-aos="fade-up" data-aos-delay="0">
       <div class="project-thumb">
-        <img src="assets/tienda.PNG" alt="E-Commerce Deportivo" loading="lazy" />
+        <img src="assets/tienda.PNG" alt="E-Commerce" loading="lazy" />
         <div class="project-overlay">
-          <a href="https://github.com/GussGtz" target="_blank" rel="noopener" class="overlay-btn ghost" aria-label="Ver código en GitHub">
-            <i class="bi bi-github" aria-hidden="true"></i>
-          </a>
+          <a href="https://github.com/GussGtz" target="_blank" rel="noopener" class="overlay-btn ghost" aria-label="GitHub"><i class="bi bi-github"></i></a>
         </div>
       </div>
       <div class="project-body">
-        <h3>E-Commerce Deportivo</h3>
-        <p>Tienda online completa con catálogo, carrito de compras, integración de pasarelas de pago y dashboard de administración de pedidos.</p>
-        <div class="project-metric"><i class="bi bi-graph-up-arrow" aria-hidden="true"></i> PayPal + Mercado Pago · Panel admin</div>
+        <h3 data-i18n="p4.title">E-Commerce Deportivo</h3>
+        <p data-i18n="p4.desc">Tienda online completa con catálogo, carrito de compras, integración de pasarelas de pago y dashboard de administración de pedidos.</p>
+        <div class="project-metric"><i class="bi bi-graph-up-arrow"></i> <span data-i18n="p4.metric">PayPal + Mercado Pago · Panel admin</span></div>
         <div class="project-stack">
-          <span class="tech-tag">PHP</span>
-          <span class="tech-tag">MySQL</span>
-          <span class="tech-tag">PayPal API</span>
-          <span class="tech-tag">Bootstrap</span>
+          <span class="tech-tag">PHP</span><span class="tech-tag">MySQL</span>
+          <span class="tech-tag">PayPal API</span><span class="tech-tag">Bootstrap</span>
         </div>
       </div>
     </div>
 
     <div class="project-card" data-aos="fade-up" data-aos-delay="80">
       <div class="project-thumb">
-        <img src="assets/taller.PNG" alt="Sistema para Taller Mecánico" loading="lazy" />
+        <img src="assets/taller.PNG" alt="Taller Mecánico" loading="lazy" />
         <div class="project-overlay">
-          <a href="https://github.com/GussGtz" target="_blank" rel="noopener" class="overlay-btn ghost" aria-label="Ver código en GitHub">
-            <i class="bi bi-github" aria-hidden="true"></i>
-          </a>
+          <a href="https://github.com/GussGtz" target="_blank" rel="noopener" class="overlay-btn ghost" aria-label="GitHub"><i class="bi bi-github"></i></a>
         </div>
       </div>
       <div class="project-body">
-        <h3>Sistema para Taller Mecánico</h3>
-        <p>Sistema CRUD con autenticación multifactor, gestión de accesos por roles y monitoreo de servicios, técnicos y clientes.</p>
-        <div class="project-metric"><i class="bi bi-graph-up-arrow" aria-hidden="true"></i> Auth MFA · Gestión granular por roles</div>
+        <h3 data-i18n="p5.title">Sistema para Taller Mecánico</h3>
+        <p data-i18n="p5.desc">Sistema CRUD con autenticación multifactor, gestión de accesos por roles y monitoreo de servicios, técnicos y clientes.</p>
+        <div class="project-metric"><i class="bi bi-graph-up-arrow"></i> <span data-i18n="p5.metric">Auth MFA · Gestión granular por roles</span></div>
         <div class="project-stack">
-          <span class="tech-tag">.NET / C#</span>
-          <span class="tech-tag">SQL Server</span>
+          <span class="tech-tag">.NET / C#</span><span class="tech-tag">SQL Server</span>
           <span class="tech-tag">Bootstrap</span>
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -1015,101 +893,94 @@
      CONTACTO
 ============================================================ -->
 <section id="contact" class="container">
-  <span class="section-label" data-aos="fade-up">Contacto</span>
-  <h2 class="section-title" data-aos="fade-up" data-aos-delay="50">Trabajemos Juntos</h2>
-  <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+  <span class="section-label" data-aos="fade-up" data-i18n="contact.label">Contacto</span>
+  <h2 class="section-title" data-aos="fade-up" data-aos-delay="50" data-i18n="contact.title">Trabajemos Juntos</h2>
+  <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100" data-i18n="contact.subtitle">
     ¿Tienes un proyecto en mente? Cuéntame sobre él y encontremos la mejor solución.
   </p>
 
   <div class="contact-grid">
-    <!-- Info -->
     <div class="contact-info" data-aos="fade-right">
       <div class="contact-card">
-        <h3>Información de Contacto</h3>
+        <h3 data-i18n="contact.info.title">Información de Contacto</h3>
         <div class="contact-item">
-          <div class="ci-icon"><i class="bi bi-envelope" aria-hidden="true"></i></div>
+          <div class="ci-icon"><i class="bi bi-envelope"></i></div>
           <div class="ci-text">
-            <small>Email</small>
+            <small data-i18n="contact.email.label">Email</small>
             <a href="mailto:gutierrezgustavocanul@gmail.com">gutierrezgustavocanul@gmail.com</a>
           </div>
         </div>
         <div class="contact-item">
-          <div class="ci-icon"><i class="bi bi-telephone" aria-hidden="true"></i></div>
+          <div class="ci-icon"><i class="bi bi-telephone"></i></div>
           <div class="ci-text">
-            <small>Teléfono</small>
+            <small data-i18n="contact.phone.label">Teléfono</small>
             <a href="tel:+529983490952">(+52) 998 349 0952</a>
           </div>
         </div>
         <div class="contact-item">
-          <div class="ci-icon"><i class="bi bi-geo-alt" aria-hidden="true"></i></div>
+          <div class="ci-icon"><i class="bi bi-geo-alt"></i></div>
           <div class="ci-text">
-            <small>Ubicación</small>
-            <span>Cancún, Quintana Roo, México</span>
+            <small data-i18n="contact.location.label">Ubicación</small>
+            <span data-i18n="contact.location.val">Cancún, Quintana Roo, México</span>
           </div>
         </div>
       </div>
 
       <div class="contact-card">
-        <h3>Acciones Rápidas</h3>
+        <h3 data-i18n="contact.quick.title">Acciones Rápidas</h3>
         <a href="https://wa.me/529983490952?text=Hola%20Gustavo%2C%20vi%20tu%20portafolio%20y%20me%20interesa%20contactarte." target="_blank" rel="noopener" class="quick-action">
-          <i class="bi bi-whatsapp" aria-hidden="true"></i> Chat por WhatsApp
+          <i class="bi bi-whatsapp"></i> <span data-i18n="contact.quick.wa">Chat por WhatsApp</span>
         </a>
         <a href="./assets/CV GUSTAVO.pdf" target="_blank" rel="noopener" class="quick-action">
-          <i class="bi bi-file-earmark-arrow-down" aria-hidden="true"></i> Descargar CV
+          <i class="bi bi-file-earmark-arrow-down"></i> <span data-i18n="contact.quick.cv">Descargar CV</span>
         </a>
         <a href="https://www.linkedin.com/in/gustavo-gutierrez-canul-607341267/" target="_blank" rel="noopener" class="quick-action">
-          <i class="bi bi-linkedin" aria-hidden="true"></i> Ver LinkedIn
+          <i class="bi bi-linkedin"></i> <span data-i18n="contact.quick.li">Ver LinkedIn</span>
         </a>
       </div>
     </div>
 
-    <!-- Form -->
     <div data-aos="fade-left" data-aos-delay="100">
       <div class="form-card">
-        <h3>Inicia Tu Proyecto</h3>
+        <h3 data-i18n="form.title">Inicia Tu Proyecto</h3>
         <form id="contactForm" novalidate>
           <input type="hidden" name="accessKey" value="sf_l4e44jii77acg190khfb2gm0">
-
           <div class="form-row">
             <div>
-              <label class="form-label" for="name">Nombre Completo *</label>
-              <input type="text" id="name" name="name" class="form-input" placeholder="Juan Pérez" required aria-required="true" />
+              <label class="form-label" for="fname" data-i18n="form.name">Nombre Completo *</label>
+              <input type="text" id="fname" name="name" class="form-input" data-i18n-ph="form.ph.name" placeholder="Juan Pérez" required />
             </div>
             <div>
-              <label class="form-label" for="email">Email *</label>
-              <input type="email" id="email" name="email" class="form-input" placeholder="juan@empresa.com" required aria-required="true" />
+              <label class="form-label" for="femail" data-i18n="form.email">Email *</label>
+              <input type="email" id="femail" name="email" class="form-input" data-i18n-ph="form.ph.email" placeholder="juan@empresa.com" required />
             </div>
           </div>
-
           <div class="form-row">
             <div>
-              <label class="form-label" for="company">Empresa</label>
-              <input type="text" id="company" name="company" class="form-input" placeholder="Mi Empresa SA" />
+              <label class="form-label" for="fcompany" data-i18n="form.company">Empresa</label>
+              <input type="text" id="fcompany" name="company" class="form-input" data-i18n-ph="form.ph.company" placeholder="Mi Empresa SA" />
             </div>
             <div>
-              <label class="form-label" for="budget">Presupuesto *</label>
-              <select id="budget" name="budget" class="form-input" required aria-required="true">
-                <option value="" disabled selected>Selecciona un rango</option>
-                <option>Menos de $10,000</option>
-                <option>De $10,000 a $30,000</option>
-                <option>De $30,000 a $50,000</option>
-                <option>Más de $50,000</option>
+              <label class="form-label" for="fbudget" data-i18n="form.budget">Presupuesto *</label>
+              <select id="fbudget" name="budget" class="form-input" required>
+                <option value="" disabled selected data-i18n="form.bopt0">Selecciona un rango</option>
+                <option data-i18n="form.bopt1">Menos de $10,000</option>
+                <option data-i18n="form.bopt2">De $10,000 a $30,000</option>
+                <option data-i18n="form.bopt3">De $30,000 a $50,000</option>
+                <option data-i18n="form.bopt4">Más de $50,000</option>
               </select>
             </div>
           </div>
-
           <div class="form-group">
-            <label class="form-label" for="message">Descripción del Proyecto *</label>
-            <textarea id="message" name="message" class="form-input" rows="4"
-              placeholder="Cuéntame sobre tu proyecto, objetivos, plazos y requerimientos..." required aria-required="true"></textarea>
+            <label class="form-label" for="fmessage" data-i18n="form.message">Descripción del Proyecto *</label>
+            <textarea id="fmessage" name="message" class="form-input" rows="4" data-i18n-ph="form.ph.message" placeholder="Cuéntame sobre tu proyecto, objetivos, plazos y requerimientos..." required></textarea>
           </div>
-
-          <button type="submit" class="btn-primary" id="sendBtn"
-            style="width:100%;justify-content:center;border:none;" data-ripple>
-            <span id="btnContent"><i class="bi bi-send-fill" aria-hidden="true"></i> Enviar Mensaje</span>
+          <button type="submit" class="btn-primary" id="sendBtn" style="width:100%;justify-content:center;border:none;" data-ripple>
+            <span id="btnContent">
+              <i class="bi bi-send-fill"></i> <span data-i18n="form.send">Enviar Mensaje</span>
+            </span>
           </button>
-
-          <p style="color:var(--muted);font-size:0.78rem;margin-top:10px;text-align:center;">
+          <p style="color:var(--muted);font-size:0.78rem;margin-top:10px;text-align:center;" data-i18n="form.note">
             Respondo en menos de 24 h · Revisa spam si no recibes respuesta.
           </p>
         </form>
@@ -1127,7 +998,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <span class="logo">&lt;GussGtz /&gt;</span>
-        <p>Full Stack Developer especializado en Node.js y JavaScript. Construyo sistemas escalables con código limpio y buenas prácticas.</p>
+        <p data-i18n="footer.desc">Full Stack Developer especializado en Node.js y JavaScript. Construyo sistemas escalables con código limpio y buenas prácticas.</p>
         <div class="footer-social">
           <a href="https://github.com/GussGtz" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub"><i class="bi bi-github"></i></a>
           <a href="https://www.linkedin.com/in/gustavo-gutierrez-canul-607341267/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
@@ -1135,41 +1006,35 @@
           <a href="mailto:gutierrezgustavocanul@gmail.com" class="social-btn" aria-label="Email"><i class="bi bi-envelope"></i></a>
         </div>
       </div>
-
       <div class="footer-col">
-        <h5>Servicios</h5>
-        <a href="#services">Desarrollo Backend</a>
-        <a href="#services">Desarrollo Full Stack</a>
-        <a href="#services">Gestión de Datos</a>
-        <a href="#services">Integración de APIs</a>
+        <h5 data-i18n="footer.col1">Servicios</h5>
+        <a href="#services" data-i18n="s1.title">Desarrollo Backend</a>
+        <a href="#services" data-i18n="s2.title">Desarrollo Full Stack</a>
+        <a href="#services" data-i18n="s3.title">Gestión de Datos</a>
+        <a href="#services" data-i18n="s4.title">Integración de APIs</a>
       </div>
-
       <div class="footer-col">
-        <h5>Tecnologías</h5>
+        <h5 data-i18n="footer.col2">Tecnologías</h5>
         <a href="#skills">Node.js · Express</a>
         <a href="#skills">JavaScript · React</a>
         <a href="#skills">PostgreSQL · MySQL</a>
         <a href="#skills">.NET · PHP</a>
       </div>
-
       <div class="footer-col">
-        <h5>Contacto</h5>
+        <h5 data-i18n="footer.col3">Contacto</h5>
         <a href="mailto:gutierrezgustavocanul@gmail.com">gutierrezgustavocanul@gmail.com</a>
         <a href="tel:+529983490952">(+52) 998 349 0952</a>
-        <a href="https://wa.me/529983490952" target="_blank" rel="noopener">WhatsApp directo</a>
-        <a href="./assets/CV GUSTAVO.pdf" target="_blank" rel="noopener">Descargar CV</a>
+        <a href="https://wa.me/529983490952" target="_blank" rel="noopener" data-i18n="contact.quick.wa">Chat por WhatsApp</a>
+        <a href="./assets/CV GUSTAVO.pdf" target="_blank" rel="noopener" data-i18n="contact.quick.cv">Descargar CV</a>
       </div>
     </div>
-
     <div class="footer-bottom">
-      <span>© 2025 Gustavo Gutiérrez · Cancún, México</span>
-      <a href="#top">Volver arriba ↑</a>
+      <span data-i18n="footer.copy">© 2025 Gustavo Gutiérrez · Cancún, México</span>
+      <a href="#top" data-i18n="footer.up">Volver arriba ↑</a>
     </div>
   </div>
 </footer>
 
-
-<!-- Back to top -->
 <button class="back-to-top" id="backToTop" aria-label="Volver arriba">
   <i class="bi bi-arrow-up-short" aria-hidden="true"></i>
 </button>
@@ -1182,156 +1047,478 @@
 <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
 
 <script>
-  // ── AOS ──────────────────────────────────────────────────────
-  AOS.init({ duration: 680, once: true, offset: 80, easing: 'ease-out-cubic' });
+/* ================================================================
+   TRANSLATIONS
+================================================================ */
+const T = {
+  es: {
+    /* Nav */
+    'nav.about':      'Sobre Mí',
+    'nav.services':   'Servicios',
+    'nav.experience': 'Experiencia',
+    'nav.projects':   'Proyectos',
+    'nav.contact':    'Contacto',
+    'nav.hire':       'Contrátame',
+    /* Hero */
+    'hero.badge': 'Disponible para proyectos',
+    'hero.role':  'Full Stack Developer',
+    'hero.desc':  'Construyo sistemas web escalables, APIs robustas y experiencias de usuario fluidas. Especializado en Node.js, JavaScript y PostgreSQL.',
+    'hero.stat1': 'Años codificando',
+    'hero.stat2': 'Proyectos',
+    'hero.stat3': 'Clientes',
+    'hero.cta1':  'Iniciar Proyecto',
+    'hero.cta2':  'Ver Proyectos',
+    /* About */
+    'about.label': 'Sobre Mí',
+    'about.title': 'Apasionado por construir soluciones que importan',
+    'about.p1':    'Soy <strong>Gustavo Gutiérrez</strong>, TSU en Desarrollo de Software Multiplataforma por la <strong>Universidad Tecnológica de Cancún</strong>. Me especializo en el desarrollo de sistemas web completos, desde la arquitectura del backend hasta la interfaz de usuario.',
+    'about.p2':    'Disfruto convertir problemas complejos en soluciones elegantes. Trabajo con código limpio, buenas prácticas y siempre orientado a resultados reales para el negocio.',
+    'about.hl1':   'Backend con Node.js, Express y APIs RESTful seguras',
+    'about.hl2':   'Bases de datos relacionales: MySQL y PostgreSQL optimizados',
+    'about.hl3':   'Frontend con React, HTML/CSS y JavaScript ES6+',
+    'about.hl4':   'Autenticación JWT, gestión de roles y seguridad web',
+    'about.hl5':   'Disponible para trabajo remoto, híbrido y proyectos freelance',
+    /* Services */
+    'services.label':    'Servicios',
+    'services.title':    '¿Cómo puedo ayudarte?',
+    'services.subtitle': 'Soluciones de desarrollo adaptadas a las necesidades reales de tu negocio o proyecto.',
+    's1.title': 'Desarrollo Backend',
+    's1.desc':  'APIs RESTful con Node.js y Express. Autenticación JWT, gestión de roles y arquitecturas seguras y escalables.',
+    's2.title': 'Desarrollo Full Stack',
+    's2.desc':  'Aplicaciones web completas desde la base de datos hasta la interfaz, con React o HTML/CSS puro.',
+    's3.title': 'Gestión de Datos',
+    's3.desc':  'Diseño e implementación de bases de datos MySQL y PostgreSQL, consultas optimizadas y dashboards en tiempo real.',
+    's4.title': 'Integración de APIs',
+    's4.desc':  'Conexión con servicios de terceros, pasarelas de pago (PayPal, Mercado Pago) y WebSockets para datos en vivo.',
+    /* Experience */
+    'exp.label':  'Experiencia',
+    'exp.title':  'Trayectoria',
+    'exp1.role':  'Desarrollador Full Stack',
+    'exp1.desc':  'Diseñé y construí de cero un sistema de gestión de pedidos interno. Implementé extracción de datos XML, gráficas en tiempo real con Chart.js, WebSockets, panel administrativo con roles diferenciados (admin / colaborador) y CRUD completo sobre PostgreSQL desplegado en Render.',
+    'exp2.role':  'Proyectos Académicos & Freelance',
+    'exp2.desc':  'Desarrollo de 5+ proyectos web completos: sistemas de inventario, e-commerce con pasarelas de pago, apps turísticas con APIs externas y sistemas CRUD con autenticación multifactor. Enfoque en código limpio, buenas prácticas y entrega real al cliente.',
+    'exp3.role':  'Técnico en Programación',
+    'exp3.desc':  'Formación técnica en fundamentos de programación, bases de datos relacionales y desarrollo de aplicaciones web. Base sólida para el desarrollo profesional posterior.',
+    /* Skills */
+    'skills.label':    'Habilidades',
+    'skills.title':    'Stack Técnico',
+    'skills.subtitle': 'Tecnologías que uso para construir soluciones completas, escalables y mantenibles.',
+    'skills.cat1': 'Lenguajes & Frameworks',
+    'skills.cat2': 'Bases de Datos',
+    'skills.cat3': 'Frontend & UI',
+    'skills.cat4': 'Herramientas',
+    /* Projects */
+    'proj.label':    'Proyectos',
+    'proj.title':    'Trabajo Destacado',
+    'proj.subtitle': 'Proyectos reales que demuestran capacidad para construir soluciones escalables de principio a fin.',
+    'p1.title':  'Glass Caribe · Gestión de Pedidos',
+    'p1.desc':   'Sistema interno con panel admin, gráficas en tiempo real con Chart.js, WebSockets, extracción de datos XML y 2 roles diferenciados sobre PostgreSQL.',
+    'p1.metric': '2 roles · CRUD completo · Tiempo real',
+    'p2.title':  'FluxSYS · Inventarios Inteligentes',
+    'p2.desc':   'Sistema de gestión de inventario con alertas de desabastecimiento automáticas y reportes en tiempo real para toma de decisiones ágil.',
+    'p2.metric': 'Alertas automáticas · Dashboard en vivo',
+    'p3.title':  'Sistema de Información · Cancún',
+    'p3.desc':   'App web turística que integra 3+ APIs externas de clima, transporte y puntos de interés con datos en tiempo real para visitantes.',
+    'p3.metric': '3+ APIs integradas · Datos en tiempo real',
+    'p4.title':  'E-Commerce Deportivo',
+    'p4.desc':   'Tienda online completa con catálogo, carrito de compras, integración de pasarelas de pago y dashboard de administración de pedidos.',
+    'p4.metric': 'PayPal + Mercado Pago · Panel admin',
+    'p5.title':  'Sistema para Taller Mecánico',
+    'p5.desc':   'Sistema CRUD con autenticación multifactor, gestión de accesos por roles y monitoreo de servicios, técnicos y clientes.',
+    'p5.metric': 'Auth MFA · Gestión granular por roles',
+    /* Contact */
+    'contact.label':        'Contacto',
+    'contact.title':        'Trabajemos Juntos',
+    'contact.subtitle':     '¿Tienes un proyecto en mente? Cuéntame sobre él y encontremos la mejor solución.',
+    'contact.info.title':   'Información de Contacto',
+    'contact.email.label':  'Email',
+    'contact.phone.label':  'Teléfono',
+    'contact.location.label': 'Ubicación',
+    'contact.location.val': 'Cancún, Quintana Roo, México',
+    'contact.quick.title':  'Acciones Rápidas',
+    'contact.quick.wa':     'Chat por WhatsApp',
+    'contact.quick.cv':     'Descargar CV',
+    'contact.quick.li':     'Ver LinkedIn',
+    'form.title':    'Inicia Tu Proyecto',
+    'form.name':     'Nombre Completo *',
+    'form.email':    'Email *',
+    'form.company':  'Empresa',
+    'form.budget':   'Presupuesto *',
+    'form.bopt0':    'Selecciona un rango',
+    'form.bopt1':    'Menos de $10,000',
+    'form.bopt2':    'De $10,000 a $30,000',
+    'form.bopt3':    'De $30,000 a $50,000',
+    'form.bopt4':    'Más de $50,000',
+    'form.message':  'Descripción del Proyecto *',
+    'form.send':     'Enviar Mensaje',
+    'form.note':     'Respondo en menos de 24 h · Revisa spam si no recibes respuesta.',
+    'form.sending':  'Enviando...',
+    'form.ph.name':    'Juan Pérez',
+    'form.ph.email':   'juan@empresa.com',
+    'form.ph.company': 'Mi Empresa SA',
+    'form.ph.message': 'Cuéntame sobre tu proyecto, objetivos, plazos y requerimientos...',
+    /* Footer */
+    'footer.desc':  'Full Stack Developer especializado en Node.js y JavaScript. Construyo sistemas escalables con código limpio y buenas prácticas.',
+    'footer.col1':  'Servicios',
+    'footer.col2':  'Tecnologías',
+    'footer.col3':  'Contacto',
+    'footer.copy':  '© 2025 Gustavo Gutiérrez · Cancún, México',
+    'footer.up':    'Volver arriba ↑',
+    /* Toasts */
+    'toast.warn.title': 'Campos incompletos',
+    'toast.warn.msg':   'Por favor completa todos los campos requeridos.',
+    'toast.ok.title':   '¡Mensaje enviado!',
+    'toast.ok.msg':     'Te responderé en menos de 24 horas.',
+    'toast.err.title':  'Error al enviar',
+    'toast.err.msg':    'Intenta de nuevo o escríbeme por WhatsApp.',
+  },
 
-  // ── NAV TOGGLE (mobile) ──────────────────────────────────────
-  const navToggle = document.getElementById('navToggle');
-  const navList   = document.getElementById('navList');
+  en: {
+    /* Nav */
+    'nav.about':      'About',
+    'nav.services':   'Services',
+    'nav.experience': 'Experience',
+    'nav.projects':   'Projects',
+    'nav.contact':    'Contact',
+    'nav.hire':       'Hire Me',
+    /* Hero */
+    'hero.badge': 'Available for projects',
+    'hero.role':  'Full Stack Developer',
+    'hero.desc':  'I build scalable web systems, robust APIs and smooth user experiences. Specialized in Node.js, JavaScript and PostgreSQL.',
+    'hero.stat1': 'Years coding',
+    'hero.stat2': 'Projects',
+    'hero.stat3': 'Clients',
+    'hero.cta1':  'Start a Project',
+    'hero.cta2':  'View Projects',
+    /* About */
+    'about.label': 'About Me',
+    'about.title': 'Passionate about building solutions that matter',
+    'about.p1':    'I\'m <strong>Gustavo Gutiérrez</strong>, a Software Developer graduated from <strong>Universidad Tecnológica de Cancún</strong>. I specialize in full-cycle web development, from backend architecture to user interfaces.',
+    'about.p2':    'I enjoy turning complex problems into elegant solutions. I work with clean code, best practices and always focused on real business outcomes.',
+    'about.hl1':   'Backend with Node.js, Express and secure RESTful APIs',
+    'about.hl2':   'Relational databases: optimized MySQL and PostgreSQL',
+    'about.hl3':   'Frontend with React, HTML/CSS and JavaScript ES6+',
+    'about.hl4':   'JWT authentication, role management and web security',
+    'about.hl5':   'Available for remote, hybrid and freelance projects',
+    /* Services */
+    'services.label':    'Services',
+    'services.title':    'How can I help you?',
+    'services.subtitle': 'Development solutions tailored to the real needs of your business or personal project.',
+    's1.title': 'Backend Development',
+    's1.desc':  'RESTful APIs with Node.js and Express. JWT authentication, role management and secure, scalable architectures.',
+    's2.title': 'Full Stack Development',
+    's2.desc':  'Complete web applications from database to interface, using React or plain HTML/CSS.',
+    's3.title': 'Data Management',
+    's3.desc':  'MySQL and PostgreSQL database design and implementation, optimized queries and real-time dashboards.',
+    's4.title': 'API Integration',
+    's4.desc':  'Third-party service connections, payment gateways (PayPal, Mercado Pago) and WebSockets for live data.',
+    /* Experience */
+    'exp.label':  'Experience',
+    'exp.title':  'Career Path',
+    'exp1.role':  'Full Stack Developer',
+    'exp1.desc':  'Designed and built from scratch an internal order management system. Implemented XML data extraction, real-time charts with Chart.js, WebSockets, admin panel with differentiated roles (admin / collaborator) and full CRUD on PostgreSQL deployed on Render.',
+    'exp2.role':  'Academic & Freelance Projects',
+    'exp2.desc':  'Development of 5+ complete web projects: inventory systems, e-commerce with payment gateways, tourism apps with external APIs and CRUD systems with multi-factor authentication. Focus on clean code, best practices and real client delivery.',
+    'exp3.role':  'Programming Technician',
+    'exp3.desc':  'Technical training in programming fundamentals, relational databases and web application development. Solid foundation for subsequent professional development.',
+    /* Skills */
+    'skills.label':    'Skills',
+    'skills.title':    'Tech Stack',
+    'skills.subtitle': 'Technologies I use to build complete, scalable and maintainable solutions.',
+    'skills.cat1': 'Languages & Frameworks',
+    'skills.cat2': 'Databases',
+    'skills.cat3': 'Frontend & UI',
+    'skills.cat4': 'Tools',
+    /* Projects */
+    'proj.label':    'Projects',
+    'proj.title':    'Featured Work',
+    'proj.subtitle': 'Real projects demonstrating the ability to build end-to-end scalable solutions.',
+    'p1.title':  'Glass Caribe · Order Management',
+    'p1.desc':   'Internal system with admin panel, real-time charts with Chart.js, WebSockets, XML data extraction and 2 differentiated roles on PostgreSQL.',
+    'p1.metric': '2 roles · Full CRUD · Real-time',
+    'p2.title':  'FluxSYS · Smart Inventory',
+    'p2.desc':   'Inventory management system with automatic stockout alerts and real-time reports for agile decision-making.',
+    'p2.metric': 'Automatic alerts · Live dashboard',
+    'p3.title':  'Information System · Cancún',
+    'p3.desc':   'Tourism web app integrating 3+ external APIs for weather, transport and points of interest with real-time data for visitors.',
+    'p3.metric': '3+ APIs integrated · Real-time data',
+    'p4.title':  'Sports E-Commerce',
+    'p4.desc':   'Complete online store with catalog, shopping cart, payment gateway integration and order administration dashboard.',
+    'p4.metric': 'PayPal + Mercado Pago · Admin panel',
+    'p5.title':  'Auto Shop Management System',
+    'p5.desc':   'CRUD system with multi-factor authentication, granular role-based access management and service, technician and client monitoring.',
+    'p5.metric': 'MFA Auth · Granular role management',
+    /* Contact */
+    'contact.label':          'Contact',
+    'contact.title':          "Let's Work Together",
+    'contact.subtitle':       "Have a project in mind? Tell me about it and let's find the best solution.",
+    'contact.info.title':     'Contact Information',
+    'contact.email.label':    'Email',
+    'contact.phone.label':    'Phone',
+    'contact.location.label': 'Location',
+    'contact.location.val':   'Cancún, Quintana Roo, México',
+    'contact.quick.title':    'Quick Actions',
+    'contact.quick.wa':       'Chat on WhatsApp',
+    'contact.quick.cv':       'Download CV',
+    'contact.quick.li':       'View LinkedIn',
+    'form.title':    'Start Your Project',
+    'form.name':     'Full Name *',
+    'form.email':    'Email *',
+    'form.company':  'Company',
+    'form.budget':   'Budget *',
+    'form.bopt0':    'Select a range',
+    'form.bopt1':    'Less than $10,000',
+    'form.bopt2':    '$10,000 to $30,000',
+    'form.bopt3':    '$30,000 to $50,000',
+    'form.bopt4':    'More than $50,000',
+    'form.message':  'Project Description *',
+    'form.send':     'Send Message',
+    'form.note':     "I respond within 24h · Check spam if you don't receive a reply.",
+    'form.sending':  'Sending...',
+    'form.ph.name':    'John Doe',
+    'form.ph.email':   'john@company.com',
+    'form.ph.company': 'My Company Inc.',
+    'form.ph.message': 'Tell me about your project, goals, timeline and requirements...',
+    /* Footer */
+    'footer.desc':  'Full Stack Developer specialized in Node.js and JavaScript. I build scalable systems with clean code and best practices.',
+    'footer.col1':  'Services',
+    'footer.col2':  'Technologies',
+    'footer.col3':  'Contact',
+    'footer.copy':  '© 2025 Gustavo Gutiérrez · Cancún, México',
+    'footer.up':    'Back to top ↑',
+    /* Toasts */
+    'toast.warn.title': 'Incomplete fields',
+    'toast.warn.msg':   'Please complete all required fields.',
+    'toast.ok.title':   'Message sent!',
+    'toast.ok.msg':     "I'll reply within 24 hours.",
+    'toast.err.title':  'Send error',
+    'toast.err.msg':    'Try again or message me on WhatsApp.',
+  }
+};
 
-  navToggle.addEventListener('click', () => {
-    const open = navList.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', String(open));
-    navToggle.querySelector('i').className = open ? 'bi bi-x-lg' : 'bi bi-list';
+/* ================================================================
+   LANGUAGE SYSTEM
+================================================================ */
+let currentLang = localStorage.getItem('lang') || 'es';
+
+function applyLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('lang', lang);
+  document.documentElement.lang = lang;
+
+  const dict = T[lang];
+
+  // textContent
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (dict[key] !== undefined) el.textContent = dict[key];
   });
 
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && navList.classList.contains('open')) {
+  // innerHTML (for text with HTML tags)
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.dataset.i18nHtml;
+    if (dict[key] !== undefined) el.innerHTML = dict[key];
+  });
+
+  // placeholders
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const key = el.dataset.i18nPh;
+    if (dict[key] !== undefined) el.placeholder = dict[key];
+  });
+
+  // Update lang button label
+  document.getElementById('langLabel').textContent = lang === 'es' ? 'EN' : 'ES';
+
+  // Update page title
+  document.title = lang === 'es'
+    ? 'Gustavo Gutiérrez · Full Stack Developer'
+    : 'Gustavo Gutiérrez · Full Stack Developer';
+
+  // Update meta description
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) {
+    metaDesc.content = lang === 'es'
+      ? 'Full Stack Developer especializado en Node.js, JavaScript y PostgreSQL. Construyo sistemas escalables desde Cancún, México.'
+      : 'Full Stack Developer specialized in Node.js, JavaScript and PostgreSQL. Building scalable systems from Cancún, México.';
+  }
+}
+
+document.getElementById('langToggle').addEventListener('click', () => {
+  applyLang(currentLang === 'es' ? 'en' : 'es');
+});
+
+// Init language
+applyLang(currentLang);
+
+/* ================================================================
+   THEME SYSTEM
+================================================================ */
+let isDark = localStorage.getItem('theme') !== 'light';
+
+function applyTheme(dark) {
+  isDark = dark;
+  localStorage.setItem('theme', dark ? 'dark' : 'light');
+  document.body.classList.toggle('light', !dark);
+  const icon = document.getElementById('themeIcon');
+  icon.className = dark ? 'bi bi-moon-fill' : 'bi bi-sun-fill';
+}
+
+document.getElementById('themeToggle').addEventListener('click', () => applyTheme(!isDark));
+
+// Init theme
+applyTheme(isDark);
+
+/* ================================================================
+   AOS
+================================================================ */
+AOS.init({ duration: 680, once: true, offset: 80, easing: 'ease-out-cubic' });
+
+/* ================================================================
+   NAV TOGGLE (mobile)
+================================================================ */
+const navToggle = document.getElementById('navToggle');
+const navList   = document.getElementById('navList');
+
+navToggle.addEventListener('click', () => {
+  const open = navList.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', String(open));
+  navToggle.querySelector('i').className = open ? 'bi bi-x-lg' : 'bi bi-list';
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && navList.classList.contains('open')) {
+    navList.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.querySelector('i').className = 'bi bi-list';
+  }
+});
+
+/* ================================================================
+   SCROLLSPY
+================================================================ */
+const header   = document.querySelector('header');
+const navLinks = document.querySelectorAll('.nav-link');
+const sections = ['about','services','experience','skills','projects','contact']
+  .map(id => document.getElementById(id)).filter(Boolean);
+
+function setActive() {
+  const scrollY = window.scrollY;
+  const offset  = (header?.offsetHeight ?? 0) + 24;
+  let current   = sections[0]?.id ?? '';
+  for (const sec of sections) {
+    if (scrollY >= sec.offsetTop - offset) current = sec.id;
+  }
+  navLinks.forEach(a => {
+    const active = a.getAttribute('href') === '#' + current;
+    a.classList.toggle('active', active);
+    active ? a.setAttribute('aria-current','page') : a.removeAttribute('aria-current');
+  });
+}
+
+window.addEventListener('scroll', setActive, { passive: true });
+window.addEventListener('load',   setActive);
+
+navLinks.forEach(a => {
+  a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    if (!href?.startsWith('#')) return;
+    const target = document.getElementById(href.slice(1));
+    if (!target) return;
+    e.preventDefault();
+    window.scrollTo({ top: target.offsetTop - (header?.offsetHeight ?? 0) - 10, behavior: 'smooth' });
+    if (navList.classList.contains('open')) {
       navList.classList.remove('open');
       navToggle.setAttribute('aria-expanded', 'false');
       navToggle.querySelector('i').className = 'bi bi-list';
     }
   });
+});
 
-  // ── SCROLLSPY ────────────────────────────────────────────────
-  const header   = document.querySelector('header');
-  const navLinks = document.querySelectorAll('.nav-link');
-  const sections = ['about','services','experience','skills','projects','contact']
-    .map(id => document.getElementById(id)).filter(Boolean);
+/* ================================================================
+   BACK TO TOP
+================================================================ */
+const btt = document.getElementById('backToTop');
+window.addEventListener('scroll', () => btt.classList.toggle('show', window.scrollY > 500), { passive: true });
+btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-  function setActive() {
-    const scrollY = window.scrollY;
-    const offset  = (header?.offsetHeight ?? 0) + 24;
-    let current   = sections[0]?.id ?? '';
-    for (const sec of sections) {
-      if (scrollY >= sec.offsetTop - offset) current = sec.id;
-    }
-    navLinks.forEach(a => {
-      const active = a.getAttribute('href') === '#' + current;
-      a.classList.toggle('active', active);
-      active ? a.setAttribute('aria-current','page') : a.removeAttribute('aria-current');
+/* ================================================================
+   SKILL BARS
+================================================================ */
+const skillObs = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.querySelectorAll('.skill-fill[data-width]').forEach(bar => {
+      bar.style.width = bar.dataset.width + '%';
     });
+    obs.unobserve(entry.target);
+  });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.skill-category').forEach(el => skillObs.observe(el));
+
+/* ================================================================
+   RIPPLE
+================================================================ */
+document.querySelectorAll('[data-ripple]').forEach(btn => {
+  btn.addEventListener('click', function (e) {
+    const rect = this.getBoundingClientRect();
+    const r    = document.createElement('span');
+    r.className = 'ripple';
+    const size = Math.max(rect.width, rect.height);
+    r.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX - rect.left - size/2}px;top:${e.clientY - rect.top - size/2}px`;
+    this.appendChild(r);
+    setTimeout(() => r.remove(), 650);
+  });
+});
+
+/* ================================================================
+   CONTACT FORM
+================================================================ */
+const form       = document.getElementById('contactForm');
+const sendBtn    = document.getElementById('sendBtn');
+const btnContent = document.getElementById('btnContent');
+
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  const dict    = T[currentLang];
+  const fields  = [...form.querySelectorAll('[required]')];
+  const invalid = fields.filter(f => {
+    if (!f.value.trim()) return true;
+    if (f.type === 'email') return !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value);
+    return false;
+  });
+
+  if (invalid.length) {
+    invalid[0].focus();
+    iziToast.warning({ title: dict['toast.warn.title'], message: dict['toast.warn.msg'], position: 'topRight' });
+    return;
   }
 
-  window.addEventListener('scroll', setActive, { passive: true });
-  window.addEventListener('load',   setActive);
+  sendBtn.disabled = true;
+  const prev = btnContent.innerHTML;
+  btnContent.innerHTML = `<span class="spinner"></span> ${dict['form.sending']}`;
 
-  // Smooth scroll with header offset
-  navLinks.forEach(a => {
-    a.addEventListener('click', e => {
-      const href = a.getAttribute('href');
-      if (!href?.startsWith('#')) return;
-      const target = document.getElementById(href.slice(1));
-      if (!target) return;
-      e.preventDefault();
-      window.scrollTo({ top: target.offsetTop - (header?.offsetHeight ?? 0) - 10, behavior: 'smooth' });
-      if (navList.classList.contains('open')) {
-        navList.classList.remove('open');
-        navToggle.setAttribute('aria-expanded', 'false');
-        navToggle.querySelector('i').className = 'bi bi-list';
-      }
+  try {
+    const res = await fetch('https://api.staticforms.xyz/submit', {
+      method: 'POST', body: new FormData(form)
     });
-  });
-
-  // ── BACK TO TOP ───────────────────────────────────────────────
-  const btt = document.getElementById('backToTop');
-  window.addEventListener('scroll', () => btt.classList.toggle('show', window.scrollY > 500), { passive: true });
-  btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-  // ── SKILL BARS (animate on scroll) ───────────────────────────
-  const skillObs = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      entry.target.querySelectorAll('.skill-fill[data-width]').forEach(bar => {
-        bar.style.width = bar.dataset.width + '%';
-      });
-      obs.unobserve(entry.target);
-    });
-  }, { threshold: 0.2 });
-
-  document.querySelectorAll('.skill-category').forEach(el => skillObs.observe(el));
-
-  // ── RIPPLE ───────────────────────────────────────────────────
-  document.querySelectorAll('[data-ripple]').forEach(btn => {
-    btn.addEventListener('click', function (e) {
-      const rect = this.getBoundingClientRect();
-      const r    = document.createElement('span');
-      r.className = 'ripple';
-      const size = Math.max(rect.width, rect.height);
-      r.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX - rect.left - size/2}px;top:${e.clientY - rect.top - size/2}px`;
-      this.appendChild(r);
-      setTimeout(() => r.remove(), 650);
-    });
-  });
-
-  // ── CONTACT FORM ─────────────────────────────────────────────
-  const form       = document.getElementById('contactForm');
-  const sendBtn    = document.getElementById('sendBtn');
-  const btnContent = document.getElementById('btnContent');
-
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-
-    const fields  = [...form.querySelectorAll('[required]')];
-    const invalid = fields.filter(f => {
-      if (!f.value.trim()) return true;
-      if (f.type === 'email') return !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value);
-      return false;
-    });
-
-    if (invalid.length) {
-      invalid[0].focus();
-      iziToast.warning({
-        title: 'Campos incompletos',
-        message: 'Por favor completa todos los campos requeridos.',
-        position: 'topRight'
-      });
-      return;
+    if (res.ok) {
+      iziToast.success({ title: dict['toast.ok.title'], message: dict['toast.ok.msg'], position: 'topRight', timeout: 4500, progressBar: true });
+      form.reset();
+      form.querySelector('input')?.focus();
+    } else {
+      throw new Error('Error ' + res.status);
     }
+  } catch (err) {
+    console.error(err);
+    iziToast.error({ title: dict['toast.err.title'], message: dict['toast.err.msg'], position: 'topRight' });
+  } finally {
+    sendBtn.disabled = false;
+    btnContent.innerHTML = prev;
+  }
+});
 
-    sendBtn.disabled = true;
-    const prev = btnContent.innerHTML;
-    btnContent.innerHTML = '<span class="spinner" aria-hidden="true"></span> Enviando...';
-
-    try {
-      const res = await fetch('https://api.staticforms.xyz/submit', {
-        method: 'POST', body: new FormData(form)
-      });
-      if (res.ok) {
-        iziToast.success({
-          title: '¡Mensaje enviado!',
-          message: 'Te responderé en menos de 24 horas.',
-          position: 'topRight', timeout: 4500, progressBar: true
-        });
-        form.reset();
-        form.querySelector('input')?.focus();
-      } else {
-        throw new Error('Error ' + res.status);
-      }
-    } catch (err) {
-      console.error(err);
-      iziToast.error({
-        title: 'Error al enviar',
-        message: 'Intenta de nuevo o escríbeme por WhatsApp.',
-        position: 'topRight'
-      });
-    } finally {
-      sendBtn.disabled = false;
-      btnContent.innerHTML = prev;
-    }
-  });
-
-  window.addEventListener('load', () => AOS.refresh());
+window.addEventListener('load', () => AOS.refresh());
 </script>
 
 </body>
