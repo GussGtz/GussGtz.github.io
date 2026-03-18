@@ -238,13 +238,13 @@
 
     /* ── Square photo frame ── */
     .hero-photo-wrap {
-      position: relative; width: 300px; height: 300px;
-      border-radius: 22px;
+      position: relative; width: 380px; height: 380px;
+      border-radius: 26px;
     }
     /* Animated border ring — dark mode */
     .hero-photo-wrap::before {
       content: ''; position: absolute; inset: -3px;
-      border-radius: 25px;
+      border-radius: 29px;
       background: conic-gradient(var(--accent) 0deg, rgba(0,255,153,0.08) 160deg, var(--accent) 360deg);
       animation: spinRing 8s linear infinite;
     }
@@ -252,14 +252,14 @@
     /* Gap between ring and photo */
     .hero-photo-wrap::after {
       content: ''; position: absolute; inset: 3px;
-      border-radius: 19px;
+      border-radius: 23px;
       background: var(--bg);
       transition: background 0.3s ease;
     }
     /* Photo itself */
     .hero-photo {
       position: absolute; inset: 7px; z-index: 1;
-      border-radius: 14px; object-fit: cover; object-position: center top;
+      border-radius: 18px; object-fit: cover; object-position: center top;
       animation: floatY 7s ease-in-out infinite;
     }
     @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
@@ -440,10 +440,10 @@
       section { padding: 64px var(--gap); }
       .hero { flex-direction: column; text-align: center; min-height: auto; padding: 48px var(--gap); gap: 36px; }
       .hero-right { order: -1; }
-      .hero-photo-wrap { width: 220px; height: 220px; border-radius: 18px; }
-      .hero-photo-wrap::before { border-radius: 21px; }
-      .hero-photo-wrap::after  { border-radius: 15px; }
-      .hero-photo { border-radius: 11px; }
+      .hero-photo-wrap { width: 260px; height: 260px; border-radius: 20px; }
+      .hero-photo-wrap::before { border-radius: 23px; }
+      .hero-photo-wrap::after  { border-radius: 17px; }
+      .hero-photo { border-radius: 13px; }
       .hero-stats { justify-content: center; }
       .hero-cta   { justify-content: center; }
       .hero-desc  { margin: 0 auto 32px; }
