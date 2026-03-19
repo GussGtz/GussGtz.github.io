@@ -1629,47 +1629,19 @@ form.addEventListener('submit', async e => {
     message: fd.get('message') || ''
   };
 
-  const payload = {
-    sender:    { name: 'Portfolio · Gustavo Gutiérrez', email: 'gutierrezgustavocanul@gmail.com' },
-    to:        [{ email: 'gutierrezgustavocanul@gmail.com', name: 'Gustavo Gutiérrez' }],
-    replyTo:   { email: data.email, name: data.name },
-    subject:   `[Portafolio] Nuevo contacto: ${data.name}`,
-    htmlContent: `
-      <div style="font-family:Arial,sans-serif;max-width:600px;margin:auto;background:#f4f6f8;padding:32px;border-radius:12px;">
-        <h2 style="color:#008a50;margin:0 0 4px;">📬 Nuevo mensaje desde tu portafolio</h2>
-        <p style="color:#666;margin:0 0 20px;font-size:14px;">Alguien llenó el formulario de contacto.</p>
-        <hr style="border:none;border-top:1px solid #ddd;margin-bottom:20px;">
-        <table style="width:100%;border-collapse:collapse;font-size:15px;">
-          <tr><td style="padding:8px 0;color:#888;width:130px;">Nombre</td><td style="padding:8px 0;font-weight:600;">${data.name}</td></tr>
-          <tr><td style="padding:8px 0;color:#888;">Email</td><td style="padding:8px 0;"><a href="mailto:${data.email}" style="color:#008a50;">${data.email}</a></td></tr>
-          <tr><td style="padding:8px 0;color:#888;">Empresa</td><td style="padding:8px 0;">${data.company || '<em style="color:#bbb">No especificada</em>'}</td></tr>
-          <tr><td style="padding:8px 0;color:#888;">Presupuesto</td><td style="padding:8px 0;font-weight:600;color:#008a50;">${data.budget}</td></tr>
-        </table>
-        <hr style="border:none;border-top:1px solid #ddd;margin:20px 0;">
-        <p style="color:#888;font-size:13px;margin-bottom:8px;font-weight:600;text-transform:uppercase;letter-spacing:1px;">Descripción del proyecto</p>
-        <div style="background:#fff;padding:18px;border-radius:8px;border-left:4px solid #008a50;font-size:15px;line-height:1.6;white-space:pre-line;">${data.message}</div>
-        <hr style="border:none;border-top:1px solid #ddd;margin:20px 0;">
-        <p style="color:#bbb;font-size:12px;margin:0;">Enviado desde <a href="https://gussgtz.github.io" style="color:#008a50;">gussgtz.github.io</a></p>
-      </div>`
-  };
-
   try {
-    const res = await fetch('https://api.brevo.com/v3/smtp/email', {
+    const res = await fetch('/api/send', {
       method: 'POST',
-      headers: {
-        'api-key':      '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',
-        'Content-Type': 'application/json',
-        'Accept':       'application/json'
-      },
-      body: JSON.stringify(payload)
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
     });
-    if (res.status === 201 || res.ok) {
+    if (res.ok) {
       iziToast.success({ title: dict['toast.ok.title'], message: dict['toast.ok.msg'], position: 'topRight', timeout: 4500, progressBar: true });
       form.reset();
       form.querySelector('input')?.focus();
     } else {
       const errBody = await res.json().catch(() => ({}));
-      console.error('Brevo error:', res.status, errBody);
+      console.error('Send error:', res.status, errBody);
       throw new Error('Error ' + res.status);
     }
   } catch (err) {
