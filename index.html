@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Gustavo Gutierrez · Full Stack Developer</title>
   <meta name="description" content="Full Stack Developer especializado en Node.js, JavaScript y PostgreSQL. Construyo sistemas escalables y APIs robustas desde Cancún, México." />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/logo-gg.png" />
@@ -87,7 +87,7 @@
        RESET
     ============================================================ */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       background: var(--bg); color: var(--text);
@@ -470,7 +470,7 @@
     }
 
     /* Shape wrapper — absolutely fills the section, clips overflow */
-    .sec-shapes { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: -1; }
+    .sec-shapes { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: -1; contain: strict; }
 
     /* Positioning wrapper — holds each individual shape */
     .sh-wrap { position: absolute; }
@@ -694,7 +694,7 @@
        CTA BANNER
     ============================================================ */
     .cta-banner {
-      position: relative; overflow: hidden; isolation: isolate;
+      position: relative; overflow: hidden; isolation: isolate; contain: layout;
       width: 100%;
       padding: 96px max(var(--gap), calc((100vw - var(--max-width)) / 2));
       text-align: center;
@@ -778,40 +778,144 @@
     @keyframes rippleAnim { to { transform: scale(4); opacity: 0; } }
 
     /* ============================================================
-       RESPONSIVE
+       RESPONSIVE — MOBILE NATIVE FEEL
     ============================================================ */
+
+    /* ── Tablet ── */
     @media (max-width: 1024px) {
       .footer-grid { grid-template-columns: 1fr 1fr; }
     }
+
+    /* ── Mobile 768px ── */
     @media (max-width: 768px) {
-      section { padding: 64px var(--gap); }
-      .hero { flex-direction: column; text-align: center; min-height: auto; padding: 48px var(--gap); gap: 36px; }
+      /* Hide full-page edge shapes — no margins to fill on mobile */
+      #edge-shapes { display: none; }
+
+      section { padding: 56px 20px; }
+
+      /* ── Hero ── */
+      .hero {
+        flex-direction: column; text-align: center;
+        min-height: auto; padding: 48px 20px 56px; gap: 28px;
+      }
+      .hero-left  { min-width: 0; width: 100%; }
       .hero-right { order: -1; }
-      .hero-photo-wrap { width: 220px; height: 220px; border-radius: 18px; }
+      .hero-photo-wrap { width: 200px; height: 200px; border-radius: 18px; }
       .hero-photo-wrap::before { border-radius: 21px; }
       .hero-photo-wrap::after  { border-radius: 15px; }
       .hero-photo { border-radius: 11px; }
-      .hero-stats { justify-content: center; }
+      .hero-stats { justify-content: center; gap: 20px; }
       .hero-cta   { justify-content: center; }
-      .hero-desc  { margin: 0 auto 32px; }
-      .about-new-grid { grid-template-columns: 1fr; gap: 32px; }
-      .contact-grid { grid-template-columns: 1fr; }
-      .form-row   { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+      .hero-desc  { margin: 0 auto 28px; max-width: 100%; }
+
+      /* Shrink orbs so they don't cause overflow */
+      .hero-orb-1 { width: 200px; height: 200px; top: -60px; right: -60px; opacity: 0.09; }
+      .hero-orb-2 { width: 160px; height: 160px; bottom: -40px; left: -40px; opacity: 0.09; }
+      .hero-orb-3 { display: none; }
+
+      /* ── Impact band — 2 col ── */
+      .impact-band-inner { flex-wrap: wrap; padding: 16px 0; gap: 0; }
+      .impact-item { flex: 0 0 50%; min-width: 0; padding: 14px 10px; }
+      .impact-item:not(:last-child)::after { display: none; }
+      .impact-item:nth-child(odd)::after {
+        content: ''; position: absolute; right: 0; top: 15%; bottom: 15%;
+        width: 1px; background: var(--border); display: block;
+      }
+      .impact-item:nth-child(1),
+      .impact-item:nth-child(2) { border-bottom: 1px solid var(--border); }
+      .impact-num { font-size: 1.7rem; }
+      .impact-lbl { font-size: 0.67rem; }
+
+      /* ── Sections ── */
+      .about-new-grid { grid-template-columns: 1fr; gap: 28px; }
+      .services-grid  { grid-template-columns: 1fr; }
+      .skills-wrapper { grid-template-columns: 1fr; gap: 24px; }
+      .ss-wrapper     { grid-template-columns: 1fr; }
+      .ss-phases-grid { grid-template-columns: 1fr 1fr; }
+      .projects-grid  { grid-template-columns: 1fr; }
+      .challenges-grid{ grid-template-columns: 1fr; }
+      .certs-grid     { grid-template-columns: 1fr; }
+      .contact-grid   { grid-template-columns: 1fr; }
+      .form-row       { grid-template-columns: 1fr; }
+      .footer-grid    { grid-template-columns: 1fr; gap: 20px; }
+
+      /* ── CTA Banner ── */
+      .cta-banner { padding: 64px 20px; }
+      .cta-actions { flex-direction: column; align-items: center; gap: 10px; }
+      .cta-actions .btn-primary,
+      .cta-actions .btn-outline { width: 100%; max-width: 340px; justify-content: center; }
+
+      /* ── Navbar mobile drawer ── */
       nav .nav-list { display: none; }
       .nav-toggle   { display: flex; }
       .btn-hire     { display: none; }
       .nav-list.open {
         display: flex; flex-direction: column;
         position: absolute; top: 64px; left: 0; right: 0;
-        background: rgba(10,12,14,0.98); backdrop-filter: blur(14px);
-        padding: 16px; border-bottom: 1px solid var(--border); gap: 4px;
+        background: rgba(10,12,14,0.97);
+        backdrop-filter: blur(18px) saturate(1.4);
+        -webkit-backdrop-filter: blur(18px) saturate(1.4);
+        padding: 10px 12px 18px; border-bottom: 1px solid var(--border);
+        gap: 2px; z-index: 998;
+        animation: mobileNavIn 0.2s ease forwards;
       }
+      @keyframes mobileNavIn {
+        from { opacity: 0; transform: translateY(-6px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      .nav-list.open li a {
+        padding: 13px 16px; border-radius: 10px;
+        font-size: 0.95rem; min-height: 48px;
+        display: flex; align-items: center;
+      }
+      body.light .nav-list.open { background: rgba(244,246,248,0.97); }
+
+      /* ── Back to top ── */
+      .back-to-top { right: 16px; bottom: 16px; width: 42px; height: 42px; }
     }
+
+    /* ── Mobile 480px ── */
     @media (max-width: 480px) {
-      .hero-name  { font-size: 2rem; }
-      .hero-stats { gap: 16px; }
-      .stat-number { font-size: 1.5rem; }
+      section { padding: 44px 16px; }
+      .hero { padding: 36px 16px 48px; gap: 22px; }
+      .hero-name   { font-size: 2rem; }
+      .hero-role   { font-size: 1rem; }
+      .hero-desc   { font-size: 0.93rem; }
+      .hero-stats  { gap: 14px; }
+      .stat-number { font-size: 1.45rem; }
+      .stat-label  { font-size: 0.7rem; }
+      .hero-photo-wrap { width: 175px; height: 175px; border-radius: 16px; }
+      .hero-photo-wrap::before { border-radius: 19px; }
+      .hero-photo-wrap::after  { border-radius: 13px; }
+      .hero-photo  { border-radius: 10px; }
+
+      /* Full-width hero CTA buttons */
+      .hero-cta { flex-direction: column; width: 100%; }
+      .hero-cta .btn-primary,
+      .hero-cta .btn-outline { width: 100%; justify-content: center; }
+
+      .btn-primary, .btn-outline { padding: 12px 22px; font-size: 0.9rem; }
+      .section-title    { font-size: 1.65rem; }
+      .section-subtitle { font-size: 0.9rem; margin-bottom: 36px; }
+
+      .ss-phases-grid { grid-template-columns: 1fr; }
+      .project-thumb img { height: 175px; }
+      .sigep-thumb, .android-frame-thumb { height: 175px; }
+      .form-card    { padding: 20px 16px; }
+      .contact-card { padding: 18px 16px; }
+      .footer-brand p { max-width: 100%; }
+      .impact-num   { font-size: 1.5rem; }
+    }
+
+    /* ── Smallest phones 380px ── */
+    @media (max-width: 380px) {
+      section { padding: 36px 14px; }
+      .hero { padding: 28px 14px 40px; }
+      .hero-name   { font-size: 1.85rem; }
+      .hero-photo-wrap { width: 155px; height: 155px; }
+      .impact-num  { font-size: 1.35rem; }
+      .impact-lbl  { font-size: 0.63rem; }
+      .btn-primary, .btn-outline { padding: 11px 18px; }
     }
   </style>
 </head>
@@ -2414,6 +2518,17 @@ navToggle.addEventListener('click', () => {
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && navList.classList.contains('open')) {
+    navList.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.querySelector('i').className = 'bi bi-list';
+  }
+});
+
+// Close nav when tapping outside on mobile
+document.addEventListener('click', e => {
+  if (navList.classList.contains('open') &&
+      !navList.contains(e.target) &&
+      !navToggle.contains(e.target)) {
     navList.classList.remove('open');
     navToggle.setAttribute('aria-expanded', 'false');
     navToggle.querySelector('i').className = 'bi bi-list';
