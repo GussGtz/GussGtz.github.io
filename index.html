@@ -94,6 +94,13 @@
       -webkit-font-smoothing: antialiased;
       line-height: 1.65; overflow-x: hidden;
       transition: background 0.3s ease, color 0.3s ease;
+      position: relative; z-index: 0;
+    }
+    /* Full-page edge shapes layer — sits behind ALL content */
+    #edge-shapes {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: -1; overflow: hidden;
     }
     :focus { outline: none; }
     :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
@@ -690,6 +697,28 @@
   </style>
 </head>
 <body>
+
+<!-- Full-viewport edge decorative shapes -->
+<div id="edge-shapes" aria-hidden="true">
+  <!-- ── LEFT EDGE ──────────────────────────────────────────── -->
+  <div class="sh-wrap" style="top:5vh;left:-90px;"><div class="sh-ring op7" style="width:220px;height:220px;animation:shRCW 36s linear infinite;"></div></div>
+  <div class="sh-wrap" style="top:28vh;left:8px;animation:shF1 13s ease-in-out infinite;"><div class="sh-diamond op7" style="width:50px;height:50px;"></div></div>
+  <div class="sh-wrap" style="top:50vh;left:-50px;"><div class="sh-ring op5" style="width:140px;height:140px;animation:shRCC 42s linear infinite;"></div></div>
+  <div class="sh-wrap" style="top:72vh;left:15px;animation:shF2 11s ease-in-out infinite;"><div class="sh-tri op7" style="width:32px;height:28px;"></div></div>
+  <div class="sh-wrap" style="top:95vh;left:-70px;"><div class="sh-ring op5" style="width:180px;height:180px;animation:shRCW 50s linear infinite;"></div></div>
+  <div class="sh-wrap" style="top:125vh;left:10px;animation:shF4 10s ease-in-out infinite;"><div class="sh-cross op7" style="width:26px;height:26px;"></div></div>
+  <div class="sh-wrap" style="top:155vh;left:-55px;"><div class="sh-ring op5" style="width:150px;height:150px;animation:shRCC 38s linear infinite;"></div></div>
+  <div class="sh-wrap" style="top:185vh;left:20px;animation:shF3 12s ease-in-out infinite;"><div class="sh-diamond op7" style="width:42px;height:42px;"></div></div>
+  <!-- ── RIGHT EDGE ─────────────────────────────────────────── -->
+  <div class="sh-wrap" style="top:12vh;right:-80px;"><div class="sh-ring op7" style="width:200px;height:200px;animation:shRCC 44s linear infinite;"></div></div>
+  <div class="sh-wrap" style="top:34vh;right:10px;animation:shF2 12s ease-in-out infinite;"><div class="sh-diamond op7" style="width:48px;height:48px;"></div></div>
+  <div class="sh-wrap" style="top:58vh;right:-60px;"><div class="sh-ring op5" style="width:160px;height:160px;animation:shRCW 46s linear infinite;"></div></div>
+  <div class="sh-wrap" style="top:78vh;right:18px;animation:shF3 10s ease-in-out infinite;"><div class="sh-tri op7" style="width:28px;height:24px;"></div></div>
+  <div class="sh-wrap" style="top:100vh;right:-75px;"><div class="sh-ring op5" style="width:190px;height:190px;animation:shRCC 55s linear infinite;"></div></div>
+  <div class="sh-wrap" style="top:130vh;right:5px;animation:shF1 9s ease-in-out infinite;"><div class="sh-cross op7" style="width:22px;height:22px;"></div></div>
+  <div class="sh-wrap" style="top:160vh;right:-65px;"><div class="sh-ring op5" style="width:170px;height:170px;animation:shRCW 40s linear infinite;"></div></div>
+  <div class="sh-wrap" style="top:190vh;right:12px;animation:shF4 11s ease-in-out infinite;"><div class="sh-diamond op7" style="width:44px;height:44px;"></div></div>
+</div>
 
 <!-- ============================================================
      NAVBAR
