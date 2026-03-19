@@ -641,6 +641,56 @@
     @keyframes spinAnim { to { transform: rotate(360deg); } }
 
     /* ============================================================
+       CURSOR GLOW
+    ============================================================ */
+    #cursor-glow {
+      position: fixed; left: 0; top: 0; pointer-events: none; z-index: 9998;
+      width: 520px; height: 520px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,255,153,0.07) 0%, transparent 65%);
+      transform: translate(-50%, -50%);
+      opacity: 0; will-change: left, top;
+    }
+    @media (hover: hover) { #cursor-glow { opacity: 1; } }
+
+    /* ============================================================
+       LOGO GLOW
+    ============================================================ */
+    .logo { text-shadow: 0 0 18px rgba(0,255,153,0.30); transition: text-shadow 0.3s; }
+    .logo:hover { text-shadow: 0 0 28px rgba(0,255,153,0.55); }
+
+    /* ============================================================
+       IMPACT BAND
+    ============================================================ */
+    .impact-band {
+      width: 100%;
+      padding: 0 max(var(--gap), calc((100vw - var(--max-width)) / 2));
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: rgba(0,255,153,0.025);
+    }
+    .impact-band-inner {
+      display: flex; justify-content: space-around; align-items: center;
+      flex-wrap: wrap; padding: 30px 0;
+    }
+    .impact-item {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 5px; flex: 1; min-width: 130px;
+      position: relative; padding: 8px 16px;
+    }
+    .impact-item:not(:last-child)::after {
+      content: ''; position: absolute; right: 0; top: 15%; bottom: 15%;
+      width: 1px; background: var(--border);
+    }
+    .impact-num {
+      font-size: 2rem; font-weight: 800; color: var(--accent);
+      line-height: 1; font-variant-numeric: tabular-nums;
+    }
+    .impact-lbl {
+      font-size: 0.71rem; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 1.1px; text-align: center;
+    }
+
+    /* ============================================================
        CTA BANNER
     ============================================================ */
     .cta-banner {
@@ -766,6 +816,7 @@
   </style>
 </head>
 <body>
+<div id="cursor-glow" aria-hidden="true"></div>
 
 <!-- Full-viewport edge decorative shapes -->
 <div id="edge-shapes" aria-hidden="true">
@@ -869,6 +920,16 @@
         <span class="stat-number">7+</span>
         <span class="stat-label" data-i18n="hero.stat1">Años codificando</span>
       </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat-item">
+        <span class="stat-number">100+</span>
+        <span class="stat-label" data-i18n="hero.stat2">Proyectos completados</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat-item">
+        <span class="stat-number">2</span>
+        <span class="stat-label" data-i18n="hero.stat3">Apps en producción</span>
+      </div>
     </div>
     <div class="hero-cta">
       <a href="#contact" class="btn-primary" data-ripple>
@@ -888,6 +949,31 @@
     </div>
   </div>
 </section>
+
+
+<!-- ============================================================
+     IMPACT BAND
+============================================================ -->
+<div class="impact-band" role="region" aria-label="Métricas clave">
+  <div class="impact-band-inner">
+    <div class="impact-item" data-aos="fade-up" data-aos-delay="0">
+      <span class="impact-num stat-number">3+</span>
+      <span class="impact-lbl" data-i18n="ib.exp">Años de experiencia</span>
+    </div>
+    <div class="impact-item" data-aos="fade-up" data-aos-delay="60">
+      <span class="impact-num stat-number">100+</span>
+      <span class="impact-lbl" data-i18n="ib.proj">Proyectos completados</span>
+    </div>
+    <div class="impact-item" data-aos="fade-up" data-aos-delay="120">
+      <span class="impact-num stat-number">2</span>
+      <span class="impact-lbl" data-i18n="ib.live">Apps en producción</span>
+    </div>
+    <div class="impact-item" data-aos="fade-up" data-aos-delay="180">
+      <span class="impact-num">0</span>
+      <span class="impact-lbl" data-i18n="ib.down">Downtime desde deploy</span>
+    </div>
+  </div>
+</div>
 
 
 <!-- ============================================================
@@ -1499,9 +1585,9 @@
           <span class="proj-type-badge proj-type-badge--rt" data-i18n="badge.rt">Tiempo Real</span>
           <span class="proj-type-badge proj-type-badge--prod" data-i18n="badge.prod">Producción</span>
         </div>
-        <h3 data-i18n="p3.title">SIGEP-GC · Web App</h3>
-        <p data-i18n="p3.desc">Plataforma full stack para Glass Caribe que centraliza la gestión de pedidos y KPIs en tiempo real, reduciendo la dependencia de procesos manuales. WebSockets para actualización en vivo, exportación de reportes y control de roles diferenciados.</p>
-        <div class="project-metric"><i class="bi bi-graph-up-arrow"></i> <span data-i18n="p3.metric">Reduce seguimiento manual · Deploy activo · XLSX</span></div>
+        <h3 data-i18n="p3.title">Sistema de Gestión Operativa · Glass Caribe</h3>
+        <p data-i18n="p3.desc">Digitalizó el 100% del flujo de pedidos de Glass Caribe — cero hojas de cálculo, cero correos de seguimiento. Dashboard en tiempo real, exportación XLSX en segundos y 2 roles de acceso diferenciados.</p>
+        <div class="project-metric"><i class="bi bi-graph-up-arrow"></i> <span data-i18n="p3.metric">100% flujo digitalizado · Live sin refresh · 0 procesos manuales</span></div>
         <div class="project-stack">
           <span class="tech-tag">Vue 3</span><span class="tech-tag">Tailwind</span>
           <span class="tech-tag">Pinia</span><span class="tech-tag">Node.js</span><span class="tech-tag">PostgreSQL</span>
@@ -1528,9 +1614,9 @@
           <span class="proj-type-badge proj-type-badge--rt" data-i18n="badge.rt">Tiempo Real</span>
           <span class="proj-type-badge proj-type-badge--prod" data-i18n="badge.prod">Producción</span>
         </div>
-        <h3 data-i18n="p4.title">SIGEP-GC · App Android</h3>
-        <p data-i18n="p4.desc">Aplicación para conductores que resuelve la falta de seguimiento en entregas mediante GPS en background y notificaciones push en tiempo real, mejorando la visibilidad operativa y comunicación del equipo.</p>
-        <div class="project-metric"><i class="bi bi-graph-up-arrow"></i> <span data-i18n="p4.metric">APK v1.0 · GPS background · Push nativo</span></div>
+        <h3 data-i18n="p4.title">App de Entregas en Tiempo Real · Android</h3>
+        <p data-i18n="p4.desc">Eliminó las llamadas de seguimiento: GPS en background muestra la ubicación exacta de cada conductor en tiempo real. Push nativo, sin drenar batería y APK lista para instalar en cualquier Android.</p>
+        <div class="project-metric"><i class="bi bi-graph-up-arrow"></i> <span data-i18n="p4.metric">0 llamadas de seguimiento · GPS background · APK v1.0</span></div>
         <div class="project-stack">
           <span class="tech-tag">Capacitor 8</span><span class="tech-tag">Vue 3</span>
           <span class="tech-tag">Android</span><span class="tech-tag">GPS</span><span class="tech-tag">Web Push</span>
@@ -1550,9 +1636,9 @@
           <span class="proj-type-badge proj-type-badge--lead" data-i18n="badge.lead">Liderazgo</span>
           <span class="proj-type-badge proj-type-badge--game" data-i18n="badge.game">Game Dev</span>
         </div>
-        <h3 data-i18n="p5.title">Etaria · RPG de Plataformas 2D</h3>
-        <p data-i18n="p5.desc">Videojuego RPG 2D en Unity con sistema de combate, IA de enemigos y progresión de niveles con bosses únicos. Lideré un equipo de 5 personas desde la conceptualización hasta el post-lanzamiento: mecánicas, arte y audio.</p>
-        <div class="project-metric"><i class="bi bi-controller"></i> <span data-i18n="p5.metric">3 niveles · 3 bosses · IA de enemigos · Pixel Art</span></div>
+        <h3 data-i18n="p5.title">Etaria · RPG 2D de Plataformas</h3>
+        <p data-i18n="p5.desc">De la idea a la expo pública en 3 meses. Lideré un equipo de 5 personas — 3 niveles completos, 3 bosses únicos con IA, corriendo estable en hardware sin GPU dedicada el día del evento.</p>
+        <div class="project-metric"><i class="bi bi-controller"></i> <span data-i18n="p5.metric">5 personas · 3 meses · Presentado en expo · Intel HD 3000</span></div>
         <div class="project-stack">
           <span class="tech-tag">Unity</span><span class="tech-tag">C#</span>
           <span class="tech-tag">Pixel Art</span><span class="tech-tag">2D</span><span class="tech-tag">PC</span>
@@ -1849,8 +1935,13 @@ const T = {
     'hero.role':  'Full Stack Developer',
     'hero.desc':  'Construyo sistemas escalables y soluciones del mundo real. Backend sólido, frontend fluido y código que funciona en producción.',
     'hero.stat1': 'Años codificando',
-    'hero.stat2': 'Proyectos',
-    'hero.stat3': 'Clientes',
+    'hero.stat2': 'Proyectos completados',
+    'hero.stat3': 'Apps en producción',
+    /* Impact Band */
+    'ib.exp':  'Años de experiencia',
+    'ib.proj': 'Proyectos completados',
+    'ib.live': 'Apps en producción',
+    'ib.down': 'Downtime desde deploy',
     'hero.cta1':  'Iniciar Proyecto',
     'hero.cta2':  'Descargar CV',
     /* About */
@@ -1971,15 +2062,15 @@ const T = {
     'proj.featured': 'Proyecto Destacado',
     'badge.fs': 'Full Stack', 'badge.rt': 'Tiempo Real', 'badge.prod': 'Producción',
     'badge.lead': 'Liderazgo', 'badge.game': 'Game Dev',
-    'p3.title':  'SIGEP-GC · Web App',
-    'p3.desc':   'Plataforma full stack para Glass Caribe que centraliza la gestión de pedidos y KPIs en tiempo real, reduciendo la dependencia de procesos manuales. WebSockets para actualización en vivo, exportación de reportes y control de roles diferenciados.',
-    'p3.metric': 'Reduce seguimiento manual · Deploy activo · XLSX',
-    'p4.title':  'SIGEP-GC · App Android',
-    'p4.desc':   'Aplicación para conductores que resuelve la falta de seguimiento en entregas mediante GPS en background y notificaciones push en tiempo real, mejorando la visibilidad operativa y comunicación del equipo.',
-    'p4.metric': 'APK v1.0 · GPS background · Push nativo',
-    'p5.title':  'Etaria · RPG de Plataformas 2D',
-    'p5.desc':   'Videojuego RPG 2D en Unity con sistema de combate, IA de enemigos y progresión de niveles con bosses únicos. Lideré un equipo de 5 personas desde la conceptualización hasta el post-lanzamiento: mecánicas, arte y audio.',
-    'p5.metric': '3 niveles · 3 bosses · IA de enemigos · Pixel Art',
+    'p3.title':  'Sistema de Gestión Operativa · Glass Caribe',
+    'p3.desc':   'Digitalizó el 100% del flujo de pedidos de Glass Caribe — cero hojas de cálculo, cero correos de seguimiento. Dashboard en tiempo real, exportación XLSX en segundos y 2 roles de acceso diferenciados.',
+    'p3.metric': '100% flujo digitalizado · Live sin refresh · 0 procesos manuales',
+    'p4.title':  'App de Entregas en Tiempo Real · Android',
+    'p4.desc':   'Eliminó las llamadas de seguimiento: GPS en background muestra la ubicación exacta de cada conductor en tiempo real. Push nativo, sin drenar batería y APK lista para instalar en cualquier Android.',
+    'p4.metric': '0 llamadas de seguimiento · GPS background · APK v1.0',
+    'p5.title':  'Etaria · RPG 2D de Plataformas',
+    'p5.desc':   'De la idea a la expo pública en 3 meses. Lideré un equipo de 5 personas — 3 niveles completos, 3 bosses únicos con IA, corriendo estable en hardware sin GPU dedicada el día del evento.',
+    'p5.metric': '5 personas · 3 meses · Presentado en expo · Intel HD 3000',
     /* Challenges */
     'ch.label':   'Ingeniería', 'ch.title': 'Retos Técnicos Resueltos',
     'ch.subtitle':'Problemas reales de ingeniería enfrentados y solucionados en proyectos de producción.',
@@ -2058,8 +2149,13 @@ const T = {
     'hero.role':  'Full Stack Developer',
     'hero.desc':  'I build scalable systems and real-world solutions. Solid backend, fluid frontend, and code that works in production.',
     'hero.stat1': 'Years coding',
-    'hero.stat2': 'Projects',
-    'hero.stat3': 'Clients',
+    'hero.stat2': 'Projects completed',
+    'hero.stat3': 'Apps in production',
+    /* Impact Band */
+    'ib.exp':  'Years of experience',
+    'ib.proj': 'Projects completed',
+    'ib.live': 'Apps in production',
+    'ib.down': 'Downtime since deploy',
     'hero.cta1':  'Start a Project',
     'hero.cta2':  'Download CV',
     /* About */
@@ -2180,15 +2276,15 @@ const T = {
     'proj.featured': 'Featured Project',
     'badge.fs': 'Full Stack', 'badge.rt': 'Real-Time', 'badge.prod': 'Production',
     'badge.lead': 'Leadership', 'badge.game': 'Game Dev',
-    'p3.title':  'SIGEP-GC · Web App',
-    'p3.desc':   'Full stack platform for Glass Caribe that centralizes order management and real-time KPIs, reducing reliance on manual processes. WebSockets for live updates, report exports and differentiated role control.',
-    'p3.metric': 'Reduces manual tracking · Live deploy · XLSX',
-    'p4.title':  'SIGEP-GC · Android App',
-    'p4.desc':   'App for drivers that solves the lack of delivery tracking through background GPS and real-time push notifications, improving operational visibility and team communication.',
-    'p4.metric': 'APK v1.0 · Background GPS · Native push',
+    'p3.title':  'Operations Management System · Glass Caribe',
+    'p3.desc':   'Digitized 100% of Glass Caribe\'s order flow — zero spreadsheets, zero follow-up emails. Real-time dashboard, XLSX export in seconds and 2 differentiated access roles.',
+    'p3.metric': '100% flow digitized · Live without refresh · 0 manual processes',
+    'p4.title':  'Real-Time Delivery App · Android',
+    'p4.desc':   'Eliminated follow-up calls: background GPS shows the exact location of each driver in real time. Native push, no battery drain, and APK ready to install on any Android.',
+    'p4.metric': '0 follow-up calls · Background GPS · APK v1.0',
     'p5.title':  'Etaria · 2D Platformer RPG',
-    'p5.desc':   '2D RPG in Unity with a combat system, enemy AI and level progression with unique bosses. Led a 5-person team from conceptualization to post-launch: mechanics, art and audio.',
-    'p5.metric': '3 levels · 3 bosses · Enemy AI · Pixel Art',
+    'p5.desc':   'From idea to public expo in 3 months. Led a 5-person team — 3 complete levels, 3 unique AI bosses, running stable on hardware with no dedicated GPU on the day of the event.',
+    'p5.metric': '5 people · 3 months · Showcased at expo · Intel HD 3000',
     /* Challenges */
     'ch.label':   'Engineering', 'ch.title': 'Technical Challenges Solved',
     'ch.subtitle':'Real engineering problems faced and solved in production projects.',
@@ -2559,6 +2655,55 @@ form.addEventListener('submit', async e => {
 })();
 
 window.addEventListener('load', () => AOS.refresh());
+
+/* ── Cursor Glow ─────────────────────────────────────────── */
+(function () {
+  if (!window.matchMedia('(hover: hover)').matches) return;
+  const glow = document.getElementById('cursor-glow');
+  if (!glow) return;
+  let tx = 0, ty = 0, cx = 0, cy = 0, raf;
+  document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; }, { passive: true });
+  function animate() {
+    cx += (tx - cx) * 0.10;
+    cy += (ty - cy) * 0.10;
+    glow.style.left = cx + 'px';
+    glow.style.top  = cy + 'px';
+    raf = requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+/* ── 3D Card Tilt ────────────────────────────────────────── */
+(function () {
+  if (!window.matchMedia('(hover: hover)').matches) return;
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width  - 0.5;
+      const y = (e.clientY - r.top)  / r.height - 0.5;
+      card.style.transition = 'transform 0.08s linear, box-shadow 0.3s, border-color 0.3s';
+      card.style.transform  = `perspective(700px) rotateY(${x * 10}deg) rotateX(${-y * 7}deg) translateY(-8px) scale(1.015)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transition = '';
+      card.style.transform  = '';
+    });
+  });
+})();
+
+/* ── Magnetic Buttons ────────────────────────────────────── */
+(function () {
+  if (!window.matchMedia('(hover: hover)').matches) return;
+  document.querySelectorAll('.hero-cta .btn-primary, .cta-actions .btn-primary').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const r = btn.getBoundingClientRect();
+      const x = (e.clientX - r.left - r.width  / 2) * 0.30;
+      const y = (e.clientY - r.top  - r.height / 2) * 0.30;
+      btn.style.transform = `translate(${x}px,${y}px)`;
+    });
+    btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+  });
+})();
 </script>
 
 </body>
