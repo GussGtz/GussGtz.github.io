@@ -343,6 +343,46 @@
     body.light .skill-fill { background: linear-gradient(90deg, var(--accent), rgba(0,138,80,0.45)); }
 
     /* ============================================================
+       CERTIFICATIONS
+    ============================================================ */
+    .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .cert-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px;
+      display: flex; gap: 18px; align-items: flex-start;
+      transition: var(--transition); position: relative; overflow: hidden;
+    }
+    .cert-card::before {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: 0; transition: var(--transition);
+    }
+    .cert-card:hover { transform: translateY(-5px); border-color: rgba(0,255,153,0.2); box-shadow: 0 16px 40px rgba(0,0,0,0.4); }
+    body.light .cert-card:hover { border-color: rgba(0,138,80,0.2); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
+    .cert-card:hover::before { opacity: 1; }
+    .cert-icon {
+      width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
+      background: var(--accent-dim); border: 1px solid rgba(0,255,153,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; color: var(--accent);
+    }
+    body.light .cert-icon { border-color: rgba(0,138,80,0.2); }
+    .cert-body { flex: 1; }
+    .cert-issuer { font-size: 0.74rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .cert-name   { font-size: 0.98rem; font-weight: 700; margin-bottom: 6px; }
+    .cert-meta   { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+    .cert-date   { font-size: 0.76rem; color: var(--muted); display: flex; align-items: center; gap: 4px; }
+    .cert-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.78rem; font-weight: 700; color: var(--accent);
+      border: 1px solid rgba(0,255,153,0.25); background: var(--accent-dim);
+      padding: 5px 12px; border-radius: 100px; transition: var(--transition);
+    }
+    body.light .cert-btn { border-color: rgba(0,138,80,0.25); }
+    .cert-btn:hover { background: var(--accent); color: #0a0c0e; }
+    body.light .cert-btn:hover { color: #fff; }
+
+    /* ============================================================
        PROJECTS
     ============================================================ */
     .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px,1fr)); gap: 24px; }
@@ -479,8 +519,9 @@
     <ul class="nav-list" id="navList">
       <li><a href="#about"      class="nav-link" data-i18n="nav.about">Sobre Mí</a></li>
       <li><a href="#services"   class="nav-link" data-i18n="nav.services">Servicios</a></li>
-      <li><a href="#experience" class="nav-link" data-i18n="nav.experience">Experiencia</a></li>
-      <li><a href="#projects"   class="nav-link" data-i18n="nav.projects">Proyectos</a></li>
+      <li><a href="#experience"     class="nav-link" data-i18n="nav.experience">Experiencia</a></li>
+      <li><a href="#certifications" class="nav-link" data-i18n="nav.certs">Certificaciones</a></li>
+      <li><a href="#projects"       class="nav-link" data-i18n="nav.projects">Proyectos</a></li>
       <li><a href="#contact"    class="nav-link" data-i18n="nav.contact">Contacto</a></li>
     </ul>
   </nav>
@@ -552,7 +593,7 @@
 
   <div class="hero-right" data-aos="fade-left" data-aos-duration="700" data-aos-delay="100">
     <div class="hero-photo-wrap">
-      <img src="assets/gus-hero.png" alt="Gustavo Gutiérrez" class="hero-photo" width="286" height="286" loading="eager" />
+      <img src="assets/gus-hero.png" alt="Gustavo Gutiérrez" class="hero-photo" width="400" height="400" loading="eager" />
     </div>
   </div>
 </section>
@@ -707,6 +748,50 @@
         <span class="tech-tag">MySQL</span><span class="tech-tag">PHP</span>
       </div>
     </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     CERTIFICACIONES
+============================================================ -->
+<section id="certifications" class="container">
+  <span class="section-label" data-aos="fade-up" data-i18n="certs.label">Certificaciones</span>
+  <h2 class="section-title" data-aos="fade-up" data-aos-delay="50" data-i18n="certs.title">Credenciales Oficiales</h2>
+  <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100" data-i18n="certs.subtitle">
+    Certificaciones emitidas por instituciones reconocidas que validan mis conocimientos técnicos.
+  </p>
+
+  <div class="certs-grid">
+
+    <div class="cert-card" data-aos="fade-up" data-aos-delay="0">
+      <div class="cert-icon"><i class="bi bi-filetype-js" aria-hidden="true"></i></div>
+      <div class="cert-body">
+        <div class="cert-issuer">Cisco Networking Academy</div>
+        <div class="cert-name" data-i18n="cert1.name">JavaScript Essentials 1 (JSE)</div>
+        <div class="cert-meta">
+          <span class="cert-date"><i class="bi bi-calendar3" aria-hidden="true"></i> Oct 2023</span>
+        </div>
+        <a href="assets/cert-javascript.pdf" target="_blank" rel="noopener" class="cert-btn">
+          <i class="bi bi-eye" aria-hidden="true"></i> <span data-i18n="cert.view">Ver certificado</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="cert-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="cert-icon"><i class="bi bi-terminal" aria-hidden="true"></i></div>
+      <div class="cert-body">
+        <div class="cert-issuer">Cisco Networking Academy</div>
+        <div class="cert-name" data-i18n="cert2.name">NDG Linux Essentials</div>
+        <div class="cert-meta">
+          <span class="cert-date"><i class="bi bi-calendar3" aria-hidden="true"></i> Ago 2023</span>
+        </div>
+        <a href="assets/cert-linux.pdf" target="_blank" rel="noopener" class="cert-btn">
+          <i class="bi bi-eye" aria-hidden="true"></i> <span data-i18n="cert.view">Ver certificado</span>
+        </a>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1076,6 +1161,7 @@ const T = {
     'nav.about':      'Sobre Mí',
     'nav.services':   'Servicios',
     'nav.experience': 'Experiencia',
+    'nav.certs':      'Certificaciones',
     'nav.projects':   'Proyectos',
     'nav.contact':    'Contacto',
     'nav.hire':       'Contrátame',
@@ -1119,6 +1205,13 @@ const T = {
     'exp2.desc':  'Desarrollo de 5+ proyectos web completos: sistemas de inventario, e-commerce con pasarelas de pago, apps turísticas con APIs externas y sistemas CRUD con autenticación multifactor. Enfoque en código limpio, buenas prácticas y entrega real al cliente.',
     'exp3.role':  'Técnico en Programación',
     'exp3.desc':  'Formación técnica en fundamentos de programación, bases de datos relacionales y desarrollo de aplicaciones web. Base sólida para el desarrollo profesional posterior.',
+    /* Certifications */
+    'certs.label':    'Certificaciones',
+    'certs.title':    'Credenciales Oficiales',
+    'certs.subtitle': 'Certificaciones emitidas por instituciones reconocidas que validan mis conocimientos técnicos.',
+    'cert1.name':     'JavaScript Essentials 1 (JSE)',
+    'cert2.name':     'NDG Linux Essentials',
+    'cert.view':      'Ver certificado',
     /* Skills */
     'skills.label':    'Habilidades',
     'skills.title':    'Stack Técnico',
@@ -1198,6 +1291,7 @@ const T = {
     'nav.about':      'About',
     'nav.services':   'Services',
     'nav.experience': 'Experience',
+    'nav.certs':      'Certifications',
     'nav.projects':   'Projects',
     'nav.contact':    'Contact',
     'nav.hire':       'Hire Me',
@@ -1241,6 +1335,13 @@ const T = {
     'exp2.desc':  'Development of 5+ complete web projects: inventory systems, e-commerce with payment gateways, tourism apps with external APIs and CRUD systems with multi-factor authentication. Focus on clean code, best practices and real client delivery.',
     'exp3.role':  'Programming Technician',
     'exp3.desc':  'Technical training in programming fundamentals, relational databases and web application development. Solid foundation for subsequent professional development.',
+    /* Certifications */
+    'certs.label':    'Certifications',
+    'certs.title':    'Official Credentials',
+    'certs.subtitle': 'Certifications issued by recognized institutions that validate my technical knowledge.',
+    'cert1.name':     'JavaScript Essentials 1 (JSE)',
+    'cert2.name':     'NDG Linux Essentials',
+    'cert.view':      'View certificate',
     /* Skills */
     'skills.label':    'Skills',
     'skills.title':    'Tech Stack',
@@ -1419,7 +1520,7 @@ document.addEventListener('keydown', e => {
 ================================================================ */
 const header   = document.querySelector('header');
 const navLinks = document.querySelectorAll('.nav-link');
-const sections = ['about','services','experience','skills','projects','contact']
+const sections = ['about','services','experience','certifications','skills','projects','contact']
   .map(id => document.getElementById(id)).filter(Boolean);
 
 function setActive() {
