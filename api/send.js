@@ -17,8 +17,8 @@ export default async function handler(req, res) {
   }
 
   const payload = {
-    sender:  { name: 'Portfolio · Gustavo Gutiérrez', email: 'gutierrezgustavocanul@gmail.com' },
-    to:      [{ email: 'gutierrezgustavocanul@gmail.com', name: 'Gustavo Gutiérrez' }],
+    sender:  { name: 'Portfolio · Gustavo Gutierrez', email: 'gutierrezgustavocanul@gmail.com' },
+    to:      [{ email: 'gutierrezgustavocanul@gmail.com', name: 'Gustavo Gutierrez' }],
     replyTo: { email, name },
     subject: `[Portafolio] Nuevo contacto: ${name}`,
     htmlContent: `
