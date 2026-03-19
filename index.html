@@ -554,6 +554,64 @@
     body.light .cert-btn { border-color: rgba(0,138,80,0.25); }
     .cert-btn:hover { background: var(--accent); color: #0a0c0e; }
     body.light .cert-btn:hover { color: #fff; }
+    /* cert-btn como botón nativo */
+    button.cert-btn { cursor: pointer; font-family: inherit; }
+
+    /* ============================================================
+       MODAL DE CERTIFICADO
+    ============================================================ */
+    #cert-modal {
+      display: none; position: fixed; inset: 0; z-index: 3000;
+      background: rgba(0,0,0,.82);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      align-items: center; justify-content: center;
+      padding: 16px;
+    }
+    #cert-modal.open { display: flex; animation: cmFadeIn .22s ease; }
+    @keyframes cmFadeIn { from{opacity:0;transform:scale(.96)} to{opacity:1;transform:scale(1)} }
+    .cm-box {
+      position: relative; width: 100%; max-width: 880px; height: 88vh;
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      display: flex; flex-direction: column;
+      box-shadow: 0 32px 80px rgba(0,0,0,.6);
+    }
+    .cm-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 18px; border-bottom: 1px solid var(--border);
+      flex-shrink: 0; gap: 12px;
+    }
+    .cm-title { font-size: .92rem; font-weight: 700; color: var(--text); min-width: 0; flex: 1; }
+    .cm-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
+    .cm-dl {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--accent); color: #0a0c0e;
+      border: none; border-radius: 8px;
+      font-size: .78rem; font-weight: 700; padding: 6px 14px;
+      cursor: pointer; text-decoration: none; transition: var(--transition);
+    }
+    .cm-dl:hover { opacity: .82; }
+    .cm-close {
+      background: none; border: 1px solid var(--border); color: var(--text);
+      width: 34px; height: 34px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 1rem; transition: var(--transition);
+    }
+    .cm-close:hover { background: #e0525220; border-color: #e05252; color: #e05252; }
+    .cm-iframe { flex: 1; width: 100%; border: none; display: block; }
+    /* Fallback móvil — iOS no renderiza PDFs en iframe */
+    .cm-fallback {
+      display: none; flex: 1; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 20px; padding: 40px 24px; text-align: center;
+    }
+    .cm-fallback i { font-size: 3rem; color: var(--accent); }
+    .cm-fallback p { color: var(--muted); font-size: .9rem; }
+    @media (max-width: 600px) {
+      .cm-iframe   { display: none; }
+      .cm-fallback { display: flex; }
+      .cm-box { height: auto; max-height: 80vh; }
+    }
 
     /* ============================================================
        PROJECTS
@@ -1345,9 +1403,11 @@
         <div class="cert-meta">
           <span class="cert-date"><i class="bi bi-calendar3" aria-hidden="true"></i> Oct 2023</span>
         </div>
-        <a href="assets/cert-javascript.pdf" target="_blank" rel="noopener" class="cert-btn">
+        <button class="cert-btn"
+                data-cert-src="assets/cert-javascript.pdf"
+                data-cert-title="JavaScript Essentials 1 (JSE)">
           <i class="bi bi-eye" aria-hidden="true"></i> <span data-i18n="cert.view">Ver certificado</span>
-        </a>
+        </button>
       </div>
     </div>
 
@@ -1359,9 +1419,11 @@
         <div class="cert-meta">
           <span class="cert-date"><i class="bi bi-calendar3" aria-hidden="true"></i> Ago 2023</span>
         </div>
-        <a href="assets/cert-linux.pdf" target="_blank" rel="noopener" class="cert-btn">
+        <button class="cert-btn"
+                data-cert-src="assets/cert-linux.pdf"
+                data-cert-title="NDG Linux Essentials">
           <i class="bi bi-eye" aria-hidden="true"></i> <span data-i18n="cert.view">Ver certificado</span>
-        </a>
+        </button>
       </div>
     </div>
 
@@ -1993,6 +2055,38 @@
 <button class="back-to-top" id="backToTop" aria-label="Volver arriba">
   <i class="bi bi-arrow-up-short" aria-hidden="true"></i>
 </button>
+
+<!-- ============================================================
+     MODAL — CERTIFICADOS
+============================================================ -->
+<div id="cert-modal" role="dialog" aria-modal="true" aria-labelledby="cm-title-text">
+  <div class="cm-box">
+    <div class="cm-header">
+      <span class="cm-title" id="cm-title-text">Certificado</span>
+      <div class="cm-actions">
+        <a id="cm-dl" href="#" download class="cm-dl">
+          <i class="bi bi-download" aria-hidden="true"></i>
+          <span data-i18n="cert.download">Descargar</span>
+        </a>
+        <button class="cm-close" id="cm-close" aria-label="Cerrar">
+          <i class="bi bi-x-lg" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+    <!-- Vista PDF desktop -->
+    <iframe id="cm-iframe" class="cm-iframe" title="Certificado PDF"></iframe>
+    <!-- Fallback iOS / móvil (iframes con PDF no funcionan en iOS Safari) -->
+    <div class="cm-fallback">
+      <i class="bi bi-file-earmark-pdf" aria-hidden="true"></i>
+      <p data-i18n="cert.mobileNote">Vista previa no disponible en este dispositivo.</p>
+      <a id="cm-dl2" href="#" download class="cm-dl">
+        <i class="bi bi-download" aria-hidden="true"></i>
+        <span data-i18n="cert.download">Descargar certificado</span>
+      </a>
+    </div>
+  </div>
+</div>
+
 </div><!-- /#page-wrap -->
 
 
@@ -2089,6 +2183,8 @@ const T = {
     'cert1.name':     'JavaScript Essentials 1 (JSE)',
     'cert2.name':     'NDG Linux Essentials',
     'cert.view':      'Ver certificado',
+    'cert.download':  'Descargar',
+    'cert.mobileNote':'Vista previa no disponible en este dispositivo.',
     /* Skills */
     'skills.label':    'Habilidades',
     'skills.title':    'Stack Técnico',
@@ -2303,6 +2399,8 @@ const T = {
     'cert1.name':     'JavaScript Essentials 1 (JSE)',
     'cert2.name':     'NDG Linux Essentials',
     'cert.view':      'View certificate',
+    'cert.download':  'Download',
+    'cert.mobileNote':'Preview not available on this device.',
     /* Skills */
     'skills.label':    'Skills',
     'skills.title':    'Tech Stack',
@@ -2799,6 +2897,64 @@ window.addEventListener('load', () => AOS.refresh());
       btn.style.transform = `translate(${x}px,${y}px)`;
     });
     btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+  });
+})();
+
+/* ================================================================
+   MODAL — CERTIFICADOS
+================================================================ */
+(function () {
+  const modal   = document.getElementById('cert-modal');
+  const iframe  = document.getElementById('cm-iframe');
+  const titleEl = document.getElementById('cm-title-text');
+  const dlBtn   = document.getElementById('cm-dl');
+  const dlBtn2  = document.getElementById('cm-dl2');
+  const closeBtn= document.getElementById('cm-close');
+
+  function openModal(src, title) {
+    titleEl.textContent = title;
+    dlBtn.href  = src;
+    dlBtn2.href = src;
+    dlBtn.setAttribute('download', title);
+    dlBtn2.setAttribute('download', title);
+    iframe.src  = src;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    /* limpiamos el src tras la animación para liberar el PDF */
+    setTimeout(() => { iframe.src = ''; }, 250);
+  }
+
+  /* Botones "Ver certificado" */
+  document.querySelectorAll('[data-cert-src]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      openModal(btn.dataset.certSrc, btn.dataset.certTitle || 'Certificado');
+    });
+  });
+
+  /* Cerrar con el botón X */
+  closeBtn.addEventListener('click', closeModal);
+
+  /* Cerrar haciendo click en el overlay */
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+  /* Cerrar con Escape */
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+
+  /* Trampa de foco dentro del modal (accesibilidad) */
+  modal.addEventListener('keydown', e => {
+    if (e.key !== 'Tab') return;
+    const focusable = modal.querySelectorAll('button, [href], iframe');
+    const first = focusable[0], last = focusable[focusable.length - 1];
+    if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
+    else            { if (document.activeElement === last)  { e.preventDefault(); first.focus(); } }
   });
 })();
 </script>
