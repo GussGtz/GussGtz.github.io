@@ -193,7 +193,11 @@
     .hero {
       min-height: calc(100vh - 64px);
       display: flex; align-items: center; justify-content: space-between;
-      gap: 48px; padding: 64px var(--gap);
+      gap: 48px;
+      /* Full viewport width — padding keeps content within 1100px center */
+      max-width: none;
+      width: 100%;
+      padding: 64px max(var(--gap), calc((100vw - var(--max-width)) / 2));
       position: relative; overflow: hidden; isolation: isolate;
     }
     .hero::before {
