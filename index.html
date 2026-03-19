@@ -484,6 +484,21 @@
     .project-body p   { color: var(--muted); font-size: 0.87rem; line-height: 1.6; flex: 1; }
     .project-metric   { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--accent); font-weight: 600; }
     .project-stack    { display: flex; gap: 6px; flex-wrap: wrap; }
+    .proj-featured-badge { display: inline-flex; align-items: center; gap: 5px; background: linear-gradient(135deg,rgba(255,165,0,0.13),rgba(255,100,0,0.07)); border: 1px solid rgba(255,165,0,0.35); color: #ffaa00; font-size: 0.71rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
+    .proj-type-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+    .proj-type-badge  { font-size: 0.67rem; font-weight: 700; padding: 2px 9px; border-radius: 12px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .proj-type-badge--fs   { background: rgba(0,255,153,0.09); color: var(--accent); border: 1px solid rgba(0,255,153,0.2); }
+    .proj-type-badge--rt   { background: rgba(88,166,255,0.09); color: #58a6ff; border: 1px solid rgba(88,166,255,0.2); }
+    .proj-type-badge--prod { background: rgba(147,112,219,0.1); color: #a78bfa; border: 1px solid rgba(147,112,219,0.25); }
+    .proj-type-badge--lead { background: rgba(255,165,0,0.09); color: #ffaa00; border: 1px solid rgba(255,165,0,0.22); }
+    .proj-type-badge--game { background: rgba(255,99,132,0.09); color: #f87171; border: 1px solid rgba(255,99,132,0.22); }
+    /* Challenges */
+    .challenges-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 16px; }
+    .challenge-card { background: var(--card-bg); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 20px 22px; transition: var(--transition); }
+    .challenge-card:hover { transform: translateX(4px); border-color: rgba(0,255,153,0.3); }
+    .challenge-icon { font-size: 1.5rem; margin-bottom: 10px; }
+    .challenge-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 7px; }
+    .challenge-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
 
     /* ============================================================
        CONTACT
@@ -1213,19 +1228,26 @@
   </p>
 
   <div class="projects-grid">
-    <!-- SIGEP-GC Web App -->
+
+    <!-- SIGEP-GC Web App — FEATURED -->
     <div class="project-card" data-aos="fade-up" data-aos-delay="0">
       <div class="project-thumb">
         <img src="assets/sigep-web.png" alt="SIGEP-GC Web App" loading="lazy" />
         <div class="project-overlay">
-          <a href="https://sigep-gc.onrender.com" target="_blank" rel="noopener" class="overlay-btn" aria-label="Demo"><i class="bi bi-box-arrow-up-right"></i></a>
-          <a href="https://github.com/GussGtz/sigep-gc" target="_blank" rel="noopener" class="overlay-btn ghost" aria-label="GitHub"><i class="bi bi-github"></i></a>
+          <a href="https://sigep-gc.onrender.com" target="_blank" rel="noopener" class="overlay-btn" aria-label="Ver demo"><i class="bi bi-box-arrow-up-right"></i> <span style="font-size:0.78rem;font-weight:700">Demo</span></a>
+          <a href="https://github.com/GussGtz/sigep-gc" target="_blank" rel="noopener" class="overlay-btn ghost" aria-label="Ver código"><i class="bi bi-github"></i> <span style="font-size:0.78rem;font-weight:700">Código</span></a>
         </div>
       </div>
       <div class="project-body">
+        <span class="proj-featured-badge">🔥 <span data-i18n="proj.featured">Proyecto Destacado</span></span>
+        <div class="proj-type-badges">
+          <span class="proj-type-badge proj-type-badge--fs" data-i18n="badge.fs">Full Stack</span>
+          <span class="proj-type-badge proj-type-badge--rt" data-i18n="badge.rt">Tiempo Real</span>
+          <span class="proj-type-badge proj-type-badge--prod" data-i18n="badge.prod">Producción</span>
+        </div>
         <h3 data-i18n="p3.title">SIGEP-GC · Web App</h3>
-        <p data-i18n="p3.desc">Plataforma web full stack para Glass Caribe: dashboard con KPIs en tiempo real, gestión de pedidos por departamento, WebSockets, exportación XLSX y roles Admin/Colaborador.</p>
-        <div class="project-metric"><i class="bi bi-graph-up-arrow"></i> <span data-i18n="p3.metric">Deploy activo · Tiempo real · XLSX export</span></div>
+        <p data-i18n="p3.desc">Plataforma full stack para Glass Caribe que centraliza la gestión de pedidos y KPIs en tiempo real, reduciendo la dependencia de procesos manuales. WebSockets para actualización en vivo, exportación de reportes y control de roles diferenciados.</p>
+        <div class="project-metric"><i class="bi bi-graph-up-arrow"></i> <span data-i18n="p3.metric">Reduce seguimiento manual · Deploy activo · XLSX</span></div>
         <div class="project-stack">
           <span class="tech-tag">Vue 3</span><span class="tech-tag">Tailwind</span>
           <span class="tech-tag">Pinia</span><span class="tech-tag">Node.js</span><span class="tech-tag">PostgreSQL</span>
@@ -1244,12 +1266,16 @@
           <div class="phone-home-bar"></div>
         </div>
         <div class="project-overlay">
-          <a href="https://github.com/GussGtz/sigep-gc/releases/tag/v1.0.0" target="_blank" rel="noopener" class="overlay-btn" aria-label="Descargar APK"><i class="bi bi-android2"></i></a>
+          <a href="https://github.com/GussGtz/sigep-gc/releases/tag/v1.0.0" target="_blank" rel="noopener" class="overlay-btn" aria-label="Descargar APK"><i class="bi bi-android2"></i> <span style="font-size:0.78rem;font-weight:700">APK</span></a>
         </div>
       </div>
       <div class="project-body">
+        <div class="proj-type-badges">
+          <span class="proj-type-badge proj-type-badge--rt" data-i18n="badge.rt">Tiempo Real</span>
+          <span class="proj-type-badge proj-type-badge--prod" data-i18n="badge.prod">Producción</span>
+        </div>
         <h3 data-i18n="p4.title">SIGEP-GC · App Android</h3>
-        <p data-i18n="p4.desc">App nativa Android para conductores de Glass Caribe: GPS tracking en background, push notifications, gestión de entregas en tiempo real y APK publicada en producción.</p>
+        <p data-i18n="p4.desc">Aplicación para conductores que resuelve la falta de seguimiento en entregas mediante GPS en background y notificaciones push en tiempo real, mejorando la visibilidad operativa y comunicación del equipo.</p>
         <div class="project-metric"><i class="bi bi-graph-up-arrow"></i> <span data-i18n="p4.metric">APK v1.0 · GPS background · Push nativo</span></div>
         <div class="project-stack">
           <span class="tech-tag">Capacitor 8</span><span class="tech-tag">Vue 3</span>
@@ -1266,14 +1292,57 @@
         </div>
       </div>
       <div class="project-body">
+        <div class="proj-type-badges">
+          <span class="proj-type-badge proj-type-badge--lead" data-i18n="badge.lead">Liderazgo</span>
+          <span class="proj-type-badge proj-type-badge--game" data-i18n="badge.game">Game Dev</span>
+        </div>
         <h3 data-i18n="p5.title">Etaria · RPG de Plataformas 2D</h3>
-        <p data-i18n="p5.desc">RPG de acción/aventura 2D con pixel art oscuro y místico. Lideré el equipo de 5 personas desde la conceptualización hasta el post-lanzamiento, supervisando diseño, programación, arte y audio. Desarrollado en Unity · C#.</p>
-        <div class="project-metric"><i class="bi bi-controller"></i> <span data-i18n="p5.metric">3 niveles · 3 bosses únicos · Pixel Art · PC</span></div>
+        <p data-i18n="p5.desc">Videojuego RPG 2D en Unity con sistema de combate, IA de enemigos y progresión de niveles con bosses únicos. Lideré un equipo de 5 personas desde la conceptualización hasta el post-lanzamiento: mecánicas, arte y audio.</p>
+        <div class="project-metric"><i class="bi bi-controller"></i> <span data-i18n="p5.metric">3 niveles · 3 bosses · IA de enemigos · Pixel Art</span></div>
         <div class="project-stack">
           <span class="tech-tag">Unity</span><span class="tech-tag">C#</span>
           <span class="tech-tag">Pixel Art</span><span class="tech-tag">2D</span><span class="tech-tag">PC</span>
         </div>
       </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     RETOS TÉCNICOS
+============================================================ -->
+<section id="challenges" class="container">
+  <span class="section-label" data-aos="fade-up" data-i18n="ch.label">Ingeniería</span>
+  <h2 class="section-title" data-aos="fade-up" data-aos-delay="50" data-i18n="ch.title">Retos Técnicos Resueltos</h2>
+  <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100" data-i18n="ch.subtitle">
+    Problemas reales de ingeniería enfrentados y solucionados en proyectos de producción.
+  </p>
+  <div class="challenges-grid" data-aos="fade-up" data-aos-delay="120">
+
+    <div class="challenge-card">
+      <div class="challenge-icon">⚡</div>
+      <div class="challenge-title" data-i18n="ch1.title">Sincronización en Tiempo Real</div>
+      <p class="challenge-desc" data-i18n="ch1.desc">Implementé WebSockets para actualización en vivo de pedidos y KPIs entre múltiples clientes conectados simultáneamente en SIGEP-GC.</p>
+    </div>
+
+    <div class="challenge-card">
+      <div class="challenge-icon">📍</div>
+      <div class="challenge-title" data-i18n="ch2.title">GPS en Segundo Plano (Android)</div>
+      <p class="challenge-desc" data-i18n="ch2.desc">Resolví el tracking de ubicación en background con Capacitor 8, gestionando restricciones de batería y permisos de Android para el seguimiento continuo de entregas.</p>
+    </div>
+
+    <div class="challenge-card">
+      <div class="challenge-icon">🎮</div>
+      <div class="challenge-title" data-i18n="ch3.title">Optimización de Rendimiento en Unity</div>
+      <p class="challenge-desc" data-i18n="ch3.desc">Optimicé física 2D, IA de enemigos y sistemas de partículas en Etaria para mantener framerate estable en hardware de gama baja (Intel HD 3000).</p>
+    </div>
+
+    <div class="challenge-card">
+      <div class="challenge-icon">🔐</div>
+      <div class="challenge-title" data-i18n="ch4.title">Autenticación JWT con Roles</div>
+      <p class="challenge-desc" data-i18n="ch4.desc">Diseñé un sistema de autenticación con roles diferenciados (admin/colaborador) usando JWT y middleware de Express para control granular de accesos por departamento.</p>
     </div>
 
   </div>
@@ -1578,15 +1647,29 @@ const T = {
     'p2.title':  'FluxSYS · Inventarios Inteligentes',
     'p2.desc':   'Sistema de gestión de inventario con alertas de desabastecimiento automáticas y reportes en tiempo real para toma de decisiones ágil.',
     'p2.metric': 'Alertas automáticas · Dashboard en vivo',
+    'proj.featured': 'Proyecto Destacado',
+    'badge.fs': 'Full Stack', 'badge.rt': 'Tiempo Real', 'badge.prod': 'Producción',
+    'badge.lead': 'Liderazgo', 'badge.game': 'Game Dev',
     'p3.title':  'SIGEP-GC · Web App',
-    'p3.desc':   'Plataforma web full stack para Glass Caribe: dashboard con KPIs en tiempo real, gestión de pedidos por departamento, WebSockets, exportación XLSX y roles Admin/Colaborador.',
-    'p3.metric': 'Deploy activo · Tiempo real · XLSX export',
+    'p3.desc':   'Plataforma full stack para Glass Caribe que centraliza la gestión de pedidos y KPIs en tiempo real, reduciendo la dependencia de procesos manuales. WebSockets para actualización en vivo, exportación de reportes y control de roles diferenciados.',
+    'p3.metric': 'Reduce seguimiento manual · Deploy activo · XLSX',
     'p4.title':  'SIGEP-GC · App Android',
-    'p4.desc':   'App nativa Android para conductores de Glass Caribe: GPS tracking en background, push notifications, gestión de entregas en tiempo real y APK publicada en producción.',
+    'p4.desc':   'Aplicación para conductores que resuelve la falta de seguimiento en entregas mediante GPS en background y notificaciones push en tiempo real, mejorando la visibilidad operativa y comunicación del equipo.',
     'p4.metric': 'APK v1.0 · GPS background · Push nativo',
     'p5.title':  'Etaria · RPG de Plataformas 2D',
-    'p5.desc':   'RPG de acción/aventura 2D con pixel art oscuro y místico. Lideré el equipo de 5 personas desde la conceptualización hasta el post-lanzamiento, supervisando diseño, programación, arte y audio. Desarrollado en Unity · C#.',
-    'p5.metric': '3 niveles · 3 bosses únicos · Pixel Art · PC',
+    'p5.desc':   'Videojuego RPG 2D en Unity con sistema de combate, IA de enemigos y progresión de niveles con bosses únicos. Lideré un equipo de 5 personas desde la conceptualización hasta el post-lanzamiento: mecánicas, arte y audio.',
+    'p5.metric': '3 niveles · 3 bosses · IA de enemigos · Pixel Art',
+    /* Challenges */
+    'ch.label':   'Ingeniería', 'ch.title': 'Retos Técnicos Resueltos',
+    'ch.subtitle':'Problemas reales de ingeniería enfrentados y solucionados en proyectos de producción.',
+    'ch1.title': 'Sincronización en Tiempo Real',
+    'ch1.desc':  'Implementé WebSockets para actualización en vivo de pedidos y KPIs entre múltiples clientes conectados simultáneamente en SIGEP-GC.',
+    'ch2.title': 'GPS en Segundo Plano (Android)',
+    'ch2.desc':  'Resolví el tracking de ubicación en background con Capacitor 8, gestionando restricciones de batería y permisos de Android para el seguimiento continuo de entregas.',
+    'ch3.title': 'Optimización de Rendimiento en Unity',
+    'ch3.desc':  'Optimicé física 2D, IA de enemigos y sistemas de partículas en Etaria para mantener framerate estable en hardware de gama baja (Intel HD 3000).',
+    'ch4.title': 'Autenticación JWT con Roles',
+    'ch4.desc':  'Diseñé un sistema de autenticación con roles diferenciados (admin/colaborador) usando JWT y middleware de Express para control granular de accesos por departamento.',
     /* Contact */
     'contact.label':        'Contacto',
     'contact.title':        'Trabajemos Juntos',
@@ -1771,15 +1854,29 @@ const T = {
     'p2.title':  'FluxSYS · Smart Inventory',
     'p2.desc':   'Inventory management system with automatic stockout alerts and real-time reports for agile decision-making.',
     'p2.metric': 'Automatic alerts · Live dashboard',
+    'proj.featured': 'Featured Project',
+    'badge.fs': 'Full Stack', 'badge.rt': 'Real-Time', 'badge.prod': 'Production',
+    'badge.lead': 'Leadership', 'badge.game': 'Game Dev',
     'p3.title':  'SIGEP-GC · Web App',
-    'p3.desc':   'Full stack web platform for Glass Caribe: real-time KPI dashboard, department-based order management, WebSockets, XLSX export and Admin/Collaborator roles.',
-    'p3.metric': 'Live deploy · Real-time · XLSX export',
+    'p3.desc':   'Full stack platform for Glass Caribe that centralizes order management and real-time KPIs, reducing reliance on manual processes. WebSockets for live updates, report exports and differentiated role control.',
+    'p3.metric': 'Reduces manual tracking · Live deploy · XLSX',
     'p4.title':  'SIGEP-GC · Android App',
-    'p4.desc':   'Native Android app for Glass Caribe drivers: background GPS tracking, push notifications, real-time delivery management and APK published in production.',
+    'p4.desc':   'App for drivers that solves the lack of delivery tracking through background GPS and real-time push notifications, improving operational visibility and team communication.',
     'p4.metric': 'APK v1.0 · Background GPS · Native push',
     'p5.title':  'Etaria · 2D Platformer RPG',
-    'p5.desc':   '2D action/adventure RPG with dark, mystical pixel art. Led a 5-person team from concept to post-launch, overseeing design, programming, art and audio. Built with Unity · C#.',
-    'p5.metric': '3 levels · 3 unique bosses · Pixel Art · PC',
+    'p5.desc':   '2D RPG in Unity with a combat system, enemy AI and level progression with unique bosses. Led a 5-person team from conceptualization to post-launch: mechanics, art and audio.',
+    'p5.metric': '3 levels · 3 bosses · Enemy AI · Pixel Art',
+    /* Challenges */
+    'ch.label':   'Engineering', 'ch.title': 'Technical Challenges Solved',
+    'ch.subtitle':'Real engineering problems faced and solved in production projects.',
+    'ch1.title': 'Real-Time Synchronization',
+    'ch1.desc':  'Implemented WebSockets for live order and KPI updates across multiple simultaneously connected clients in SIGEP-GC.',
+    'ch2.title': 'Background GPS (Android)',
+    'ch2.desc':  'Solved background location tracking with Capacitor 8, managing Android battery restrictions and permissions for continuous delivery tracking.',
+    'ch3.title': 'Unity Performance Optimization',
+    'ch3.desc':  'Optimized 2D physics, enemy AI and particle systems in Etaria to maintain stable framerate on low-end hardware (Intel HD 3000).',
+    'ch4.title': 'JWT Authentication with Roles',
+    'ch4.desc':  'Designed an authentication system with differentiated roles (admin/collaborator) using JWT and Express middleware for granular access control per department.',
     /* Contact */
     'contact.label':          'Contact',
     'contact.title':          "Let's Work Together",
