@@ -220,9 +220,17 @@
     .hero-name {
       font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 800;
       line-height: 1.05; margin-bottom: 10px;
-      background: linear-gradient(135deg, #fff 40%, #a0b8b0);
+      background: linear-gradient(135deg, #fff 0%, #a0b8b0 40%, #00ff99 70%, #fff 100%);
+      background-size: 250% auto;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      animation: heroGrad 6s ease-in-out infinite;
+    }
+    body.light .hero-name {
+      background: linear-gradient(135deg, #111 0%, #3a5a50 40%, #008a50 70%, #111 100%);
+      background-size: 250% auto;
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
+    @keyframes heroGrad { 0%,100%{background-position:0% center} 50%{background-position:100% center} }
     .hero-role { font-size: clamp(1.1rem, 2.5vw, 1.4rem); font-weight: 600; color: var(--accent); margin-bottom: 18px; }
     .hero-desc { color: var(--muted); max-width: 480px; margin-bottom: 32px; font-size: 0.97rem; }
 
@@ -804,8 +812,7 @@
     <h1 class="hero-name">Gustavo<br>Gutierrez</h1>
     <p class="hero-role"><span id="typed-role">Full Stack Developer</span><span class="typed-cursor" aria-hidden="true"></span></p>
     <p class="hero-desc" data-i18n="hero.desc">
-      Construyo sistemas web escalables, APIs robustas y experiencias de usuario fluidas.
-      Especializado en Node.js, JavaScript y PostgreSQL.
+      Construyo sistemas escalables y soluciones del mundo real. Backend sólido, frontend fluido y código que funciona en producción.
     </p>
     <div class="hero-stats">
       <div class="stat-item">
@@ -1757,7 +1764,7 @@ const T = {
     /* Hero */
     'hero.badge': 'Disponible para proyectos',
     'hero.role':  'Full Stack Developer',
-    'hero.desc':  'Construyo sistemas web escalables, APIs robustas y experiencias de usuario fluidas. Me muevo con comodidad entre el backend, el frontend y el mobile — adaptándome a lo que cada proyecto necesita.',
+    'hero.desc':  'Construyo sistemas escalables y soluciones del mundo real. Backend sólido, frontend fluido y código que funciona en producción.',
     'hero.stat1': 'Años codificando',
     'hero.stat2': 'Proyectos',
     'hero.stat3': 'Clientes',
@@ -1960,7 +1967,7 @@ const T = {
     /* Hero */
     'hero.badge': 'Available for projects',
     'hero.role':  'Full Stack Developer',
-    'hero.desc':  'I build scalable web systems, robust APIs and smooth user experiences. I move comfortably across backend, frontend and mobile — adapting to whatever each project demands.',
+    'hero.desc':  'I build scalable systems and real-world solutions. Solid backend, fluid frontend, and code that works in production.',
     'hero.stat1': 'Years coding',
     'hero.stat2': 'Projects',
     'hero.stat3': 'Clients',
