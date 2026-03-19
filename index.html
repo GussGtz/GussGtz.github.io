@@ -63,8 +63,6 @@
     body.light header    { background: var(--header-bg); }
     body.light footer    { background: var(--footer-bg); }
     body.light .hero::before { background: radial-gradient(700px 400px at 0% 0%, rgba(0,138,80,0.04), transparent); }
-    body.light .hero-photo-wrap::before { background: conic-gradient(var(--accent) 0deg, rgba(0,138,80,0.1) 180deg, var(--accent) 360deg); }
-    body.light .hero-photo-wrap::after  { background: var(--bg); }
     body.light .exp-timeline::before    { background: linear-gradient(180deg, var(--accent), transparent); }
     body.light .exp-dot  { border-color: var(--bg); }
     body.light .skill-bar { background: rgba(0,0,0,0.08); }
@@ -259,6 +257,7 @@
     /* Photo itself */
     .hero-photo {
       position: absolute; inset: 7px; z-index: 1;
+      width: calc(100% - 14px); height: calc(100% - 14px);
       border-radius: 14px; object-fit: cover; object-position: center top;
       animation: floatY 7s ease-in-out infinite;
     }
@@ -593,7 +592,7 @@
 
   <div class="hero-right" data-aos="fade-left" data-aos-duration="700" data-aos-delay="100">
     <div class="hero-photo-wrap">
-      <img src="assets/gus-hero.png" alt="Gustavo Gutiérrez" class="hero-photo" width="400" height="400" loading="eager" />
+      <img src="assets/gus-hero.png" alt="Gustavo Gutiérrez" class="hero-photo" loading="eager" />
     </div>
   </div>
 </section>
