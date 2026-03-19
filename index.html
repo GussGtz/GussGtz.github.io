@@ -182,7 +182,7 @@
       min-height: calc(100vh - 64px);
       display: flex; align-items: center; justify-content: space-between;
       gap: 48px; padding: 64px var(--gap);
-      position: relative; overflow: hidden;
+      position: relative; overflow: hidden; isolation: isolate;
     }
     .hero::before {
       content: ''; position: absolute; inset: 0; pointer-events: none;
@@ -438,31 +438,34 @@
     .svc-card:hover { transform: translateY(-5px); box-shadow: 0 0 26px rgba(0,255,153,0.13); border-color: rgba(0,255,153,0.35); }
 
     /* ── Abstract Shape Elements ────────────────────────────────
-       Sections need position:relative to anchor absolute shapes  */
+       isolation:isolate creates a stacking context so z-index:-1
+       on .sec-shapes sits behind content but inside each section  */
     #about, #services, #experience, #certifications,
-    #skills, #softskills, #projects, #challenges, #contact { position: relative; }
+    #skills, #softskills, #projects, #challenges, #contact {
+      position: relative; isolation: isolate;
+    }
 
     /* Shape wrapper — absolutely fills the section, clips overflow */
-    .sec-shapes { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+    .sec-shapes { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: -1; }
 
     /* Positioning wrapper — holds each individual shape */
     .sh-wrap { position: absolute; }
 
     /* Shape types */
-    .sh-ring    { display: block; border-radius: 50%; border: 1.5px solid var(--accent); }
+    .sh-ring    { display: block; border-radius: 50%; border: 2px solid var(--accent); }
     .sh-ring.dashed { border-style: dashed; }
-    .sh-diamond { display: block; border: 1.5px solid var(--accent); transform: rotate(45deg); transform-origin: center; }
+    .sh-diamond { display: block; border: 2px solid var(--accent); transform: rotate(45deg); transform-origin: center; }
     .sh-tri     { display: block; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); background: var(--accent); }
     .sh-dot     { display: block; border-radius: 50%; background: var(--accent); }
     .sh-cross   { display: block; position: relative; }
-    .sh-cross::before { content:''; position:absolute; width:100%; height:1.5px; top:50%; background:var(--accent); transform:translateY(-50%); }
-    .sh-cross::after  { content:''; position:absolute; height:100%; width:1.5px; left:50%; background:var(--accent); transform:translateX(-50%); }
+    .sh-cross::before { content:''; position:absolute; width:100%; height:2px; top:50%; background:var(--accent); transform:translateY(-50%); }
+    .sh-cross::after  { content:''; position:absolute; height:100%; width:2px; left:50%; background:var(--accent); transform:translateX(-50%); }
 
-    /* Opacity levels */
-    .op5  { opacity: .05; }
-    .op7  { opacity: .07; }
-    .op8  { opacity: .08; }
-    .op10 { opacity: .10; }
+    /* Opacity levels — visible but subtle */
+    .op5  { opacity: .13; }
+    .op7  { opacity: .18; }
+    .op8  { opacity: .22; }
+    .op10 { opacity: .28; }
 
     /* Float keyframes (applied to .sh-wrap outer) */
     @keyframes shF1  { 0%,100%{transform:translate(0,0)}         50%{transform:translate(18px,-22px)} }
@@ -476,9 +479,9 @@
     @keyframes shDRCW { from{transform:rotate(45deg)}            to{transform:rotate(405deg)} }
     @keyframes shDRCC { from{transform:rotate(45deg)}            to{transform:rotate(-315deg)} }
 
-    /* Pulse (scale + opacity) */
-    @keyframes shPls  { 0%,100%{transform:scale(1);opacity:.06}  50%{transform:scale(1.22);opacity:.12} }
-    @keyframes shDPls { 0%,100%{transform:rotate(45deg) scale(1);opacity:.07} 50%{transform:rotate(45deg) scale(1.2);opacity:.12} }
+    /* Pulse (scale only — opacity controlled by .op* class) */
+    @keyframes shPls  { 0%,100%{transform:scale(1)}   50%{transform:scale(1.22)} }
+    @keyframes shDPls { 0%,100%{transform:rotate(45deg) scale(1)} 50%{transform:rotate(45deg) scale(1.2)} }
 
     /* ============================================================
        CERTIFICATIONS
