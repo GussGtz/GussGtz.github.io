@@ -408,20 +408,13 @@
     .sp-footer { margin-top: auto; padding: 6px 14px; background: #161b22; border-top: 1px solid #30363d; color: #58a6ff; font-size: 0.63rem; letter-spacing: .5px; }
     .sp-method.vue  { background: rgba(65,184,131,0.18); color: #41b883; }
     /* Android phone thumb */
-    .android-thumb { height: 200px; background: linear-gradient(135deg, #0a0f1e 0%, #0d1f3c 100%); display: flex; align-items: center; justify-content: center; }
-    .android-preview { display: flex; align-items: center; justify-content: center; height: 100%; }
-    .ap-phone { width: 100px; height: 172px; background: #111827; border-radius: 16px; border: 2px solid #374151; position: relative; overflow: hidden; box-shadow: 0 0 30px rgba(0,255,153,0.12), 0 8px 32px rgba(0,0,0,0.6); }
-    .ap-notch { width: 30px; height: 6px; background: #1f2937; border-radius: 0 0 6px 6px; margin: 0 auto; }
-    .ap-screen { padding: 4px 6px; display: flex; flex-direction: column; gap: 3px; }
-    .ap-status { display: flex; justify-content: flex-end; gap: 4px; font-size: 0.5rem; color: #9ca3af; }
-    .ap-app-bar { background: #008a50; color: #fff; font-size: 0.52rem; font-weight: 700; padding: 3px 5px; border-radius: 4px; display: flex; align-items: center; gap: 3px; }
-    .ap-gps-badge { display: flex; align-items: center; gap: 4px; background: rgba(0,255,153,0.1); border: 1px solid rgba(0,255,153,0.25); border-radius: 4px; padding: 2px 5px; font-size: 0.48rem; color: #00ff99; font-weight: 600; margin-top: 1px; }
-    .ap-pulse { width: 5px; height: 5px; background: #00ff99; border-radius: 50%; animation: pulse 1.4s ease-in-out infinite; flex-shrink: 0; }
-    .ap-info-row { display: flex; justify-content: space-between; align-items: center; margin-top: 4px; }
-    .ap-label { font-size: 0.47rem; color: #d1d5db; }
-    .ap-chip { font-size: 0.44rem; background: rgba(59,130,246,0.2); color: #60a5fa; padding: 1px 4px; border-radius: 3px; font-weight: 600; }
-    .ap-chip.new { background: rgba(0,255,153,0.15); color: #00ff99; }
-    .ap-coords { font-size: 0.44rem; color: #6b7280; font-family: monospace; }
+    /* Android phone frame */
+    .android-frame-thumb { height: 200px; background: linear-gradient(145deg, #0d1117 0%, #0a1628 60%, #0d1117 100%); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .phone-mockup { position: relative; width: 88px; height: 182px; background: #0a0a0a; border-radius: 22px; border: 3px solid #2d3748; box-shadow: 0 0 0 1px rgba(255,255,255,0.06), inset 0 0 0 1px rgba(255,255,255,0.04), 0 16px 48px rgba(0,0,0,0.8), 0 0 24px rgba(0,255,153,0.06); display: flex; flex-direction: column; overflow: hidden; flex-shrink: 0; }
+    .phone-speaker { width: 28px; height: 4px; background: #1a1a2e; border-radius: 2px; margin: 8px auto 4px; flex-shrink: 0; }
+    .phone-screen { flex: 1; overflow: hidden; }
+    .phone-screen img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+    .phone-home-bar { width: 32px; height: 3px; background: rgba(255,255,255,0.25); border-radius: 2px; margin: 5px auto 7px; flex-shrink: 0; }
     .project-thumb img { width: 100%; height: 200px; object-fit: cover; transition: transform 0.5s ease; display: block; }
     .project-card:hover .project-thumb img { transform: scale(1.05); }
     .project-overlay { position: absolute; inset: 0; background: rgba(10,12,14,0.72); display: flex; align-items: center; justify-content: center; gap: 12px; opacity: 0; transition: var(--transition); }
@@ -955,8 +948,14 @@
 
     <!-- SIGEP-GC Android App -->
     <div class="project-card" data-aos="fade-up" data-aos-delay="80">
-      <div class="project-thumb">
-        <img src="assets/android.jpeg" alt="SIGEP-GC Android App" loading="lazy" />
+      <div class="project-thumb android-frame-thumb">
+        <div class="phone-mockup">
+          <div class="phone-speaker"></div>
+          <div class="phone-screen">
+            <img src="assets/android.jpeg" alt="SIGEP-GC Android App" loading="lazy" />
+          </div>
+          <div class="phone-home-bar"></div>
+        </div>
         <div class="project-overlay">
           <a href="https://github.com/GussGtz/sigep-gc/releases/tag/v1.0.0" target="_blank" rel="noopener" class="overlay-btn" aria-label="APK"><i class="bi bi-android2"></i></a>
           <a href="https://github.com/GussGtz/sigep-gc" target="_blank" rel="noopener" class="overlay-btn ghost" aria-label="GitHub"><i class="bi bi-github"></i></a>
