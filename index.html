@@ -319,19 +319,22 @@
     /* ============================================================
        SERVICES
     ============================================================ */
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px,1fr)); gap: 20px; }
-    .service-card {
-      background: var(--card-bg); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 28px 24px;
-      transition: var(--transition); position: relative; overflow: hidden;
-    }
-    .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); opacity: 0; transition: var(--transition); }
-    .service-card:hover { transform: translateY(-6px); border-color: rgba(0,255,153,0.2); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 20px; }
+    .service-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px 22px; transition: var(--transition); display: flex; flex-direction: column; }
+    .service-card:hover { transform: translateY(-5px); border-color: rgba(0,255,153,0.2); box-shadow: 0 20px 50px rgba(0,0,0,0.35); }
     body.light .service-card:hover { border-color: rgba(0,138,80,0.25); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
-    .service-card:hover::before { opacity: 1; }
-    .service-icon { font-size: 2rem; color: var(--accent); margin-bottom: 16px; display: block; }
-    .service-card h3 { font-size: 1.02rem; font-weight: 700; margin-bottom: 8px; }
-    .service-card p  { color: var(--muted); font-size: 0.88rem; line-height: 1.65; }
+    .svc-icon-box { width: 52px; height: 52px; border-radius: 12px; background: rgba(0,255,153,0.08); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; flex-shrink: 0; }
+    body.light .svc-icon-box { background: rgba(0,138,80,0.08); }
+    .svc-icon-box i { font-size: 1.4rem; color: var(--accent); }
+    .service-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+    .svc-subtitle { color: var(--muted); font-size: 0.82rem; margin-bottom: 16px; line-height: 1.5; }
+    .svc-list { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 22px; flex: 1; }
+    .svc-list li { display: flex; align-items: center; gap: 8px; font-size: 0.83rem; color: var(--text); }
+    .svc-list li i { color: var(--accent); font-size: 0.85rem; flex-shrink: 0; }
+    .svc-divider { height: 1px; background: var(--border); margin-bottom: 18px; }
+    .svc-btn { display: flex; align-items: center; justify-content: center; gap: 6px; background: var(--accent); color: #0a0c0e; font-weight: 700; font-size: 0.84rem; padding: 10px 16px; border-radius: 8px; text-decoration: none; transition: var(--transition); margin-top: auto; }
+    .svc-btn:hover { opacity: 0.85; transform: translateY(-2px); }
+    body.light .svc-btn { background: #008a50; color: #fff; }
 
     /* ============================================================
        EXPERIENCE
@@ -754,26 +757,82 @@
     Soluciones de desarrollo adaptadas a las necesidades reales de tu negocio o proyecto.
   </p>
   <div class="services-grid">
+
+    <!-- S1: Backend -->
     <div class="service-card" data-aos="fade-up" data-aos-delay="0">
-      <i class="bi bi-server service-icon" aria-hidden="true"></i>
-      <h3 data-i18n="s1.title">Desarrollo Backend</h3>
-      <p data-i18n="s1.desc">APIs RESTful con Node.js y Express. Autenticación JWT, gestión de roles y arquitecturas seguras y escalables.</p>
+      <div class="svc-icon-box"><i class="bi bi-server fs-4" style="color:var(--accent)"></i></div>
+      <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:4px" data-i18n="s1.title">Desarrollo Backend</h3>
+      <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:16px" data-i18n="s1.sub">APIs robustas y seguras</p>
+      <ul class="svc-list">
+        <li><i class="bi bi-check-circle-fill"></i><span data-i18n="s1.li1">APIs RESTful con Node.js &amp; Express</span></li>
+        <li><i class="bi bi-check-circle-fill"></i><span data-i18n="s1.li2">Autenticación JWT y gestión de roles</span></li>
+        <li><i class="bi bi-check-circle-fill"></i><span data-i18n="s1.li3">Arquitecturas escalables y seguras</span></li>
+        <li><i class="bi bi-check-circle-fill"></i><span data-i18n="s1.li4">Deploy en Render, Railway o VPS</span></li>
+      </ul>
+      <hr style="border:none;border-top:1px solid var(--border);margin:0 0 18px">
+      <a href="#contact" class="svc-btn"><i class="bi bi-send-fill"></i><span data-i18n="s.quote">Obtener Cotización</span></a>
     </div>
+
+    <!-- S2: Full Stack -->
     <div class="service-card" data-aos="fade-up" data-aos-delay="80">
-      <i class="bi bi-layers service-icon" aria-hidden="true"></i>
-      <h3 data-i18n="s2.title">Desarrollo Full Stack</h3>
-      <p data-i18n="s2.desc">Aplicaciones web completas desde la base de datos hasta la interfaz, con React o HTML/CSS puro.</p>
+      <div class="svc-icon-box"><i class="bi bi-layers fs-4" style="color:var(--accent)"></i></div>
+      <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:4px" data-i18n="s2.title">Desarrollo Full Stack</h3>
+      <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:16px" data-i18n="s2.sub">Del servidor a la pantalla</p>
+      <ul class="svc-list">
+        <li><i class="bi bi-check-circle-fill"></i><span data-i18n="s2.li1">Interfaces con Vue, React o HTML/CSS</span></li>
+        <li><i class="bi bi-check-circle-fill"></i><span data-i18n="s2.li2">Diseño responsive y accesible</span></li>
+        <li><i class="bi bi-check-circle-fill"></i><span data-i18n="s2.li3">SPA con routing y gestión de estado</span></li>
+        <li><i class="bi bi-check-circle-fill"></i><span data-i18n="s2.li4">Integración completa front + back</span></li>
+      </ul>
+      <hr style="border:none;border-top:1px solid var(--border);margin:0 0 18px">
+      <a href="#contact" class="svc-btn"><i class="bi bi-send-fill"></i><span data-i18n="s.quote">Obtener Cotización</span></a>
     </div>
+
+    <!-- S3: Data -->
     <div class="service-card" data-aos="fade-up" data-aos-delay="160">
-      <i class="bi bi-database service-icon" aria-hidden="true"></i>
-      <h3 data-i18n="s3.title">Gestión de Datos</h3>
-      <p data-i18n="s3.desc">Diseño e implementación de bases de datos MySQL y PostgreSQL, consultas optimizadas y dashboards en tiempo real.</p>
+      <div class="svc-icon-box"><i class="bi bi-database fs-4" style="color:var(--accent)"></i></div>
+      <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:4px" data-i18n="s3.title">Gestión de Datos</h3>
+      <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:16px" data-i18n="s3.sub">Bases de datos optimizadas</p>
+      <ul class="svc-list">
+        <li><i class="bi bi-check-circle-fill"></i><span data-i18n="s3.li1">Diseño con PostgreSQL y MySQL</span></li>
+        <li><i class="bi bi-check-circle-fill"></i><span data-i18n="s3.li2">Consultas y migraciones optimizadas</span></li>
+        <li><i class="bi bi-check-circle-fill"></i><span data-i18n="s3.li3">Dashboards en tiempo real con Chart.js</span></li>
+        <li><i class="bi bi-check-circle-fill"></i><span data-i18n="s3.li4">Modelado y normalización de datos</span></li>
+      </ul>
+      <hr style="border:none;border-top:1px solid var(--border);margin:0 0 18px">
+      <a href="#contact" class="svc-btn"><i class="bi bi-send-fill"></i><span data-i18n="s.quote">Obtener Cotización</span></a>
     </div>
+
+    <!-- S4: API Integration -->
     <div class="service-card" data-aos="fade-up" data-aos-delay="240">
-      <i class="bi bi-plug service-icon" aria-hidden="true"></i>
-      <h3 data-i18n="s4.title">Integración de APIs</h3>
-      <p data-i18n="s4.desc">Conexión con servicios de terceros, pasarelas de pago (PayPal, Mercado Pago) y WebSockets para datos en vivo.</p>
+      <div class="svc-icon-box"><i class="bi bi-plug fs-4" style="color:var(--accent)"></i></div>
+      <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:4px" data-i18n="s4.title">Integración de APIs</h3>
+      <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:16px" data-i18n="s4.sub">Conecta servicios y automatiza</p>
+      <ul class="svc-list">
+        <li><i class="bi bi-check-circle-fill"></i><span data-i18n="s4.li1">Pasarelas de pago (PayPal, Mercado Pago)</span></li>
+        <li><i class="bi bi-check-circle-fill"></i><span data-i18n="s4.li2">WebSockets para datos en tiempo real</span></li>
+        <li><i class="bi bi-check-circle-fill"></i><span data-i18n="s4.li3">Webhooks y notificaciones push</span></li>
+        <li><i class="bi bi-check-circle-fill"></i><span data-i18n="s4.li4">Servicios de terceros y OAuth</span></li>
+      </ul>
+      <hr style="border:none;border-top:1px solid var(--border);margin:0 0 18px">
+      <a href="#contact" class="svc-btn"><i class="bi bi-send-fill"></i><span data-i18n="s.quote">Obtener Cotización</span></a>
     </div>
+
+    <!-- S5: Flutter -->
+    <div class="service-card" data-aos="fade-up" data-aos-delay="320">
+      <div class="svc-icon-box"><i class="bi bi-phone fs-4" style="color:var(--accent)"></i></div>
+      <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:4px" data-i18n="s5.title">Apps Móviles Flutter</h3>
+      <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:16px" data-i18n="s5.sub">iOS y Android desde un solo código</p>
+      <ul class="svc-list">
+        <li><i class="bi bi-check-circle-fill"></i><span data-i18n="s5.li1">Desarrollo con Flutter &amp; Dart</span></li>
+        <li><i class="bi bi-check-circle-fill"></i><span data-i18n="s5.li2">Publicación en App Store y Play Store</span></li>
+        <li><i class="bi bi-check-circle-fill"></i><span data-i18n="s5.li3">UI nativa fluida y responsive</span></li>
+        <li><i class="bi bi-check-circle-fill"></i><span data-i18n="s5.li4">Integración con APIs y Firebase</span></li>
+      </ul>
+      <hr style="border:none;border-top:1px solid var(--border);margin:0 0 18px">
+      <a href="#contact" class="svc-btn"><i class="bi bi-send-fill"></i><span data-i18n="s.quote">Obtener Cotización</span></a>
+    </div>
+
   </div>
 </section>
 
@@ -1209,6 +1268,7 @@
         <a href="#services" data-i18n="s2.title">Desarrollo Full Stack</a>
         <a href="#services" data-i18n="s3.title">Gestión de Datos</a>
         <a href="#services" data-i18n="s4.title">Integración de APIs</a>
+        <a href="#services" data-i18n="s5.title">Apps Móviles Flutter</a>
       </div>
       <div class="footer-col">
         <h5 data-i18n="footer.col2">Tecnologías</h5>
@@ -1289,13 +1349,36 @@ const T = {
     'services.title':    '¿Cómo puedo ayudarte?',
     'services.subtitle': 'Soluciones de desarrollo adaptadas a las necesidades reales de tu negocio o proyecto.',
     's1.title': 'Desarrollo Backend',
-    's1.desc':  'APIs RESTful con Node.js y Express. Autenticación JWT, gestión de roles y arquitecturas seguras y escalables.',
+    's1.sub':   'APIs robustas y seguras',
+    's1.li1':   'APIs RESTful con Node.js & Express',
+    's1.li2':   'Autenticación JWT y gestión de roles',
+    's1.li3':   'Arquitecturas escalables y seguras',
+    's1.li4':   'Deploy en Render, Railway o VPS',
     's2.title': 'Desarrollo Full Stack',
-    's2.desc':  'Aplicaciones web completas desde la base de datos hasta la interfaz, con React o HTML/CSS puro.',
+    's2.sub':   'Del servidor a la pantalla',
+    's2.li1':   'Interfaces con Vue, React o HTML/CSS',
+    's2.li2':   'Diseño responsive y accesible',
+    's2.li3':   'SPA con routing y gestión de estado',
+    's2.li4':   'Integración completa front + back',
     's3.title': 'Gestión de Datos',
-    's3.desc':  'Diseño e implementación de bases de datos MySQL y PostgreSQL, consultas optimizadas y dashboards en tiempo real.',
+    's3.sub':   'Bases de datos optimizadas',
+    's3.li1':   'Diseño con PostgreSQL y MySQL',
+    's3.li2':   'Consultas y migraciones optimizadas',
+    's3.li3':   'Dashboards en tiempo real con Chart.js',
+    's3.li4':   'Modelado y normalización de datos',
     's4.title': 'Integración de APIs',
-    's4.desc':  'Conexión con servicios de terceros, pasarelas de pago (PayPal, Mercado Pago) y WebSockets para datos en vivo.',
+    's4.sub':   'Conecta servicios y automatiza',
+    's4.li1':   'Pasarelas de pago (PayPal, Mercado Pago)',
+    's4.li2':   'WebSockets para datos en tiempo real',
+    's4.li3':   'Webhooks y notificaciones push',
+    's4.li4':   'Servicios de terceros y OAuth',
+    's5.title': 'Apps Móviles Flutter',
+    's5.sub':   'iOS y Android desde un solo código',
+    's5.li1':   'Desarrollo con Flutter & Dart',
+    's5.li2':   'Publicación en App Store y Play Store',
+    's5.li3':   'UI nativa fluida y responsive',
+    's5.li4':   'Integración con APIs y Firebase',
+    's.quote':  'Obtener Cotización',
     /* Experience */
     'exp.label':  'Experiencia',
     'exp.title':  'Trayectoria',
@@ -1424,13 +1507,36 @@ const T = {
     'services.title':    'How can I help you?',
     'services.subtitle': 'Development solutions tailored to the real needs of your business or personal project.',
     's1.title': 'Backend Development',
-    's1.desc':  'RESTful APIs with Node.js and Express. JWT authentication, role management and secure, scalable architectures.',
+    's1.sub':   'Robust and secure APIs',
+    's1.li1':   'RESTful APIs with Node.js & Express',
+    's1.li2':   'JWT authentication and role management',
+    's1.li3':   'Scalable and secure architectures',
+    's1.li4':   'Deploy on Render, Railway or VPS',
     's2.title': 'Full Stack Development',
-    's2.desc':  'Complete web applications from database to interface, using React or plain HTML/CSS.',
+    's2.sub':   'From server to screen',
+    's2.li1':   'Interfaces with Vue, React or HTML/CSS',
+    's2.li2':   'Responsive and accessible design',
+    's2.li3':   'SPA with routing and state management',
+    's2.li4':   'Complete front + back integration',
     's3.title': 'Data Management',
-    's3.desc':  'MySQL and PostgreSQL database design and implementation, optimized queries and real-time dashboards.',
+    's3.sub':   'Optimized databases',
+    's3.li1':   'Design with PostgreSQL and MySQL',
+    's3.li2':   'Optimized queries and migrations',
+    's3.li3':   'Real-time dashboards with Chart.js',
+    's3.li4':   'Data modeling and normalization',
     's4.title': 'API Integration',
-    's4.desc':  'Third-party service connections, payment gateways (PayPal, Mercado Pago) and WebSockets for live data.',
+    's4.sub':   'Connect services and automate',
+    's4.li1':   'Payment gateways (PayPal, Mercado Pago)',
+    's4.li2':   'WebSockets for real-time data',
+    's4.li3':   'Webhooks and push notifications',
+    's4.li4':   'Third-party services and OAuth',
+    's5.title': 'Flutter Mobile Apps',
+    's5.sub':   'iOS and Android from a single codebase',
+    's5.li1':   'Development with Flutter & Dart',
+    's5.li2':   'Publishing on App Store and Play Store',
+    's5.li3':   'Smooth native UI and responsive',
+    's5.li4':   'Integration with APIs and Firebase',
+    's.quote':  'Get a Quote',
     /* Experience */
     'exp.label':  'Experience',
     'exp.title':  'Career Path',
