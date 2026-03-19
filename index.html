@@ -391,6 +391,21 @@
     .project-card:hover { transform: translateY(-8px); border-color: rgba(0,255,153,0.2); box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
     body.light .project-card:hover { border-color: rgba(0,138,80,0.2); box-shadow: 0 24px 60px rgba(0,0,0,0.1); }
     .project-thumb { position: relative; overflow: hidden; }
+    /* SIGEP terminal thumb */
+    .sigep-thumb { height: 200px; background: #0d1117; }
+    .sigep-preview { height: 100%; padding: 0; display: flex; flex-direction: column; font-family: 'Courier New', monospace; font-size: 0.72rem; }
+    .sp-bar { display: flex; align-items: center; gap: 5px; padding: 7px 12px; background: #161b22; border-bottom: 1px solid #30363d; }
+    .sp-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .sp-dot.r { background: #ff5f57; } .sp-dot.y { background: #febc2e; } .sp-dot.g { background: #28c840; }
+    .sp-line { display: flex; align-items: baseline; gap: 8px; padding: 4px 14px; }
+    .sp-line.sp-res { padding-top: 1px; padding-bottom: 5px; border-bottom: 1px solid rgba(48,54,61,0.5); }
+    .sp-method { font-weight: 700; font-size: 0.67rem; padding: 1px 5px; border-radius: 3px; flex-shrink: 0; }
+    .sp-method.post { background: rgba(0,255,153,0.15); color: #00ff99; }
+    .sp-method.get  { background: rgba(88,166,255,0.15); color: #58a6ff; }
+    .sp-path   { color: #e6edf3; opacity: .85; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .sp-status.ok { color: #3fb950; font-weight: 700; flex-shrink: 0; }
+    .sp-json   { color: #8b949e; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .sp-footer { margin-top: auto; padding: 6px 14px; background: #161b22; border-top: 1px solid #30363d; color: #58a6ff; font-size: 0.63rem; letter-spacing: .5px; }
     .project-thumb img { width: 100%; height: 200px; object-fit: cover; transition: transform 0.5s ease; display: block; }
     .project-card:hover .project-thumb img { transform: scale(1.05); }
     .project-overlay { position: absolute; inset: 0; background: rgba(10,12,14,0.72); display: flex; align-items: center; justify-content: center; gap: 12px; opacity: 0; transition: var(--transition); }
@@ -939,55 +954,29 @@
     </div>
 
     <div class="project-card" data-aos="fade-up" data-aos-delay="160">
-      <div class="project-thumb">
-        <img src="assets/cancun.PNG" alt="InfoCancún" loading="lazy" />
+      <div class="project-thumb sigep-thumb">
+        <div class="sigep-preview" aria-hidden="true">
+          <div class="sp-bar"><span class="sp-dot r"></span><span class="sp-dot y"></span><span class="sp-dot g"></span><span style="margin-left:auto;font-size:0.65rem;opacity:.5;">SIGEP-GC · API</span></div>
+          <div class="sp-line"><span class="sp-method post">POST</span><span class="sp-path">/api/auth/login</span></div>
+          <div class="sp-line sp-res"><span class="sp-status ok">201</span><span class="sp-json">{ "token": "eyJhbGci…" }</span></div>
+          <div class="sp-line"><span class="sp-method get">GET</span><span class="sp-path">/api/pedidos?depto=ventas</span></div>
+          <div class="sp-line sp-res"><span class="sp-status ok">200</span><span class="sp-json">[{ "id": 14, "estatus": "activo" }]</span></div>
+          <div class="sp-line"><span class="sp-method post">POST</span><span class="sp-path">/api/pedidos/:id/comentarios</span></div>
+          <div class="sp-line sp-res"><span class="sp-status ok">201</span><span class="sp-json">{ "ok": true }</span></div>
+          <div class="sp-footer">PostgreSQL · Render · JWT · bcrypt</div>
+        </div>
         <div class="project-overlay">
+          <a href="https://backend-sigep-gc1.onrender.com" target="_blank" rel="noopener" class="overlay-btn" aria-label="Demo"><i class="bi bi-box-arrow-up-right"></i></a>
           <a href="https://github.com/GussGtz" target="_blank" rel="noopener" class="overlay-btn ghost" aria-label="GitHub"><i class="bi bi-github"></i></a>
         </div>
       </div>
       <div class="project-body">
-        <h3 data-i18n="p3.title">Sistema de Información · Cancún</h3>
-        <p data-i18n="p3.desc">App web turística que integra 3+ APIs externas de clima, transporte y puntos de interés con datos en tiempo real para visitantes.</p>
-        <div class="project-metric"><i class="bi bi-graph-up-arrow"></i> <span data-i18n="p3.metric">3+ APIs integradas · Datos en tiempo real</span></div>
+        <h3 data-i18n="p3.title">SIGEP-GC · API REST Full Stack</h3>
+        <p data-i18n="p3.desc">API empresarial para Glass Caribe: autenticación JWT con roles Admin/Colaborador, CRUD de pedidos por departamento, comentarios, exportación PDF y deploy en Render.</p>
+        <div class="project-metric"><i class="bi bi-graph-up-arrow"></i> <span data-i18n="p3.metric">Deploy activo · 2 roles · 3 departamentos</span></div>
         <div class="project-stack">
-          <span class="tech-tag">React</span><span class="tech-tag">Node.js</span>
-          <span class="tech-tag">APIs REST</span><span class="tech-tag">Tailwind</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card" data-aos="fade-up" data-aos-delay="0">
-      <div class="project-thumb">
-        <img src="assets/tienda.PNG" alt="E-Commerce" loading="lazy" />
-        <div class="project-overlay">
-          <a href="https://github.com/GussGtz" target="_blank" rel="noopener" class="overlay-btn ghost" aria-label="GitHub"><i class="bi bi-github"></i></a>
-        </div>
-      </div>
-      <div class="project-body">
-        <h3 data-i18n="p4.title">E-Commerce Deportivo</h3>
-        <p data-i18n="p4.desc">Tienda online completa con catálogo, carrito de compras, integración de pasarelas de pago y dashboard de administración de pedidos.</p>
-        <div class="project-metric"><i class="bi bi-graph-up-arrow"></i> <span data-i18n="p4.metric">PayPal + Mercado Pago · Panel admin</span></div>
-        <div class="project-stack">
-          <span class="tech-tag">PHP</span><span class="tech-tag">MySQL</span>
-          <span class="tech-tag">PayPal API</span><span class="tech-tag">Bootstrap</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card" data-aos="fade-up" data-aos-delay="80">
-      <div class="project-thumb">
-        <img src="assets/taller.PNG" alt="Taller Mecánico" loading="lazy" />
-        <div class="project-overlay">
-          <a href="https://github.com/GussGtz" target="_blank" rel="noopener" class="overlay-btn ghost" aria-label="GitHub"><i class="bi bi-github"></i></a>
-        </div>
-      </div>
-      <div class="project-body">
-        <h3 data-i18n="p5.title">Sistema para Taller Mecánico</h3>
-        <p data-i18n="p5.desc">Sistema CRUD con autenticación multifactor, gestión de accesos por roles y monitoreo de servicios, técnicos y clientes.</p>
-        <div class="project-metric"><i class="bi bi-graph-up-arrow"></i> <span data-i18n="p5.metric">Auth MFA · Gestión granular por roles</span></div>
-        <div class="project-stack">
-          <span class="tech-tag">.NET / C#</span><span class="tech-tag">SQL Server</span>
-          <span class="tech-tag">Bootstrap</span>
+          <span class="tech-tag">Node.js</span><span class="tech-tag">Express 5</span>
+          <span class="tech-tag">PostgreSQL</span><span class="tech-tag">JWT</span><span class="tech-tag">jsPDF</span>
         </div>
       </div>
     </div>
@@ -1230,15 +1219,9 @@ const T = {
     'p2.title':  'FluxSYS · Inventarios Inteligentes',
     'p2.desc':   'Sistema de gestión de inventario con alertas de desabastecimiento automáticas y reportes en tiempo real para toma de decisiones ágil.',
     'p2.metric': 'Alertas automáticas · Dashboard en vivo',
-    'p3.title':  'Sistema de Información · Cancún',
-    'p3.desc':   'App web turística que integra 3+ APIs externas de clima, transporte y puntos de interés con datos en tiempo real para visitantes.',
-    'p3.metric': '3+ APIs integradas · Datos en tiempo real',
-    'p4.title':  'E-Commerce Deportivo',
-    'p4.desc':   'Tienda online completa con catálogo, carrito de compras, integración de pasarelas de pago y dashboard de administración de pedidos.',
-    'p4.metric': 'PayPal + Mercado Pago · Panel admin',
-    'p5.title':  'Sistema para Taller Mecánico',
-    'p5.desc':   'Sistema CRUD con autenticación multifactor, gestión de accesos por roles y monitoreo de servicios, técnicos y clientes.',
-    'p5.metric': 'Auth MFA · Gestión granular por roles',
+    'p3.title':  'SIGEP-GC · API REST Full Stack',
+    'p3.desc':   'API empresarial para Glass Caribe: autenticación JWT con roles Admin/Colaborador, CRUD de pedidos por departamento, comentarios, exportación PDF y deploy en Render.',
+    'p3.metric': 'Deploy activo · 2 roles · 3 departamentos',
     /* Contact */
     'contact.label':        'Contacto',
     'contact.title':        'Trabajemos Juntos',
@@ -1360,15 +1343,9 @@ const T = {
     'p2.title':  'FluxSYS · Smart Inventory',
     'p2.desc':   'Inventory management system with automatic stockout alerts and real-time reports for agile decision-making.',
     'p2.metric': 'Automatic alerts · Live dashboard',
-    'p3.title':  'Information System · Cancún',
-    'p3.desc':   'Tourism web app integrating 3+ external APIs for weather, transport and points of interest with real-time data for visitors.',
-    'p3.metric': '3+ APIs integrated · Real-time data',
-    'p4.title':  'Sports E-Commerce',
-    'p4.desc':   'Complete online store with catalog, shopping cart, payment gateway integration and order administration dashboard.',
-    'p4.metric': 'PayPal + Mercado Pago · Admin panel',
-    'p5.title':  'Auto Shop Management System',
-    'p5.desc':   'CRUD system with multi-factor authentication, granular role-based access management and service, technician and client monitoring.',
-    'p5.metric': 'MFA Auth · Granular role management',
+    'p3.title':  'SIGEP-GC · Full Stack REST API',
+    'p3.desc':   'Enterprise API for Glass Caribe: JWT authentication with Admin/Collaborator roles, department-based order CRUD, comments, PDF export and live deployment on Render.',
+    'p3.metric': 'Live deploy · 2 roles · 3 departments',
     /* Contact */
     'contact.label':          'Contact',
     'contact.title':          "Let's Work Together",
