@@ -562,55 +562,52 @@
     ============================================================ */
     #cert-modal {
       display: none; position: fixed; inset: 0; z-index: 3000;
-      background: rgba(0,0,0,.82);
-      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      background: rgba(0,0,0,.94);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
       align-items: center; justify-content: center;
-      padding: 16px;
+      padding: 12px;
     }
-    #cert-modal.open { display: flex; animation: cmFadeIn .22s ease; }
-    @keyframes cmFadeIn { from{opacity:0;transform:scale(.96)} to{opacity:1;transform:scale(1)} }
+    #cert-modal.open { display: flex; animation: cmFadeIn .3s cubic-bezier(.16,1,.3,1); }
+    @keyframes cmFadeIn {
+      from { opacity:0; transform:scale(.93) translateY(16px) }
+      to   { opacity:1; transform:scale(1)   translateY(0) }
+    }
     .cm-box {
-      position: relative; width: 100%; max-width: 880px; height: 88vh;
-      background: var(--card-bg); border: 1px solid var(--border);
-      border-radius: var(--radius); overflow: hidden;
+      position: relative; width: 100%; max-width: 940px; height: 94vh;
+      border-radius: 18px; overflow: hidden;
+      box-shadow: 0 48px 120px rgba(0,0,0,.85), 0 0 0 1px rgba(255,255,255,.09);
       display: flex; flex-direction: column;
-      box-shadow: 0 32px 80px rgba(0,0,0,.6);
     }
-    .cm-header {
+    /* Barra superior minimalista — solo título */
+    .cm-bar {
+      position: absolute; top: 0; left: 0; right: 0; z-index: 5;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 18px; border-bottom: 1px solid var(--border);
-      flex-shrink: 0; gap: 12px;
+      padding: 12px 16px;
+      background: linear-gradient(to bottom, rgba(0,0,0,.72) 0%, transparent 100%);
+      pointer-events: none;
     }
-    .cm-title { font-size: .92rem; font-weight: 700; color: var(--text); min-width: 0; flex: 1; }
-    .cm-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
-    .cm-dl {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--accent); color: #0a0c0e;
-      border: none; border-radius: 8px;
-      font-size: .78rem; font-weight: 700; padding: 6px 14px;
-      cursor: pointer; text-decoration: none; transition: var(--transition);
+    .cm-title {
+      font-size: .82rem; font-weight: 600; letter-spacing: .04em;
+      color: rgba(255,255,255,.8); text-transform: uppercase; pointer-events: none;
     }
-    .cm-dl:hover { opacity: .82; }
+    /* Botón cerrar flotante */
     .cm-close {
-      background: none; border: 1px solid var(--border); color: var(--text);
-      width: 34px; height: 34px; border-radius: 8px;
+      position: absolute; top: 12px; right: 12px; z-index: 10;
+      background: rgba(0,0,0,.65); backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,.16); color: #fff;
+      width: 38px; height: 38px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      cursor: pointer; font-size: 1rem; transition: var(--transition);
+      cursor: pointer; font-size: .95rem; transition: var(--transition);
+      pointer-events: all;
     }
-    .cm-close:hover { background: #e0525220; border-color: #e05252; color: #e05252; }
-    .cm-iframe { flex: 1; width: 100%; border: none; display: block; }
-    /* Fallback móvil — iOS no renderiza PDFs en iframe */
-    .cm-fallback {
-      display: none; flex: 1; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 20px; padding: 40px 24px; text-align: center;
+    .cm-close:hover { background: #e05252; border-color: #e05252; transform: scale(1.08); }
+    /* iframe ocupa todo el espacio */
+    .cm-iframe {
+      flex: 1; width: 100%; height: 100%; border: none; display: block;
+      background: #fff;
     }
-    .cm-fallback i { font-size: 3rem; color: var(--accent); }
-    .cm-fallback p { color: var(--muted); font-size: .9rem; }
     @media (max-width: 600px) {
-      .cm-iframe   { display: none; }
-      .cm-fallback { display: flex; }
-      .cm-box { height: auto; max-height: 80vh; }
+      .cm-box { height: 96vh; border-radius: 14px; }
     }
 
     /* ============================================================
@@ -2061,29 +2058,18 @@
 ============================================================ -->
 <div id="cert-modal" role="dialog" aria-modal="true" aria-labelledby="cm-title-text">
   <div class="cm-box">
-    <div class="cm-header">
+    <!-- Barra superior con título -->
+    <div class="cm-bar">
       <span class="cm-title" id="cm-title-text">Certificado</span>
-      <div class="cm-actions">
-        <a id="cm-dl" href="#" download class="cm-dl">
-          <i class="bi bi-download" aria-hidden="true"></i>
-          <span data-i18n="cert.download">Descargar</span>
-        </a>
-        <button class="cm-close" id="cm-close" aria-label="Cerrar">
-          <i class="bi bi-x-lg" aria-hidden="true"></i>
-        </button>
-      </div>
     </div>
-    <!-- Vista PDF desktop -->
-    <iframe id="cm-iframe" class="cm-iframe" title="Certificado PDF"></iframe>
-    <!-- Fallback iOS / móvil (iframes con PDF no funcionan en iOS Safari) -->
-    <div class="cm-fallback">
-      <i class="bi bi-file-earmark-pdf" aria-hidden="true"></i>
-      <p data-i18n="cert.mobileNote">Vista previa no disponible en este dispositivo.</p>
-      <a id="cm-dl2" href="#" download class="cm-dl">
-        <i class="bi bi-download" aria-hidden="true"></i>
-        <span data-i18n="cert.download">Descargar certificado</span>
-      </a>
-    </div>
+    <!-- Botón cerrar flotante -->
+    <button class="cm-close" id="cm-close" aria-label="Cerrar">
+      <i class="bi bi-x-lg" aria-hidden="true"></i>
+    </button>
+    <!-- PDF ocupa todo el espacio -->
+    <iframe id="cm-iframe" class="cm-iframe"
+            title="Certificado PDF"
+            allowfullscreen></iframe>
   </div>
 </div>
 
@@ -2183,8 +2169,6 @@ const T = {
     'cert1.name':     'JavaScript Essentials 1 (JSE)',
     'cert2.name':     'NDG Linux Essentials',
     'cert.view':      'Ver certificado',
-    'cert.download':  'Descargar',
-    'cert.mobileNote':'Vista previa no disponible en este dispositivo.',
     /* Skills */
     'skills.label':    'Habilidades',
     'skills.title':    'Stack Técnico',
@@ -2399,8 +2383,6 @@ const T = {
     'cert1.name':     'JavaScript Essentials 1 (JSE)',
     'cert2.name':     'NDG Linux Essentials',
     'cert.view':      'View certificate',
-    'cert.download':  'Download',
-    'cert.mobileNote':'Preview not available on this device.',
     /* Skills */
     'skills.label':    'Skills',
     'skills.title':    'Tech Stack',
@@ -2904,20 +2886,16 @@ window.addEventListener('load', () => AOS.refresh());
    MODAL — CERTIFICADOS
 ================================================================ */
 (function () {
-  const modal   = document.getElementById('cert-modal');
-  const iframe  = document.getElementById('cm-iframe');
-  const titleEl = document.getElementById('cm-title-text');
-  const dlBtn   = document.getElementById('cm-dl');
-  const dlBtn2  = document.getElementById('cm-dl2');
-  const closeBtn= document.getElementById('cm-close');
+  const modal    = document.getElementById('cert-modal');
+  const iframe   = document.getElementById('cm-iframe');
+  const titleEl  = document.getElementById('cm-title-text');
+  const closeBtn = document.getElementById('cm-close');
 
   function openModal(src, title) {
     titleEl.textContent = title;
-    dlBtn.href  = src;
-    dlBtn2.href = src;
-    dlBtn.setAttribute('download', title);
-    dlBtn2.setAttribute('download', title);
-    iframe.src  = src;
+    /* #toolbar=0 oculta la barra de herramientas del PDF en Chrome/Firefox/Edge
+       view=FitH ajusta el ancho para que se vea completo desde el inicio       */
+    iframe.src = src + '#toolbar=0&navpanes=0&scrollbar=1&view=FitH';
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
     closeBtn.focus();
@@ -2926,35 +2904,19 @@ window.addEventListener('load', () => AOS.refresh());
   function closeModal() {
     modal.classList.remove('open');
     document.body.style.overflow = '';
-    /* limpiamos el src tras la animación para liberar el PDF */
-    setTimeout(() => { iframe.src = ''; }, 250);
+    setTimeout(() => { iframe.src = ''; }, 300);
   }
 
-  /* Botones "Ver certificado" */
   document.querySelectorAll('[data-cert-src]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      openModal(btn.dataset.certSrc, btn.dataset.certTitle || 'Certificado');
-    });
+    btn.addEventListener('click', () =>
+      openModal(btn.dataset.certSrc, btn.dataset.certTitle || 'Certificado')
+    );
   });
 
-  /* Cerrar con el botón X */
   closeBtn.addEventListener('click', closeModal);
-
-  /* Cerrar haciendo click en el overlay */
   modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-
-  /* Cerrar con Escape */
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
-  });
-
-  /* Trampa de foco dentro del modal (accesibilidad) */
-  modal.addEventListener('keydown', e => {
-    if (e.key !== 'Tab') return;
-    const focusable = modal.querySelectorAll('button, [href], iframe');
-    const first = focusable[0], last = focusable[focusable.length - 1];
-    if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
-    else            { if (document.activeElement === last)  { e.preventDefault(); first.focus(); } }
   });
 })();
 </script>
