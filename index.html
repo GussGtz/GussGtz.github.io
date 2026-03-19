@@ -400,6 +400,44 @@
     body.light .skill-fill { background: linear-gradient(90deg, var(--accent), rgba(0,138,80,0.45)); }
 
     /* ============================================================
+       ANIMATIONS & MOTION
+    ============================================================ */
+
+    /* Scroll Progress Bar */
+    #scroll-progress {
+      position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+      background: linear-gradient(90deg, var(--accent), rgba(0,255,153,0.5));
+      z-index: 9999; transition: width 0.08s linear;
+      box-shadow: 0 0 10px rgba(0,255,153,0.55);
+    }
+
+    /* Hero Background Orbs */
+    .hero-orb { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(80px); opacity: 0.14; }
+    .hero-orb-1 { width: 420px; height: 420px; background: var(--accent);           top: -120px; right: -100px; animation: orbFloat1 9s ease-in-out infinite; }
+    .hero-orb-2 { width: 300px; height: 300px; background: rgba(0,200,120,0.8);     bottom: -60px; left: -80px;  animation: orbFloat2 11s ease-in-out infinite; }
+    .hero-orb-3 { width: 200px; height: 200px; background: rgba(0,255,153,0.7);     top: 45%; left: 38%;         animation: orbFloat3 7s ease-in-out infinite; }
+    @keyframes orbFloat1 { 0%,100%{transform:translate(0,0) scale(1)}   50%{transform:translate(28px,38px) scale(1.08)} }
+    @keyframes orbFloat2 { 0%,100%{transform:translate(0,0) scale(1)}   50%{transform:translate(-22px,-28px) scale(0.94)} }
+    @keyframes orbFloat3 { 0%,100%{transform:translate(0,0);opacity:.10} 50%{transform:translate(14px,-18px);opacity:.20} }
+
+    /* Typed Cursor */
+    .typed-cursor { display: inline-block; width: 2px; height: 1em; background: var(--accent); margin-left: 3px; vertical-align: text-bottom; animation: cursorBlink 0.85s step-end infinite; }
+    @keyframes cursorBlink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* Skill Fill Shimmer */
+    .skill-fill { position: relative; overflow: hidden; }
+    .skill-fill::after { content:''; position:absolute; top:0; left:-60%; width:40%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.38),transparent); animation: shimmer 2.4s ease-in-out infinite; }
+    @keyframes shimmer { 0%{left:-60%} 100%{left:130%} }
+
+    /* Project Card Glow on Hover */
+    .project-card { transition: transform .3s ease, box-shadow .3s ease; }
+    .project-card:hover { transform: translateY(-7px); box-shadow: 0 0 30px rgba(0,255,153,0.16), 0 10px 35px rgba(0,0,0,0.3); }
+
+    /* Service Card Hover */
+    .svc-card { transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
+    .svc-card:hover { transform: translateY(-5px); box-shadow: 0 0 26px rgba(0,255,153,0.13); border-color: rgba(0,255,153,0.35); }
+
+    /* ============================================================
        CERTIFICATIONS
     ============================================================ */
     .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
@@ -645,18 +683,22 @@
   </div>
 </header>
 
+<div id="scroll-progress" aria-hidden="true"></div>
 
 <!-- ============================================================
      HERO
 ============================================================ -->
 <section id="inicio" class="hero container">
+  <div class="hero-orb hero-orb-1" aria-hidden="true"></div>
+  <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
+  <div class="hero-orb hero-orb-3" aria-hidden="true"></div>
   <div class="hero-left" data-aos="fade-right" data-aos-duration="700">
     <div class="available-badge">
       <span class="dot"></span>
       <span data-i18n="hero.badge">Disponible para proyectos</span>
     </div>
     <h1 class="hero-name">Gustavo<br>Gutierrez</h1>
-    <p class="hero-role" data-i18n="hero.role">Full Stack Developer</p>
+    <p class="hero-role"><span id="typed-role">Full Stack Developer</span><span class="typed-cursor" aria-hidden="true"></span></p>
     <p class="hero-desc" data-i18n="hero.desc">
       Construyo sistemas web escalables, APIs robustas y experiencias de usuario fluidas.
       Especializado en Node.js, JavaScript y PostgreSQL.
@@ -718,7 +760,7 @@
       <ul class="about-contact-list">
         <li><i class="bi bi-geo-alt-fill"></i> Cancún, México <span class="about-remote-badge" data-i18n="about.remote">(Remote)</span></li>
         <li><i class="bi bi-telephone-fill"></i> <a href="tel:+529983490952">(+52) 998 349 0952</a></li>
-        <li><i class="bi bi-envelope-fill"></i> <a href="mailto:Gutierrezgustavocanul@gmail.com">Gutierrezgustavocanul@gmail.com</a></li>
+        <li><i class="bi bi-envelope-fill"></i> <a href="mailto:gutierrezgustavocanul@gmail.com">gutierrezgustavocanul@gmail.com</a></li>
       </ul>
 
       <p class="about-edu-label" data-i18n="about.edu.label">Educación</p>
@@ -748,7 +790,7 @@
         <a href="https://github.com/GussGtz" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub"><i class="bi bi-github"></i></a>
         <a href="https://www.linkedin.com/in/gustavo-Gutierrez-canul-607341267/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
         <a href="https://twitter.com/GustavoGtzzz" target="_blank" rel="noopener" class="social-btn" aria-label="Twitter / X"><i class="bi bi-twitter-x"></i></a>
-        <a href="mailto:Gutierrezgustavocanul@gmail.com" class="social-btn" aria-label="Email"><i class="bi bi-envelope"></i></a>
+        <a href="mailto:gutierrezgustavocanul@gmail.com" class="social-btn" aria-label="Email"><i class="bi bi-envelope"></i></a>
         <a href="./assets/CV GUSTAVO.pdf" target="_blank" rel="noopener" class="social-btn" aria-label="CV"><i class="bi bi-file-earmark-person"></i></a>
       </div>
     </div>
@@ -1368,7 +1410,7 @@
           <div class="ci-icon"><i class="bi bi-envelope"></i></div>
           <div class="ci-text">
             <small data-i18n="contact.email.label">Email</small>
-            <a href="mailto:Gutierrezgustavocanul@gmail.com">Gutierrezgustavocanul@gmail.com</a>
+            <a href="mailto:gutierrezgustavocanul@gmail.com">gutierrezgustavocanul@gmail.com</a>
           </div>
         </div>
         <div class="contact-item">
@@ -1463,7 +1505,7 @@
           <a href="https://github.com/GussGtz" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub"><i class="bi bi-github"></i></a>
           <a href="https://www.linkedin.com/in/gustavo-Gutierrez-canul-607341267/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
           <a href="https://twitter.com/GustavoGtzzz" target="_blank" rel="noopener" class="social-btn" aria-label="Twitter/X"><i class="bi bi-twitter-x"></i></a>
-          <a href="mailto:Gutierrezgustavocanul@gmail.com" class="social-btn" aria-label="Email"><i class="bi bi-envelope"></i></a>
+          <a href="mailto:gutierrezgustavocanul@gmail.com" class="social-btn" aria-label="Email"><i class="bi bi-envelope"></i></a>
         </div>
       </div>
       <div class="footer-col">
@@ -1482,7 +1524,7 @@
       </div>
       <div class="footer-col">
         <h5 data-i18n="footer.col3">Contacto</h5>
-        <a href="mailto:Gutierrezgustavocanul@gmail.com">Gutierrezgustavocanul@gmail.com</a>
+        <a href="mailto:gutierrezgustavocanul@gmail.com">gutierrezgustavocanul@gmail.com</a>
         <a href="tel:+529983490952">(+52) 998 349 0952</a>
         <a href="https://wa.me/529983490952" target="_blank" rel="noopener" data-i18n="contact.quick.wa">Chat por WhatsApp</a>
         <a href="./assets/CV GUSTAVO.pdf" target="_blank" rel="noopener" data-i18n="contact.quick.cv">Descargar CV</a>
@@ -2161,6 +2203,74 @@ form.addEventListener('submit', async e => {
     btnContent.innerHTML = prev;
   }
 });
+
+/* ── Scroll Progress Bar ─────────────────────────────────── */
+(function () {
+  const bar = document.getElementById('scroll-progress');
+  if (!bar) return;
+  window.addEventListener('scroll', () => {
+    const st = document.documentElement.scrollTop;
+    const dh = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    bar.style.width = (dh ? (st / dh * 100) : 0) + '%';
+  }, { passive: true });
+})();
+
+/* ── Typed Role Effect ───────────────────────────────────── */
+(function () {
+  const el = document.getElementById('typed-role');
+  if (!el) return;
+  const roles = ['Full Stack Developer', 'Mobile Developer', 'Game Developer'];
+  let ri = 0, ci = roles[0].length, deleting = false;
+  const PAUSE = 2200, PAUSE_DEL = 380, TYPE_SPD = 72, DEL_SPD = 38;
+  function tick() {
+    const word = roles[ri];
+    if (deleting) {
+      ci--;
+      el.textContent = word.slice(0, ci);
+      if (ci === 0) {
+        deleting = false;
+        ri = (ri + 1) % roles.length;
+        ci = 0;
+        setTimeout(tick, PAUSE_DEL);
+        return;
+      }
+      setTimeout(tick, DEL_SPD);
+    } else {
+      ci++;
+      el.textContent = word.slice(0, ci);
+      if (ci === word.length) {
+        setTimeout(() => { deleting = true; tick(); }, PAUSE);
+        return;
+      }
+      setTimeout(tick, TYPE_SPD);
+    }
+  }
+  setTimeout(() => { deleting = true; tick(); }, PAUSE);
+})();
+
+/* ── Stats Counter Animation ─────────────────────────────── */
+(function () {
+  const stats = document.querySelectorAll('.stat-number');
+  const seen = new Set();
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting || seen.has(e.target)) return;
+      seen.add(e.target);
+      const text = e.target.textContent.trim();
+      const num  = parseInt(text);
+      const suf  = text.replace(/[0-9]/g, '');
+      const dur = 1300, t0 = performance.now();
+      function step(now) {
+        const p    = Math.min((now - t0) / dur, 1);
+        const ease = 1 - Math.pow(1 - p, 3);
+        e.target.textContent = Math.round(ease * num) + suf;
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }, { threshold: 0.6 });
+  stats.forEach(s => obs.observe(s));
+})();
 
 window.addEventListener('load', () => AOS.refresh());
 </script>
