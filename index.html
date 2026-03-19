@@ -96,6 +96,14 @@
       transition: background 0.3s ease, color 0.3s ease;
       position: relative; z-index: 0;
     }
+    /* ── Scroll-lock wrapper — definitivo para iOS Safari ──────
+       overflow-x:hidden en html/body no siempre funciona en iOS;
+       este div contiene TODO el contenido y bloquea el scroll     */
+    #page-wrap {
+      overflow-x: hidden;
+      width: 100%;
+      position: relative;
+    }
     /* Full-page edge shapes layer — sits behind ALL content */
     #edge-shapes {
       position: absolute; top: 0; left: 0;
@@ -920,6 +928,7 @@
   </style>
 </head>
 <body>
+<div id="page-wrap">
 <div id="cursor-glow" aria-hidden="true"></div>
 
 <!-- Full-viewport edge decorative shapes -->
@@ -1984,6 +1993,7 @@
 <button class="back-to-top" id="backToTop" aria-label="Volver arriba">
   <i class="bi bi-arrow-up-short" aria-hidden="true"></i>
 </button>
+</div><!-- /#page-wrap -->
 
 
 <!-- ============================================================
