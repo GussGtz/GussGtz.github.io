@@ -276,15 +276,36 @@
     /* ============================================================
        ABOUT
     ============================================================ */
-    .about-grid { display: grid; grid-template-columns: 1fr; gap: 32px; max-width: 780px; }
-    .tag { background: rgba(0,255,153,0.1); border: 1px solid rgba(0,255,153,0.25); color: var(--accent); font-size: 0.74rem; font-weight: 700; padding: 4px 10px; border-radius: 100px; }
-    body.light .tag { background: rgba(0,138,80,0.1); border-color: rgba(0,138,80,0.25); }
-    /* Tags row shown inline below highlights */
-    .about-tags-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
-    .about-text { color: var(--muted); margin-bottom: 14px; font-size: 0.95rem; }
-    .about-highlights { list-style: none; display: grid; gap: 10px; margin-bottom: 28px; }
-    .about-highlights li { display: flex; align-items: center; gap: 10px; color: var(--text); font-size: 0.92rem; }
-    .about-highlights li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    /* About rediseñado — 2 columnas */
+    .about-new-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 52px; align-items: start; }
+    .about-left-title { font-size: 1.9rem; font-weight: 800; margin: 6px 0 18px; }
+    .about-text { color: var(--muted); margin-bottom: 14px; font-size: 0.95rem; line-height: 1.7; }
+    .about-contact-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: 20px 0 24px; }
+    .about-contact-list li { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: var(--muted); }
+    .about-contact-list li i { color: var(--accent); width: 16px; text-align: center; }
+    .about-contact-list a { color: var(--muted); transition: color .2s; }
+    .about-contact-list a:hover { color: var(--accent); }
+    .about-remote-badge { opacity: .7; }
+    .about-edu-label { font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.3px; color: var(--muted); margin-bottom: 14px; }
+    .about-edu-item { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 14px; }
+    .about-edu-icon { color: var(--accent); font-size: 1rem; margin-top: 3px; flex-shrink: 0; }
+    .about-edu-degree { font-weight: 700; font-size: 0.88rem; margin-bottom: 2px; }
+    .about-edu-school { font-size: 0.78rem; color: var(--muted); }
+    .about-stat-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; display: flex; align-items: center; gap: 16px; margin-bottom: 12px; transition: var(--transition); }
+    .about-stat-card:hover { border-color: rgba(0,255,153,0.2); transform: translateX(4px); }
+    body.light .about-stat-card:hover { border-color: rgba(0,138,80,0.2); }
+    .about-stat-icon { width: 42px; height: 42px; border-radius: 10px; background: rgba(0,255,153,0.08); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 1.15rem; flex-shrink: 0; }
+    body.light .about-stat-icon { background: rgba(0,138,80,0.08); }
+    .about-stat-num { font-weight: 700; font-size: 0.95rem; margin-bottom: 2px; }
+    .about-stat-sub { font-size: 0.78rem; color: var(--muted); }
+    .about-lang-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+    .about-lang-title { font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.3px; color: var(--muted); margin-bottom: 14px; }
+    .about-lang-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; }
+    .about-lang-name { font-size: 0.9rem; }
+    .about-lang-divider { height: 1px; background: var(--border); margin: 4px 0; }
+    .about-lang-badge { font-size: 0.72rem; font-weight: 600; padding: 3px 12px; border-radius: 20px; background: rgba(0,255,153,0.1); color: var(--accent); border: 1px solid rgba(0,255,153,0.2); }
+    .about-lang-badge--blue { background: rgba(88,166,255,0.1); color: #58a6ff; border-color: rgba(88,166,255,0.2); }
+    body.light .about-lang-badge { background: rgba(0,138,80,0.08); color: #008a50; border-color: rgba(0,138,80,0.2); }
     .socials-row { display: flex; gap: 8px; flex-wrap: wrap; }
     .social-btn {
       width: 42px; height: 42px; border-radius: 10px;
@@ -512,6 +533,7 @@
       .hero-stats { justify-content: center; }
       .hero-cta   { justify-content: center; }
       .hero-desc  { margin: 0 auto 32px; }
+      .about-new-grid { grid-template-columns: 1fr; gap: 32px; }
       .contact-grid { grid-template-columns: 1fr; }
       .form-row   { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; gap: 24px; }
@@ -628,43 +650,89 @@
      SOBRE MÍ
 ============================================================ -->
 <section id="about" class="container">
-  <div class="about-grid" data-aos="fade-up">
-    <span class="section-label" data-i18n="about.label">Sobre Mí</span>
-    <h2 class="section-title" data-i18n="about.title">Apasionado por construir soluciones que importan</h2>
-    <p class="about-text" data-i18n-html="about.p1">
-      Soy <strong>Gustavo Gutiérrez</strong>, TSU en Desarrollo de Software Multiplataforma por la
-      <strong>Universidad Tecnológica de Cancún</strong>. Me especializo en el desarrollo de sistemas
-      web completos, desde la arquitectura del backend hasta la interfaz de usuario.
-    </p>
-    <p class="about-text" style="margin-bottom:20px;" data-i18n="about.p2">
-      Disfruto convertir problemas complejos en soluciones elegantes. Trabajo con código limpio,
-      buenas prácticas y siempre orientado a resultados reales para el negocio.
-    </p>
+  <div class="about-new-grid" data-aos="fade-up">
 
-    <div class="about-tags-row">
-      <span class="tag">Node.js</span>
-      <span class="tag">PostgreSQL</span>
-      <span class="tag">React</span>
-      <span class="tag">JWT</span>
-      <span class="tag">Express</span>
-      <span class="tag">REST APIs</span>
+    <!-- Columna izquierda -->
+    <div class="about-left">
+      <span class="section-label" data-i18n="about.label">Sobre Mí</span>
+      <h2 class="about-left-title" data-i18n="about.left.title">Sobre Gustavo</h2>
+
+      <p class="about-text" data-i18n-html="about.p1">
+        Ingeniero en desarrollo y gestión de software con <strong>7 años de experiencia</strong>. He ayudado a empresas a construir sistemas escalables y mantenibles que crecen con su negocio.
+      </p>
+      <p class="about-text" data-i18n="about.p2">
+        Mi experiencia abarca desde el diseño de APIs, backend, frontend y dispositivos móviles en entornos de producción. Me apasiona escribir código limpio y testeable que sigue los principios SOLID.
+      </p>
+
+      <ul class="about-contact-list">
+        <li><i class="bi bi-geo-alt-fill"></i> Cancún, México <span class="about-remote-badge" data-i18n="about.remote">(Remote)</span></li>
+        <li><i class="bi bi-telephone-fill"></i> <a href="tel:+529983490952">(+52) 998 349 0952</a></li>
+        <li><i class="bi bi-envelope-fill"></i> <a href="mailto:gutierrezgustavocanul@gmail.com">gutierrezgustavocanul@gmail.com</a></li>
+      </ul>
+
+      <p class="about-edu-label" data-i18n="about.edu.label">Educación</p>
+      <div class="about-edu-item">
+        <i class="bi bi-calendar2-check about-edu-icon"></i>
+        <div>
+          <div class="about-edu-degree" data-i18n="about.edu1.degree">Ing. en Desarrollo y Gestión de Software</div>
+          <div class="about-edu-school">Universidad Tecnológica de Cancún · <span data-i18n="about.edu1.status">En Progreso</span></div>
+        </div>
+      </div>
+      <div class="about-edu-item">
+        <i class="bi bi-calendar2-check about-edu-icon"></i>
+        <div>
+          <div class="about-edu-degree" data-i18n="about.edu2.degree">TSU en Desarrollo de Software Multiplataforma</div>
+          <div class="about-edu-school">Universidad Tecnológica de Cancún · 2024</div>
+        </div>
+      </div>
+
+      <div class="socials-row" style="margin-top:24px;">
+        <a href="https://github.com/GussGtz" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub"><i class="bi bi-github"></i></a>
+        <a href="https://www.linkedin.com/in/gustavo-gutierrez-canul-607341267/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        <a href="https://twitter.com/GustavoGtzzz" target="_blank" rel="noopener" class="social-btn" aria-label="Twitter / X"><i class="bi bi-twitter-x"></i></a>
+        <a href="mailto:gutierrezgustavocanul@gmail.com" class="social-btn" aria-label="Email"><i class="bi bi-envelope"></i></a>
+        <a href="./assets/CV GUSTAVO.pdf" target="_blank" rel="noopener" class="social-btn" aria-label="CV"><i class="bi bi-file-earmark-person"></i></a>
+      </div>
     </div>
 
-    <ul class="about-highlights">
-      <li data-i18n="about.hl1">Backend con Node.js, Express y APIs RESTful seguras</li>
-      <li data-i18n="about.hl2">Bases de datos relacionales: MySQL y PostgreSQL optimizados</li>
-      <li data-i18n="about.hl3">Frontend con React, HTML/CSS y JavaScript ES6+</li>
-      <li data-i18n="about.hl4">Autenticación JWT, gestión de roles y seguridad web</li>
-      <li data-i18n="about.hl5">Disponible para trabajo remoto, híbrido y proyectos freelance</li>
-    </ul>
+    <!-- Columna derecha -->
+    <div class="about-right">
+      <div class="about-stat-card">
+        <div class="about-stat-icon"><i class="bi bi-award"></i></div>
+        <div>
+          <div class="about-stat-num" data-i18n="about.stat1.num">7+ Años de Experiencia</div>
+          <div class="about-stat-sub" data-i18n="about.stat1.sub">Backend, frontend y mobile</div>
+        </div>
+      </div>
+      <div class="about-stat-card">
+        <div class="about-stat-icon"><i class="bi bi-people"></i></div>
+        <div>
+          <div class="about-stat-num" data-i18n="about.stat2.num">5+ Clientes Satisfechos</div>
+          <div class="about-stat-sub" data-i18n="about.stat2.sub">De startups a empresas</div>
+        </div>
+      </div>
+      <div class="about-stat-card">
+        <div class="about-stat-icon"><i class="bi bi-code-slash"></i></div>
+        <div>
+          <div class="about-stat-num" data-i18n="about.stat3.num">10+ Proyectos</div>
+          <div class="about-stat-sub" data-i18n="about.stat3.sub">Entregados y desplegados exitosamente</div>
+        </div>
+      </div>
 
-    <div class="socials-row">
-      <a href="https://github.com/GussGtz" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub"><i class="bi bi-github"></i></a>
-      <a href="https://www.linkedin.com/in/gustavo-gutierrez-canul-607341267/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-      <a href="https://twitter.com/GustavoGtzzz" target="_blank" rel="noopener" class="social-btn" aria-label="Twitter / X"><i class="bi bi-twitter-x"></i></a>
-      <a href="mailto:gutierrezgustavocanul@gmail.com" class="social-btn" aria-label="Email"><i class="bi bi-envelope"></i></a>
-      <a href="./assets/CV GUSTAVO.pdf" target="_blank" rel="noopener" class="social-btn" aria-label="CV"><i class="bi bi-file-earmark-person"></i></a>
+      <div class="about-lang-card">
+        <p class="about-lang-title" data-i18n="about.lang.title">Idiomas</p>
+        <div class="about-lang-row">
+          <span class="about-lang-name">Español</span>
+          <span class="about-lang-badge" data-i18n="about.lang1.level">Nativo</span>
+        </div>
+        <div class="about-lang-divider"></div>
+        <div class="about-lang-row">
+          <span class="about-lang-name">English</span>
+          <span class="about-lang-badge about-lang-badge--blue">A2 - B1</span>
+        </div>
+      </div>
     </div>
+
   </div>
 </section>
 
@@ -1192,15 +1260,23 @@ const T = {
     'hero.cta1':  'Iniciar Proyecto',
     'hero.cta2':  'Ver Proyectos',
     /* About */
-    'about.label': 'Sobre Mí',
-    'about.title': 'Apasionado por construir soluciones que importan',
-    'about.p1':    'Ingeniero en desarrollo y gestión de software con <strong>7 años de experiencia</strong>. He ayudado a empresas a construir sistemas escalables y mantenibles que crecen con su negocio.',
-    'about.p2':    'Mi experiencia abarca desde el diseño de APIs, backend, frontend y dispositivos móviles en entornos de producción. Me apasiona escribir código limpio y testeable que sigue los principios SOLID.',
-    'about.hl1':   'Backend con Node.js, Express y APIs RESTful seguras',
-    'about.hl2':   'Bases de datos relacionales: MySQL y PostgreSQL optimizados',
-    'about.hl3':   'Frontend con React, HTML/CSS y JavaScript ES6+',
-    'about.hl4':   'Autenticación JWT, gestión de roles y seguridad web',
-    'about.hl5':   'Disponible para trabajo remoto, híbrido y proyectos freelance',
+    'about.label':       'Sobre Mí',
+    'about.left.title':  'Sobre Gustavo',
+    'about.p1':          'Ingeniero en desarrollo y gestión de software con <strong>7 años de experiencia</strong>. He ayudado a empresas a construir sistemas escalables y mantenibles que crecen con su negocio.',
+    'about.p2':          'Mi experiencia abarca desde el diseño de APIs, backend, frontend y dispositivos móviles en entornos de producción. Me apasiona escribir código limpio y testeable que sigue los principios SOLID.',
+    'about.remote':      '(Remoto)',
+    'about.edu.label':   'Educación',
+    'about.edu1.degree': 'Ing. en Desarrollo y Gestión de Software',
+    'about.edu1.status': 'En Progreso',
+    'about.edu2.degree': 'TSU en Desarrollo de Software Multiplataforma',
+    'about.stat1.num':   '7+ Años de Experiencia',
+    'about.stat1.sub':   'Backend, frontend y mobile',
+    'about.stat2.num':   '5+ Clientes Satisfechos',
+    'about.stat2.sub':   'De startups a empresas',
+    'about.stat3.num':   '10+ Proyectos',
+    'about.stat3.sub':   'Entregados y desplegados exitosamente',
+    'about.lang.title':  'Idiomas',
+    'about.lang1.level': 'Nativo',
     /* Services */
     'services.label':    'Servicios',
     'services.title':    '¿Cómo puedo ayudarte?',
@@ -1319,15 +1395,23 @@ const T = {
     'hero.cta1':  'Start a Project',
     'hero.cta2':  'View Projects',
     /* About */
-    'about.label': 'About Me',
-    'about.title': 'Passionate about building solutions that matter',
-    'about.p1':    'Software development and management engineer with <strong>7 years of experience</strong>. I have helped companies build scalable and maintainable systems that grow with their business.',
-    'about.p2':    'My experience spans API design, backend, frontend and mobile devices in production environments. I am passionate about writing clean, testable code that follows SOLID principles.',
-    'about.hl1':   'Backend with Node.js, Express and secure RESTful APIs',
-    'about.hl2':   'Relational databases: optimized MySQL and PostgreSQL',
-    'about.hl3':   'Frontend with React, HTML/CSS and JavaScript ES6+',
-    'about.hl4':   'JWT authentication, role management and web security',
-    'about.hl5':   'Available for remote, hybrid and freelance projects',
+    'about.label':       'About Me',
+    'about.left.title':  'About Gustavo',
+    'about.p1':          'Software development and management engineer with <strong>7 years of experience</strong>. I have helped companies build scalable and maintainable systems that grow with their business.',
+    'about.p2':          'My experience spans API design, backend, frontend and mobile devices in production environments. I am passionate about writing clean, testable code that follows SOLID principles.',
+    'about.remote':      '(Remote)',
+    'about.edu.label':   'Education',
+    'about.edu1.degree': 'Ing. in Software Development & Management',
+    'about.edu1.status': 'In Progress',
+    'about.edu2.degree': 'TSU in Multiplatform Software Development',
+    'about.stat1.num':   '7+ Years of Experience',
+    'about.stat1.sub':   'Backend, frontend and mobile',
+    'about.stat2.num':   '5+ Satisfied Clients',
+    'about.stat2.sub':   'From startups to companies',
+    'about.stat3.num':   '10+ Projects',
+    'about.stat3.sub':   'Successfully delivered and deployed',
+    'about.lang.title':  'Languages',
+    'about.lang1.level': 'Native',
     /* Services */
     'services.label':    'Services',
     'services.title':    'How can I help you?',
