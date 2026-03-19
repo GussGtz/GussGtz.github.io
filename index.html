@@ -1038,9 +1038,9 @@
         <span class="exp-period">2025 – 2026</span>
       </div>
       <p class="exp-desc" data-i18n="exp1.desc">
-        Segunda colaboración con Glass Caribe. Desarrollé SIGEP-GC: plataforma web full stack con PWA y app Android
-        nativa (Capacitor 8 + Vue 3). Dashboard con KPIs en tiempo real, gestión de pedidos por departamento,
-        WebSockets, exportación XLSX, GPS tracking, Web Push notifications y roles Admin / Colaborador.
+        Centralicé toda la operación de Glass Caribe en una sola plataforma, eliminando hojas de cálculo y correos internos.
+        KPIs visibles en tiempo real, seguimiento GPS de entregas y notificaciones push disponibles en web y app Android nativa —
+        en producción y en uso activo desde el primer día.
       </p>
       <div class="exp-tags">
         <span class="tech-tag">Vue 3</span><span class="tech-tag">Capacitor 8</span>
@@ -1061,9 +1061,9 @@
         <span class="exp-period">2023 – 2024</span>
       </div>
       <p class="exp-desc" data-i18n="exp4.desc">
-        Diseñé y construí de cero un sistema de gestión de pedidos interno. Implementé extracción de datos XML,
-        gráficas en tiempo real con Chart.js, WebSockets, panel administrativo con roles diferenciados
-        (admin / colaborador) y CRUD completo sobre PostgreSQL desplegado en Render.
+        Reemplacé procesos manuales con el primer sistema digital de gestión de pedidos de Glass Caribe.
+        Actualizaciones instantáneas vía WebSockets, gráficas en tiempo real y control de acceso por roles —
+        construido desde cero y desplegado en producción.
       </p>
       <div class="exp-tags">
         <span class="tech-tag">Node.js</span><span class="tech-tag">Express</span>
@@ -1544,7 +1544,7 @@
     <div class="challenge-card">
       <div class="challenge-icon"><i class="bi bi-lightning-charge-fill"></i></div>
       <div class="challenge-title" data-i18n="ch1.title">Sincronización en Tiempo Real</div>
-      <p class="challenge-desc" data-i18n="ch1.desc">Implementé WebSockets para actualización en vivo de pedidos y KPIs entre múltiples clientes conectados simultáneamente en SIGEP-GC.</p>
+      <p class="challenge-desc" data-i18n="ch1.desc">Eliminé la recarga manual del dashboard: pedidos y KPIs actualizados en vivo para todos los usuarios simultáneos, sin latencia perceptible.</p>
     </div>
 
     <div class="challenge-card">
@@ -1556,13 +1556,13 @@
     <div class="challenge-card">
       <div class="challenge-icon"><i class="bi bi-controller"></i></div>
       <div class="challenge-title" data-i18n="ch3.title">Optimización de Rendimiento en Unity</div>
-      <p class="challenge-desc" data-i18n="ch3.desc">Optimicé física 2D, IA de enemigos y sistemas de partículas en Etaria para mantener framerate estable en hardware de gama baja (Intel HD 3000).</p>
+      <p class="challenge-desc" data-i18n="ch3.desc">Logré framerate estable en hardware sin GPU dedicada (Intel HD 3000), haciendo Etaria jugable para todos los equipos de la expo sin sacrificar efectos visuales.</p>
     </div>
 
     <div class="challenge-card">
       <div class="challenge-icon"><i class="bi bi-shield-lock-fill"></i></div>
       <div class="challenge-title" data-i18n="ch4.title">Autenticación JWT con Roles</div>
-      <p class="challenge-desc" data-i18n="ch4.desc">Diseñé un sistema de autenticación con roles diferenciados (admin/colaborador) usando JWT y middleware de Express para control granular de accesos por departamento.</p>
+      <p class="challenge-desc" data-i18n="ch4.desc">Cerré cualquier acceso no autorizado desde el primer deploy: roles admin/colaborador con permisos granulares por departamento, protegiendo rutas y datos sensibles en producción.</p>
     </div>
 
   </div>
@@ -1817,9 +1817,9 @@ const T = {
     'exp.label':  'Experiencia',
     'exp.title':  'Trayectoria',
     'exp1.role':  'Desarrollador Full Stack',
-    'exp1.desc':  'Segunda colaboración con Glass Caribe. Desarrollé SIGEP-GC: plataforma web full stack con PWA y app Android nativa (Capacitor 8 + Vue 3). Dashboard con KPIs en tiempo real, gestión de pedidos por departamento, WebSockets, exportación XLSX, GPS tracking, Web Push notifications y roles Admin / Colaborador.',
+    'exp1.desc':  'Centralicé toda la operación de Glass Caribe en una sola plataforma, eliminando hojas de cálculo y correos internos. KPIs visibles en tiempo real, seguimiento GPS de entregas y notificaciones push disponibles en web y app Android nativa — en producción y en uso activo desde el primer día.',
     'exp4.role':  'Desarrollador Full Stack',
-    'exp4.desc':  'Diseñé y construí de cero un sistema de gestión de pedidos interno. Implementé extracción de datos XML, gráficas en tiempo real con Chart.js, WebSockets, panel administrativo con roles diferenciados (admin / colaborador) y CRUD completo sobre PostgreSQL desplegado en Render.',
+    'exp4.desc':  'Reemplacé procesos manuales con el primer sistema digital de gestión de pedidos de Glass Caribe. Actualizaciones instantáneas vía WebSockets, gráficas en tiempo real y control de acceso por roles — construido desde cero y desplegado en producción.',
     'exp2.role':  'Formación & Proyectos Académicos / Freelance',
     'exp2.desc':  'Más de 100 proyectos desarrollados a lo largo de la formación académica y trabajos freelance: sistemas de inventario, e-commerce con pasarelas de pago, apps turísticas con APIs externas, CRUD con autenticación multifactor, desarrollo móvil e integración con tecnologías emergentes como IoT. Desde los fundamentos técnicos hasta la ingeniería de software profesional.',
     /* Certifications */
@@ -1901,13 +1901,13 @@ const T = {
     'ch.label':   'Ingeniería', 'ch.title': 'Retos Técnicos Resueltos',
     'ch.subtitle':'Problemas reales de ingeniería enfrentados y solucionados en proyectos de producción.',
     'ch1.title': 'Sincronización en Tiempo Real',
-    'ch1.desc':  'Implementé WebSockets para actualización en vivo de pedidos y KPIs entre múltiples clientes conectados simultáneamente en SIGEP-GC.',
+    'ch1.desc':  'Eliminé la recarga manual del dashboard: pedidos y KPIs actualizados en vivo para todos los usuarios simultáneos, sin latencia perceptible.',
     'ch2.title': 'GPS en Segundo Plano (Android)',
     'ch2.desc':  'Resolví el tracking de ubicación en background con Capacitor 8, gestionando restricciones de batería y permisos de Android para el seguimiento continuo de entregas.',
     'ch3.title': 'Optimización de Rendimiento en Unity',
-    'ch3.desc':  'Optimicé física 2D, IA de enemigos y sistemas de partículas en Etaria para mantener framerate estable en hardware de gama baja (Intel HD 3000).',
+    'ch3.desc':  'Logré framerate estable en hardware sin GPU dedicada (Intel HD 3000), haciendo Etaria jugable para todos los equipos de la expo sin sacrificar efectos visuales.',
     'ch4.title': 'Autenticación JWT con Roles',
-    'ch4.desc':  'Diseñé un sistema de autenticación con roles diferenciados (admin/colaborador) usando JWT y middleware de Express para control granular de accesos por departamento.',
+    'ch4.desc':  'Cerré cualquier acceso no autorizado desde el primer deploy: roles admin/colaborador con permisos granulares por departamento, protegiendo rutas y datos sensibles en producción.',
     /* Contact */
     'contact.label':        'Contacto',
     'contact.title':        'Trabajemos Juntos',
@@ -2020,9 +2020,9 @@ const T = {
     'exp.label':  'Experience',
     'exp.title':  'Career Path',
     'exp1.role':  'Full Stack Developer',
-    'exp1.desc':  'Second collaboration with Glass Caribe. Built SIGEP-GC: full stack web platform with PWA and native Android app (Capacitor 8 + Vue 3). Real-time KPI dashboard, department order management, WebSockets, XLSX export, GPS tracking, Web Push notifications and Admin / Collaborator roles.',
+    'exp1.desc':  'Centralized all of Glass Caribe\'s operations into a single platform, eliminating spreadsheets and internal emails. Real-time KPIs, GPS delivery tracking, and push notifications available on web and native Android app — live in production from day one.',
     'exp4.role':  'Full Stack Developer',
-    'exp4.desc':  'Designed and built from scratch an internal order management system. Implemented XML data extraction, real-time charts with Chart.js, WebSockets, admin panel with differentiated roles (admin / collaborator) and full CRUD on PostgreSQL deployed on Render.',
+    'exp4.desc':  'Replaced manual processes with Glass Caribe\'s first digital order management system. Instant WebSocket updates, real-time charts, and role-based access control — built from scratch and deployed to production.',
     'exp2.role':  'Training & Academic / Freelance Projects',
     'exp2.desc':  'Over 100 projects developed throughout academic training and freelance work: inventory systems, e-commerce with payment gateways, tourism apps with external APIs, CRUD with multi-factor authentication, mobile development and integration with emerging technologies such as IoT. From technical fundamentals to professional software engineering.',
     /* Certifications */
@@ -2104,13 +2104,13 @@ const T = {
     'ch.label':   'Engineering', 'ch.title': 'Technical Challenges Solved',
     'ch.subtitle':'Real engineering problems faced and solved in production projects.',
     'ch1.title': 'Real-Time Synchronization',
-    'ch1.desc':  'Implemented WebSockets for live order and KPI updates across multiple simultaneously connected clients in SIGEP-GC.',
+    'ch1.desc':  'Eliminated manual dashboard reloads: orders and KPIs updated live for all simultaneous users, with no perceptible latency.',
     'ch2.title': 'Background GPS (Android)',
     'ch2.desc':  'Solved background location tracking with Capacitor 8, managing Android battery restrictions and permissions for continuous delivery tracking.',
     'ch3.title': 'Unity Performance Optimization',
-    'ch3.desc':  'Optimized 2D physics, enemy AI and particle systems in Etaria to maintain stable framerate on low-end hardware (Intel HD 3000).',
+    'ch3.desc':  'Achieved stable framerate on hardware with no dedicated GPU (Intel HD 3000), making Etaria fully playable on every machine at the expo without cutting visual effects.',
     'ch4.title': 'JWT Authentication with Roles',
-    'ch4.desc':  'Designed an authentication system with differentiated roles (admin/collaborator) using JWT and Express middleware for granular access control per department.',
+    'ch4.desc':  'Locked down unauthorized access from the first deploy: admin/collaborator roles with granular per-department permissions, protecting routes and sensitive production data.',
     /* Contact */
     'contact.label':          'Contact',
     'contact.title':          "Let's Work Together",
