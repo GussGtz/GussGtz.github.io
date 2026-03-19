@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Gustavo Gutiérrez · Full Stack Developer</title>
+  <title>Gustavo Gutierrez · Full Stack Developer</title>
   <meta name="description" content="Full Stack Developer especializado en Node.js, JavaScript y PostgreSQL. Construyo sistemas escalables y APIs robustas desde Cancún, México." />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/logo-gg.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="assets/logo-gg.png" />
@@ -496,7 +496,8 @@
     .challenges-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 16px; }
     .challenge-card { background: var(--card-bg); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 20px 22px; transition: var(--transition); }
     .challenge-card:hover { transform: translateX(4px); border-color: rgba(0,255,153,0.3); }
-    .challenge-icon { font-size: 1.5rem; margin-bottom: 10px; }
+    .challenge-icon { width: 42px; height: 42px; border-radius: 10px; background: rgba(0,255,153,0.08); border: 1px solid rgba(0,255,153,0.15); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+    .challenge-icon i { font-size: 1.15rem; color: var(--accent); }
     .challenge-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 7px; }
     .challenge-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
 
@@ -654,7 +655,7 @@
       <span class="dot"></span>
       <span data-i18n="hero.badge">Disponible para proyectos</span>
     </div>
-    <h1 class="hero-name">Gustavo<br>Gutiérrez</h1>
+    <h1 class="hero-name">Gustavo<br>Gutierrez</h1>
     <p class="hero-role" data-i18n="hero.role">Full Stack Developer</p>
     <p class="hero-desc" data-i18n="hero.desc">
       Construyo sistemas web escalables, APIs robustas y experiencias de usuario fluidas.
@@ -690,7 +691,7 @@
 
   <div class="hero-right" data-aos="fade-left" data-aos-duration="700" data-aos-delay="100">
     <div class="hero-photo-wrap">
-      <img src="assets/gus-hero.png" alt="Gustavo Gutiérrez" class="hero-photo" loading="eager" />
+      <img src="assets/gus-hero.png" alt="Gustavo Gutierrez" class="hero-photo" loading="eager" />
     </div>
   </div>
 </section>
@@ -717,7 +718,7 @@
       <ul class="about-contact-list">
         <li><i class="bi bi-geo-alt-fill"></i> Cancún, México <span class="about-remote-badge" data-i18n="about.remote">(Remote)</span></li>
         <li><i class="bi bi-telephone-fill"></i> <a href="tel:+529983490952">(+52) 998 349 0952</a></li>
-        <li><i class="bi bi-envelope-fill"></i> <a href="mailto:gutierrezgustavocanul@gmail.com">gutierrezgustavocanul@gmail.com</a></li>
+        <li><i class="bi bi-envelope-fill"></i> <a href="mailto:Gutierrezgustavocanul@gmail.com">Gutierrezgustavocanul@gmail.com</a></li>
       </ul>
 
       <p class="about-edu-label" data-i18n="about.edu.label">Educación</p>
@@ -745,9 +746,9 @@
 
       <div class="socials-row" style="margin-top:24px;">
         <a href="https://github.com/GussGtz" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub"><i class="bi bi-github"></i></a>
-        <a href="https://www.linkedin.com/in/gustavo-gutierrez-canul-607341267/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        <a href="https://www.linkedin.com/in/gustavo-Gutierrez-canul-607341267/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
         <a href="https://twitter.com/GustavoGtzzz" target="_blank" rel="noopener" class="social-btn" aria-label="Twitter / X"><i class="bi bi-twitter-x"></i></a>
-        <a href="mailto:gutierrezgustavocanul@gmail.com" class="social-btn" aria-label="Email"><i class="bi bi-envelope"></i></a>
+        <a href="mailto:Gutierrezgustavocanul@gmail.com" class="social-btn" aria-label="Email"><i class="bi bi-envelope"></i></a>
         <a href="./assets/CV GUSTAVO.pdf" target="_blank" rel="noopener" class="social-btn" aria-label="CV"><i class="bi bi-file-earmark-person"></i></a>
       </div>
     </div>
@@ -1322,25 +1323,25 @@
   <div class="challenges-grid" data-aos="fade-up" data-aos-delay="120">
 
     <div class="challenge-card">
-      <div class="challenge-icon">⚡</div>
+      <div class="challenge-icon"><i class="bi bi-lightning-charge-fill"></i></div>
       <div class="challenge-title" data-i18n="ch1.title">Sincronización en Tiempo Real</div>
       <p class="challenge-desc" data-i18n="ch1.desc">Implementé WebSockets para actualización en vivo de pedidos y KPIs entre múltiples clientes conectados simultáneamente en SIGEP-GC.</p>
     </div>
 
     <div class="challenge-card">
-      <div class="challenge-icon">📍</div>
+      <div class="challenge-icon"><i class="bi bi-geo-alt-fill"></i></div>
       <div class="challenge-title" data-i18n="ch2.title">GPS en Segundo Plano (Android)</div>
       <p class="challenge-desc" data-i18n="ch2.desc">Resolví el tracking de ubicación en background con Capacitor 8, gestionando restricciones de batería y permisos de Android para el seguimiento continuo de entregas.</p>
     </div>
 
     <div class="challenge-card">
-      <div class="challenge-icon">🎮</div>
+      <div class="challenge-icon"><i class="bi bi-controller"></i></div>
       <div class="challenge-title" data-i18n="ch3.title">Optimización de Rendimiento en Unity</div>
       <p class="challenge-desc" data-i18n="ch3.desc">Optimicé física 2D, IA de enemigos y sistemas de partículas en Etaria para mantener framerate estable en hardware de gama baja (Intel HD 3000).</p>
     </div>
 
     <div class="challenge-card">
-      <div class="challenge-icon">🔐</div>
+      <div class="challenge-icon"><i class="bi bi-shield-lock-fill"></i></div>
       <div class="challenge-title" data-i18n="ch4.title">Autenticación JWT con Roles</div>
       <p class="challenge-desc" data-i18n="ch4.desc">Diseñé un sistema de autenticación con roles diferenciados (admin/colaborador) usando JWT y middleware de Express para control granular de accesos por departamento.</p>
     </div>
@@ -1367,7 +1368,7 @@
           <div class="ci-icon"><i class="bi bi-envelope"></i></div>
           <div class="ci-text">
             <small data-i18n="contact.email.label">Email</small>
-            <a href="mailto:gutierrezgustavocanul@gmail.com">gutierrezgustavocanul@gmail.com</a>
+            <a href="mailto:Gutierrezgustavocanul@gmail.com">Gutierrezgustavocanul@gmail.com</a>
           </div>
         </div>
         <div class="contact-item">
@@ -1394,7 +1395,7 @@
         <a href="./assets/CV GUSTAVO.pdf" target="_blank" rel="noopener" class="quick-action">
           <i class="bi bi-file-earmark-arrow-down"></i> <span data-i18n="contact.quick.cv">Descargar CV</span>
         </a>
-        <a href="https://www.linkedin.com/in/gustavo-gutierrez-canul-607341267/" target="_blank" rel="noopener" class="quick-action">
+        <a href="https://www.linkedin.com/in/gustavo-Gutierrez-canul-607341267/" target="_blank" rel="noopener" class="quick-action">
           <i class="bi bi-linkedin"></i> <span data-i18n="contact.quick.li">Ver LinkedIn</span>
         </a>
       </div>
@@ -1460,9 +1461,9 @@
         <p data-i18n="footer.desc">Full Stack Developer especializado en Node.js y JavaScript. Construyo sistemas escalables con código limpio y buenas prácticas.</p>
         <div class="footer-social">
           <a href="https://github.com/GussGtz" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub"><i class="bi bi-github"></i></a>
-          <a href="https://www.linkedin.com/in/gustavo-gutierrez-canul-607341267/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          <a href="https://www.linkedin.com/in/gustavo-Gutierrez-canul-607341267/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
           <a href="https://twitter.com/GustavoGtzzz" target="_blank" rel="noopener" class="social-btn" aria-label="Twitter/X"><i class="bi bi-twitter-x"></i></a>
-          <a href="mailto:gutierrezgustavocanul@gmail.com" class="social-btn" aria-label="Email"><i class="bi bi-envelope"></i></a>
+          <a href="mailto:Gutierrezgustavocanul@gmail.com" class="social-btn" aria-label="Email"><i class="bi bi-envelope"></i></a>
         </div>
       </div>
       <div class="footer-col">
@@ -1481,14 +1482,14 @@
       </div>
       <div class="footer-col">
         <h5 data-i18n="footer.col3">Contacto</h5>
-        <a href="mailto:gutierrezgustavocanul@gmail.com">gutierrezgustavocanul@gmail.com</a>
+        <a href="mailto:Gutierrezgustavocanul@gmail.com">Gutierrezgustavocanul@gmail.com</a>
         <a href="tel:+529983490952">(+52) 998 349 0952</a>
         <a href="https://wa.me/529983490952" target="_blank" rel="noopener" data-i18n="contact.quick.wa">Chat por WhatsApp</a>
         <a href="./assets/CV GUSTAVO.pdf" target="_blank" rel="noopener" data-i18n="contact.quick.cv">Descargar CV</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <span data-i18n="footer.copy">© 2025 Gustavo Gutiérrez · Cancún, México</span>
+      <span data-i18n="footer.copy">© 2025 Gustavo Gutierrez · Cancún, México</span>
       <a href="#top" data-i18n="footer.up">Volver arriba ↑</a>
     </div>
   </div>
@@ -1706,7 +1707,7 @@ const T = {
     'footer.col1':  'Servicios',
     'footer.col2':  'Tecnologías',
     'footer.col3':  'Contacto',
-    'footer.copy':  '© 2025 Gustavo Gutiérrez · Cancún, México',
+    'footer.copy':  '© 2025 Gustavo Gutierrez · Cancún, México',
     'footer.up':    'Volver arriba ↑',
     /* Toasts */
     'toast.warn.title': 'Campos incompletos',
@@ -1913,7 +1914,7 @@ const T = {
     'footer.col1':  'Services',
     'footer.col2':  'Technologies',
     'footer.col3':  'Contact',
-    'footer.copy':  '© 2025 Gustavo Gutiérrez · Cancún, México',
+    'footer.copy':  '© 2025 Gustavo Gutierrez · Cancún, México',
     'footer.up':    'Back to top ↑',
     /* Toasts */
     'toast.warn.title': 'Incomplete fields',
@@ -1960,8 +1961,8 @@ function applyLang(lang) {
 
   // Update page title
   document.title = lang === 'es'
-    ? 'Gustavo Gutiérrez · Full Stack Developer'
-    : 'Gustavo Gutiérrez · Full Stack Developer';
+    ? 'Gustavo Gutierrez · Full Stack Developer'
+    : 'Gustavo Gutierrez · Full Stack Developer';
 
   // Update meta description
   const metaDesc = document.querySelector('meta[name="description"]');
