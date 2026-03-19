@@ -337,6 +337,29 @@
     body.light .svc-btn { background: #008a50; color: #fff; }
 
     /* ============================================================
+       SOFT SKILLS
+    ============================================================ */
+    .ss-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+    .ss-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+    .ss-badge { display: flex; align-items: center; gap: 7px; background: rgba(0,255,153,0.07); border: 1px solid rgba(0,255,153,0.18); color: var(--text); font-size: 0.82rem; font-weight: 600; padding: 7px 14px; border-radius: 20px; transition: var(--transition); }
+    .ss-badge:hover { background: rgba(0,255,153,0.13); border-color: rgba(0,255,153,0.35); }
+    .ss-badge i { color: var(--accent); font-size: 0.9rem; }
+    .ss-traits-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; }
+    .ss-traits-title { font-size: 0.88rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); margin-bottom: 14px; }
+    .ss-traits-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .ss-traits-list li { display: flex; align-items: flex-start; gap: 9px; font-size: 0.85rem; line-height: 1.5; }
+    .ss-traits-list li i { color: var(--accent); flex-shrink: 0; margin-top: 3px; }
+    .ss-achievement { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px 24px; }
+    .ss-achievement-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px; }
+    .ss-achievement-title { font-size: 1rem; font-weight: 700; margin: 0 0 4px; }
+    .ss-achievement-sub { font-size: 0.77rem; color: var(--muted); }
+    .ss-achievement-desc { font-size: 0.85rem; line-height: 1.7; color: var(--text); margin-bottom: 18px; }
+    .ss-ach-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .ss-ach-list li { display: flex; align-items: flex-start; gap: 9px; font-size: 0.83rem; line-height: 1.5; }
+    .ss-ach-list li i { color: var(--accent); flex-shrink: 0; margin-top: 3px; }
+    @media (max-width: 768px) { .ss-wrapper { grid-template-columns: 1fr; } }
+
+    /* ============================================================
        EXPERIENCE
     ============================================================ */
     .exp-timeline { position: relative; padding-left: 28px; }
@@ -1046,6 +1069,72 @@
 
 
 <!-- ============================================================
+     SOFT SKILLS
+============================================================ -->
+<section id="softskills" class="container">
+  <span class="section-label" data-aos="fade-up" data-i18n="ss.label">Habilidades Blandas</span>
+  <h2 class="section-title" data-aos="fade-up" data-aos-delay="50" data-i18n="ss.title">Liderazgo &amp; Soft Skills</h2>
+  <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100" data-i18n="ss.subtitle">
+    Habilidades humanas que complementan el stack técnico y marcan la diferencia en cada proyecto.
+  </p>
+
+  <div class="ss-wrapper" data-aos="fade-up" data-aos-delay="120">
+
+    <!-- Izquierda: badges + estilo de liderazgo -->
+    <div>
+      <div class="ss-badges">
+        <span class="ss-badge"><i class="bi bi-people-fill"></i> <span data-i18n="ss.sk1">Liderazgo</span></span>
+        <span class="ss-badge"><i class="bi bi-chat-dots-fill"></i> <span data-i18n="ss.sk2">Comunicación efectiva</span></span>
+        <span class="ss-badge"><i class="bi bi-person-lines-fill"></i> <span data-i18n="ss.sk3">Trabajo en equipo</span></span>
+        <span class="ss-badge"><i class="bi bi-lightbulb-fill"></i> <span data-i18n="ss.sk4">Resolución de problemas</span></span>
+        <span class="ss-badge"><i class="bi bi-arrow-repeat"></i> <span data-i18n="ss.sk5">Adaptabilidad</span></span>
+        <span class="ss-badge"><i class="bi bi-heart-pulse-fill"></i> <span data-i18n="ss.sk6">Inteligencia emocional</span></span>
+        <span class="ss-badge"><i class="bi bi-diagram-3-fill"></i> <span data-i18n="ss.sk7">Toma de decisiones</span></span>
+        <span class="ss-badge"><i class="bi bi-bullseye"></i> <span data-i18n="ss.sk8">Pensamiento estratégico</span></span>
+        <span class="ss-badge"><i class="bi bi-trophy-fill"></i> <span data-i18n="ss.sk9">Capacidad de motivar</span></span>
+      </div>
+
+      <div class="ss-traits-card">
+        <p class="ss-traits-title" data-i18n="ss.traits.title">Estilo de liderazgo</p>
+        <ul class="ss-traits-list">
+          <li><i class="bi bi-check-circle-fill"></i><span data-i18n="ss.t1">Dice NO a requerimientos mal planteados</span></li>
+          <li><i class="bi bi-check-circle-fill"></i><span data-i18n="ss.t2">No micromanagea — confía plenamente en su equipo</span></li>
+          <li><i class="bi bi-check-circle-fill"></i><span data-i18n="ss.t3">Integra personas al equipo con facilidad</span></li>
+          <li><i class="bi bi-check-circle-fill"></i><span data-i18n="ss.t4">Aprende constantemente y comparte conocimiento</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Derecha: logro destacado -->
+    <div class="ss-achievement">
+      <div class="ss-achievement-header">
+        <div class="svc-icon-box" style="width:46px;height:46px;flex-shrink:0">
+          <i class="bi bi-controller fs-5" style="color:var(--accent)"></i>
+        </div>
+        <div>
+          <h3 class="ss-achievement-title" data-i18n="ss.ach.title">Expo Universitaria · Unity &amp; Videojuegos</h3>
+          <span class="ss-achievement-sub" data-i18n="ss.ach.sub">Universidad Tecnológica de Cancún · 1 cuatrimestre</span>
+        </div>
+      </div>
+      <p class="ss-achievement-desc" data-i18n="ss.ach.desc">
+        Lideré la planificación, organización y ejecución de una exposición universitaria de videojuegos con Unity,
+        gestionando todas las fases: logística del evento, coordinación de equipos multidisciplinarios,
+        vinculación con patrocinadores y diseño de dinámicas interactivas. Audiencia: estudiantes, docentes,
+        directivos (rectoría) y público general.
+      </p>
+      <ul class="ss-ach-list">
+        <li><i class="bi bi-star-fill"></i><span data-i18n="ss.ach.l1">Patrocinadores obtenidos — incluye Battle Karts Cancún (go-karts + realidad virtual)</span></li>
+        <li><i class="bi bi-star-fill"></i><span data-i18n="ss.ach.l2">Torneos, exhibiciones interactivas y experiencias con Unity</span></li>
+        <li><i class="bi bi-star-fill"></i><span data-i18n="ss.ach.l3">Gestión logística integral: espacios, flujo de asistentes, áreas de alimentos</span></li>
+        <li><i class="bi bi-star-fill"></i><span data-i18n="ss.ach.l4">Demostró: liderazgo, negociación con empresas y planificación estratégica a gran escala</span></li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
      PROYECTOS
 ============================================================ -->
 <section id="projects" class="container">
@@ -1392,6 +1481,27 @@ const T = {
     'skills.cat2': 'Bases de Datos',
     'skills.cat3': 'Frontend & UI',
     'skills.cat4': 'Herramientas',
+    /* Soft Skills */
+    'ss.label':       'Habilidades Blandas',
+    'ss.title':       'Liderazgo & Soft Skills',
+    'ss.subtitle':    'Habilidades humanas que complementan el stack técnico y marcan la diferencia en cada proyecto.',
+    'ss.sk1': 'Liderazgo',           'ss.sk2': 'Comunicación efectiva',
+    'ss.sk3': 'Trabajo en equipo',   'ss.sk4': 'Resolución de problemas',
+    'ss.sk5': 'Adaptabilidad',       'ss.sk6': 'Inteligencia emocional',
+    'ss.sk7': 'Toma de decisiones',  'ss.sk8': 'Pensamiento estratégico',
+    'ss.sk9': 'Capacidad de motivar',
+    'ss.traits.title': 'Estilo de liderazgo',
+    'ss.t1': 'Dice NO a requerimientos mal planteados',
+    'ss.t2': 'No micromanagea — confía plenamente en su equipo',
+    'ss.t3': 'Integra personas al equipo con facilidad',
+    'ss.t4': 'Aprende constantemente y comparte conocimiento',
+    'ss.ach.title': 'Expo Universitaria · Unity & Videojuegos',
+    'ss.ach.sub':   'Universidad Tecnológica de Cancún · 1 cuatrimestre',
+    'ss.ach.desc':  'Lideré la planificación, organización y ejecución de una exposición universitaria de videojuegos con Unity, gestionando todas las fases: logística del evento, coordinación de equipos multidisciplinarios, vinculación con patrocinadores y diseño de dinámicas interactivas. Audiencia: estudiantes, docentes, directivos (rectoría) y público general.',
+    'ss.ach.l1': 'Patrocinadores obtenidos — incluye Battle Karts Cancún (go-karts + realidad virtual)',
+    'ss.ach.l2': 'Torneos, exhibiciones interactivas y experiencias con Unity',
+    'ss.ach.l3': 'Gestión logística integral: espacios, flujo de asistentes, áreas de alimentos',
+    'ss.ach.l4': 'Demostró: liderazgo, negociación con empresas y planificación estratégica a gran escala',
     /* Projects */
     'proj.label':    'Proyectos',
     'proj.title':    'Trabajo Destacado',
@@ -1544,6 +1654,27 @@ const T = {
     'skills.cat2': 'Databases',
     'skills.cat3': 'Frontend & UI',
     'skills.cat4': 'Tools',
+    /* Soft Skills */
+    'ss.label':       'Soft Skills',
+    'ss.title':       'Leadership & Soft Skills',
+    'ss.subtitle':    'Human skills that complement the tech stack and make the difference in every project.',
+    'ss.sk1': 'Leadership',             'ss.sk2': 'Effective communication',
+    'ss.sk3': 'Teamwork',               'ss.sk4': 'Problem solving',
+    'ss.sk5': 'Adaptability',           'ss.sk6': 'Emotional intelligence',
+    'ss.sk7': 'Decision making',        'ss.sk8': 'Strategic thinking',
+    'ss.sk9': 'Ability to motivate',
+    'ss.traits.title': 'Leadership style',
+    'ss.t1': 'Says NO to poorly defined requirements',
+    'ss.t2': 'Does not micromanage — fully trusts the team',
+    'ss.t3': 'Integrates people into the team with ease',
+    'ss.t4': 'Constantly learns and shares knowledge',
+    'ss.ach.title': 'University Expo · Unity & Video Games',
+    'ss.ach.sub':   'Universidad Tecnológica de Cancún · 1 semester',
+    'ss.ach.desc':  'Led the planning, organization and execution of a university video game expo with Unity, managing all phases: event logistics, multidisciplinary team coordination, sponsor outreach and design of interactive activities. Audience: students, teachers, directors (rector) and general public.',
+    'ss.ach.l1': 'Sponsors acquired — including Battle Karts Cancún (go-karts + virtual reality)',
+    'ss.ach.l2': 'Tournaments, interactive exhibitions and Unity experiences',
+    'ss.ach.l3': 'Full logistics management: spaces, attendee flow, food areas',
+    'ss.ach.l4': 'Demonstrated: leadership, business negotiation and large-scale strategic planning',
     /* Projects */
     'proj.label':    'Projects',
     'proj.title':    'Featured Work',
