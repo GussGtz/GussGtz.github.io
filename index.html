@@ -358,6 +358,15 @@
     .ss-ach-list li { display: flex; align-items: flex-start; gap: 9px; font-size: 0.83rem; line-height: 1.5; }
     .ss-ach-list li i { color: var(--accent); flex-shrink: 0; margin-top: 3px; }
     @media (max-width: 768px) { .ss-wrapper { grid-template-columns: 1fr; } }
+    .ss-gamedev { margin-top: 44px; }
+    .ss-gamedev-intro { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 22px; }
+    .ss-phases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(185px,1fr)); gap: 14px; }
+    .ss-phase { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; transition: var(--transition); }
+    .ss-phase:hover { border-color: rgba(0,255,153,0.22); transform: translateY(-2px); }
+    .ss-phase-num { font-size: 0.7rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px; }
+    .ss-phase-title { font-size: 0.88rem; font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 7px; }
+    .ss-phase-title i { color: var(--accent); font-size: 1rem; }
+    .ss-phase-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.55; }
 
     /* ============================================================
        EXPERIENCE
@@ -1131,6 +1140,65 @@
     </div>
 
   </div>
+
+  <!-- Fases de desarrollo de videojuegos -->
+  <div class="ss-gamedev" data-aos="fade-up" data-aos-delay="80">
+    <div class="ss-gamedev-intro">
+      <div class="svc-icon-box" style="width:46px;height:46px;flex-shrink:0">
+        <i class="bi bi-joystick fs-5" style="color:var(--accent)"></i>
+      </div>
+      <div>
+        <h3 style="font-size:1rem;font-weight:700;margin:0 0 4px" data-i18n="gd.title">Conocimiento en Desarrollo de Videojuegos</h3>
+        <p style="font-size:0.82rem;color:var(--muted);margin:0" data-i18n="gd.sub">Experiencia desde cero · Unity · C# · Ciclo completo de producción</p>
+      </div>
+    </div>
+    <div class="ss-phases-grid">
+
+      <div class="ss-phase">
+        <div class="ss-phase-num" data-i18n="gd.p1.num">Fase 1</div>
+        <div class="ss-phase-title"><i class="bi bi-lightbulb-fill"></i><span data-i18n="gd.p1.title">Idea &amp; Conceptualización</span></div>
+        <p class="ss-phase-desc" data-i18n="gd.p1.desc">Definir tipo de juego, plataforma, público objetivo e inspiraciones.</p>
+      </div>
+
+      <div class="ss-phase">
+        <div class="ss-phase-num" data-i18n="gd.p2.num">Fase 2</div>
+        <div class="ss-phase-title"><i class="bi bi-file-text-fill"></i><span data-i18n="gd.p2.title">Game Design (GDD)</span></div>
+        <p class="ss-phase-desc" data-i18n="gd.p2.desc">Mecánicas, historia, personajes, niveles y sistema de progreso documentados.</p>
+      </div>
+
+      <div class="ss-phase">
+        <div class="ss-phase-num" data-i18n="gd.p3.num">Fase 3</div>
+        <div class="ss-phase-title"><i class="bi bi-tools"></i><span data-i18n="gd.p3.title">Preproducción</span></div>
+        <p class="ss-phase-desc" data-i18n="gd.p3.desc">Elección del motor (Unity), lenguaje (C#), herramientas y prototipos iniciales.</p>
+      </div>
+
+      <div class="ss-phase">
+        <div class="ss-phase-num" data-i18n="gd.p4.num">Fase 4</div>
+        <div class="ss-phase-title"><i class="bi bi-code-slash"></i><span data-i18n="gd.p4.title">Producción</span></div>
+        <p class="ss-phase-desc" data-i18n="gd.p4.desc">Programación, arte, animaciones y audio. La etapa más larga del ciclo.</p>
+      </div>
+
+      <div class="ss-phase">
+        <div class="ss-phase-num" data-i18n="gd.p5.num">Fase 5</div>
+        <div class="ss-phase-title"><i class="bi bi-bug-fill"></i><span data-i18n="gd.p5.title">Testing</span></div>
+        <p class="ss-phase-desc" data-i18n="gd.p5.desc">QA interno, detección de bugs, rendimiento y beta testing con usuarios reales.</p>
+      </div>
+
+      <div class="ss-phase">
+        <div class="ss-phase-num" data-i18n="gd.p6.num">Fase 6</div>
+        <div class="ss-phase-title"><i class="bi bi-rocket-takeoff-fill"></i><span data-i18n="gd.p6.title">Lanzamiento</span></div>
+        <p class="ss-phase-desc" data-i18n="gd.p6.desc">Publicación en tiendas (Steam, Play Store), marketing y tráiler.</p>
+      </div>
+
+      <div class="ss-phase">
+        <div class="ss-phase-num" data-i18n="gd.p7.num">Fase 7</div>
+        <div class="ss-phase-title"><i class="bi bi-arrow-clockwise"></i><span data-i18n="gd.p7.title">Post-lanzamiento</span></div>
+        <p class="ss-phase-desc" data-i18n="gd.p7.desc">Actualizaciones, corrección de bugs, DLC y feedback continuo de usuarios.</p>
+      </div>
+
+    </div>
+  </div>
+
 </section>
 
 
@@ -1502,6 +1570,23 @@ const T = {
     'ss.ach.l2': 'Torneos, exhibiciones interactivas y experiencias con Unity',
     'ss.ach.l3': 'Gestión logística integral: espacios, flujo de asistentes, áreas de alimentos',
     'ss.ach.l4': 'Demostró: liderazgo, negociación con empresas y planificación estratégica a gran escala',
+    /* Game Dev */
+    'gd.title': 'Conocimiento en Desarrollo de Videojuegos',
+    'gd.sub':   'Experiencia desde cero · Unity · C# · Ciclo completo de producción',
+    'gd.p1.num': 'Fase 1', 'gd.p1.title': 'Idea & Conceptualización',
+    'gd.p1.desc': 'Definir tipo de juego, plataforma, público objetivo e inspiraciones.',
+    'gd.p2.num': 'Fase 2', 'gd.p2.title': 'Game Design (GDD)',
+    'gd.p2.desc': 'Mecánicas, historia, personajes, niveles y sistema de progreso documentados.',
+    'gd.p3.num': 'Fase 3', 'gd.p3.title': 'Preproducción',
+    'gd.p3.desc': 'Elección del motor (Unity), lenguaje (C#), herramientas y prototipos iniciales.',
+    'gd.p4.num': 'Fase 4', 'gd.p4.title': 'Producción',
+    'gd.p4.desc': 'Programación, arte, animaciones y audio. La etapa más larga del ciclo.',
+    'gd.p5.num': 'Fase 5', 'gd.p5.title': 'Testing',
+    'gd.p5.desc': 'QA interno, detección de bugs, rendimiento y beta testing con usuarios reales.',
+    'gd.p6.num': 'Fase 6', 'gd.p6.title': 'Lanzamiento',
+    'gd.p6.desc': 'Publicación en tiendas (Steam, Play Store), marketing y tráiler.',
+    'gd.p7.num': 'Fase 7', 'gd.p7.title': 'Post-lanzamiento',
+    'gd.p7.desc': 'Actualizaciones, corrección de bugs, DLC y feedback continuo de usuarios.',
     /* Projects */
     'proj.label':    'Proyectos',
     'proj.title':    'Trabajo Destacado',
@@ -1675,6 +1760,23 @@ const T = {
     'ss.ach.l2': 'Tournaments, interactive exhibitions and Unity experiences',
     'ss.ach.l3': 'Full logistics management: spaces, attendee flow, food areas',
     'ss.ach.l4': 'Demonstrated: leadership, business negotiation and large-scale strategic planning',
+    /* Game Dev */
+    'gd.title': 'Video Game Development Knowledge',
+    'gd.sub':   'Experience from scratch · Unity · C# · Full production cycle',
+    'gd.p1.num': 'Phase 1', 'gd.p1.title': 'Idea & Conceptualization',
+    'gd.p1.desc': 'Define game type, platform, target audience and references.',
+    'gd.p2.num': 'Phase 2', 'gd.p2.title': 'Game Design (GDD)',
+    'gd.p2.desc': 'Mechanics, story, characters, levels and progression system documented.',
+    'gd.p3.num': 'Phase 3', 'gd.p3.title': 'Pre-production',
+    'gd.p3.desc': 'Engine choice (Unity), language (C#), tools and initial prototypes.',
+    'gd.p4.num': 'Phase 4', 'gd.p4.title': 'Production',
+    'gd.p4.desc': 'Programming, art, animations and audio. The longest stage of the cycle.',
+    'gd.p5.num': 'Phase 5', 'gd.p5.title': 'Testing',
+    'gd.p5.desc': 'Internal QA, bug detection, performance and beta testing with real users.',
+    'gd.p6.num': 'Phase 6', 'gd.p6.title': 'Launch',
+    'gd.p6.desc': 'Publishing on stores (Steam, Play Store), marketing and trailer.',
+    'gd.p7.num': 'Phase 7', 'gd.p7.title': 'Post-launch',
+    'gd.p7.desc': 'Updates, bug fixes, DLC and continuous user feedback.',
     /* Projects */
     'proj.label':    'Projects',
     'proj.title':    'Featured Work',
