@@ -641,6 +641,56 @@
     @keyframes spinAnim { to { transform: rotate(360deg); } }
 
     /* ============================================================
+       CTA BANNER
+    ============================================================ */
+    .cta-banner {
+      position: relative; overflow: hidden; isolation: isolate;
+      width: 100%;
+      padding: 96px max(var(--gap), calc((100vw - var(--max-width)) / 2));
+      text-align: center;
+      background: var(--bg);
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute; inset: 0; z-index: -1;
+      background:
+        radial-gradient(ellipse 820px 420px at 50% 50%, rgba(0,180,100,0.10), transparent),
+        radial-gradient(ellipse 400px 300px at 20% 80%, rgba(0,130,80,0.07), transparent),
+        radial-gradient(ellipse 360px 260px at 80% 20%, rgba(0,200,120,0.06), transparent);
+    }
+    .cta-avail {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 16px; border-radius: 999px;
+      border: 1px solid rgba(0,180,100,0.35);
+      background: rgba(0,180,100,0.08);
+      color: var(--accent); font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.5px; margin-bottom: 28px;
+    }
+    .cta-avail-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--accent);
+      animation: shPls 2.2s ease-in-out infinite;
+    }
+    .cta-headline {
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-weight: 800; line-height: 1.1;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, var(--text) 30%, var(--accent) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .cta-sub {
+      color: var(--muted); font-size: 1.05rem; line-height: 1.7;
+      max-width: 540px; margin: 0 auto 40px;
+    }
+    .cta-actions { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+    /* light mode */
+    body.light .cta-banner::before {
+      background:
+        radial-gradient(ellipse 820px 420px at 50% 50%, rgba(0,180,100,0.07), transparent),
+        radial-gradient(ellipse 400px 300px at 20% 80%, rgba(0,130,80,0.05), transparent);
+    }
+
+    /* ============================================================
        FOOTER
     ============================================================ */
     footer { background: var(--footer-bg); border-top: 1px solid var(--border); padding: 64px var(--gap) 32px; transition: background 0.3s ease; }
@@ -1688,6 +1738,39 @@
 
 
 <!-- ============================================================
+     CTA BANNER
+============================================================ -->
+<div class="cta-banner">
+  <!-- shapes -->
+  <div class="sh-wrap" style="top:-80px;left:-120px;pointer-events:none;z-index:-1;" aria-hidden="true"><div class="sh-ring op5" style="width:320px;height:320px;animation:shRCW 60s linear infinite;"></div></div>
+  <div class="sh-wrap" style="bottom:-60px;right:-100px;pointer-events:none;z-index:-1;" aria-hidden="true"><div class="sh-ring dashed op5" style="width:280px;height:280px;animation:shRCC 48s linear infinite;"></div></div>
+  <div class="sh-wrap" style="top:20%;right:6%;animation:shF1 11s ease-in-out infinite;pointer-events:none;z-index:-1;" aria-hidden="true"><div class="sh-diamond op7" style="width:40px;height:40px;"></div></div>
+  <div class="sh-wrap" style="bottom:25%;left:5%;animation:shF3 13s ease-in-out infinite;pointer-events:none;z-index:-1;" aria-hidden="true"><div class="sh-diamond op5" style="width:32px;height:32px;"></div></div>
+  <div class="sh-wrap" style="top:15%;left:8%;animation:shF2 9s ease-in-out infinite;pointer-events:none;z-index:-1;" aria-hidden="true"><div class="sh-cross op7" style="width:22px;height:22px;"></div></div>
+
+  <div class="cta-avail" data-aos="fade-up">
+    <span class="cta-avail-dot"></span>
+    <span data-i18n="cta.avail">Disponible para freelance &amp; trabajo remoto</span>
+  </div>
+  <h2 class="cta-headline" data-aos="fade-up" data-aos-delay="60" data-i18n="cta.headline">Construyamos algo grande juntos</h2>
+  <p class="cta-sub" data-aos="fade-up" data-aos-delay="120" data-i18n="cta.sub">
+    ¿Tienes un proyecto, una idea o necesitas reforzar tu equipo? Hablemos —
+    respondo en menos de 24 horas.
+  </p>
+  <div class="cta-actions" data-aos="fade-up" data-aos-delay="180">
+    <a href="mailto:gutierrezgustavocanul@gmail.com" class="btn-primary" data-ripple>
+      <i class="bi bi-envelope-fill" aria-hidden="true"></i>
+      <span data-i18n="cta.btn1">Escríbeme ahora</span>
+    </a>
+    <a href="./assets/CV GUSTAVO.pdf" download class="btn-outline">
+      <i class="bi bi-download" aria-hidden="true"></i>
+      <span data-i18n="cta.btn2">Descargar CV</span>
+    </a>
+  </div>
+</div>
+
+
+<!-- ============================================================
      FOOTER
 ============================================================ -->
 <footer>
@@ -1939,6 +2022,12 @@ const T = {
     'form.ph.email':   'juan@empresa.com',
     'form.ph.company': 'Mi Empresa SA',
     'form.ph.message': 'Cuéntame sobre tu proyecto, objetivos, plazos y requerimientos...',
+    /* CTA Banner */
+    'cta.avail':   'Disponible para freelance & trabajo remoto',
+    'cta.headline':'Construyamos algo grande juntos',
+    'cta.sub':     '¿Tienes un proyecto, una idea o necesitas reforzar tu equipo? Hablemos — respondo en menos de 24 horas.',
+    'cta.btn1':    'Escríbeme ahora',
+    'cta.btn2':    'Descargar CV',
     /* Footer */
     'footer.desc':  'Full Stack Developer especializado en Node.js, JavaScript y PostgreSQL. Construyo sistemas escalables con código limpio y buenas prácticas.',
     'footer.col1':  'Servicios',
@@ -2142,6 +2231,12 @@ const T = {
     'form.ph.email':   'john@company.com',
     'form.ph.company': 'My Company Inc.',
     'form.ph.message': 'Tell me about your project, goals, timeline and requirements...',
+    /* CTA Banner */
+    'cta.avail':   'Available for freelance & remote work',
+    'cta.headline':'Let\'s build something great together',
+    'cta.sub':     'Have a project, an idea, or need to grow your team? Let\'s talk — I reply within 24 hours.',
+    'cta.btn1':    'Email me now',
+    'cta.btn2':    'Download CV',
     /* Footer */
     'footer.desc':  'Full Stack Developer specialized in Node.js, JavaScript and PostgreSQL. I build scalable systems with clean code and best practices.',
     'footer.col1':  'Services',
