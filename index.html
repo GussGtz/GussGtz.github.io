@@ -420,37 +420,50 @@
     /* ============================================================
        SKILLS
     ============================================================ */
-    .skills-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px,1fr)); gap: 32px; }
+    .skills-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 24px; }
     .skill-category h4 { font-size: 0.77rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1.4px; margin-bottom: 18px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
-    .skill-list { display: flex; flex-direction: column; gap: 14px; }
-    .skill-item { display: flex; align-items: center; justify-content: space-between;
-                  gap: 8px; padding: 10px 14px; border-radius: 10px;
-                  background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.06);
-                  transition: background .25s; }
+    .skill-list { display: flex; flex-direction: column; gap: 8px; }
+    .skill-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 9px 12px; border-radius: 10px;
+      background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.06);
+      transition: background .25s; min-width: 0;
+    }
     .skill-item:hover { background: rgba(255,255,255,.06); }
     body.light .skill-item { background: rgba(0,0,0,.03); border-color: rgba(0,0,0,.07); }
     body.light .skill-item:hover { background: rgba(0,0,0,.06); }
-    .skill-name { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; font-weight: 600; }
-    .skill-name i { font-size: 1.1rem; }
-    .skill-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-    /* 4 segmentos visuales */
-    .skill-segs { display: flex; gap: 4px; align-items: center; }
-    .skill-segs span { width: 16px; height: 4px; border-radius: 2px;
-                       background: rgba(255,255,255,.1); transition: background .4s; }
+    /* Nombre: ocupa todo el espacio disponible, no rompe */
+    .skill-name {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 0.84rem; font-weight: 600;
+      flex: 1 1 auto; min-width: 0;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .skill-name i { font-size: 1rem; flex-shrink: 0; }
+    /* Derecha: segmentos + badge — nunca se encoge */
+    .skill-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    /* 4 segmentos compactos */
+    .skill-segs { display: flex; gap: 3px; align-items: center; }
+    .skill-segs span {
+      width: 12px; height: 3px; border-radius: 2px;
+      background: rgba(255,255,255,.12); transition: background .4s;
+    }
     body.light .skill-segs span { background: rgba(0,0,0,.1); }
     /* Relleno por nivel */
     .skill-item[data-lvl="4"] .skill-segs span:nth-child(-n+4) { background: var(--accent); }
     .skill-item[data-lvl="3"] .skill-segs span:nth-child(-n+3) { background: #4a9eff; }
     .skill-item[data-lvl="2"] .skill-segs span:nth-child(-n+2) { background: #f0a500; }
     .skill-item[data-lvl="1"] .skill-segs span:nth-child(-n+1) { background: #9b9b9b; }
-    /* Badge de nivel */
-    .skill-badge { font-size: .66rem; font-weight: 700; letter-spacing: .07em;
-                   text-transform: uppercase; padding: 3px 9px; border-radius: 20px;
-                   white-space: nowrap; }
-    .badge-4 { color: var(--accent);  background: rgba(0,255,153,.1); border: 1px solid rgba(0,255,153,.25); }
-    .badge-3 { color: #4a9eff;         background: rgba(74,158,255,.1); border: 1px solid rgba(74,158,255,.25); }
-    .badge-2 { color: #f0a500;         background: rgba(240,165,0,.1);  border: 1px solid rgba(240,165,0,.25); }
-    .badge-1 { color: var(--muted);    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); }
+    /* Badge */
+    .skill-badge {
+      font-size: .62rem; font-weight: 700; letter-spacing: .06em;
+      text-transform: uppercase; padding: 2px 8px; border-radius: 20px;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .badge-4 { color: var(--accent); background: rgba(0,255,153,.1);   border: 1px solid rgba(0,255,153,.25); }
+    .badge-3 { color: #4a9eff;       background: rgba(74,158,255,.1);  border: 1px solid rgba(74,158,255,.25); }
+    .badge-2 { color: #f0a500;       background: rgba(240,165,0,.1);   border: 1px solid rgba(240,165,0,.25); }
+    .badge-1 { color: var(--muted);  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); }
 
     /* ============================================================
        ANIMATIONS & MOTION
