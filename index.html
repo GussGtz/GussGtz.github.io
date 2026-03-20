@@ -768,54 +768,73 @@
     .logo { text-shadow: 0 0 18px rgba(0,255,153,0.30); transition: text-shadow 0.3s; }
     .logo:hover { text-shadow: 0 0 28px rgba(0,255,153,0.55); }
 
+    /* ── Mascota: truco mix-blend-mode ─────────────────────────
+       El PNG tiene fondo blanco + trazos negros.
+       background: var(--accent) + mix-blend-mode:multiply en el img:
+         blanco × verde  = verde  (fondo desaparece)
+         negro  × verde  = negro  (trazos quedan oscuros)
+       Resultado: dragón negro sobre círculo verde — máximo contraste
+       y 100% on-brand sin tocar el PNG.                             */
+
     /* Contenedor de marca — logo mascota + texto */
     .brand-wrap {
       display: flex; align-items: center; gap: 9px;
       text-decoration: none; cursor: pointer;
     }
-    /* Imagen mascota en navbar */
+    /* Wrapper circular navbar */
     .brand-mascot {
       width: 36px; height: 36px; border-radius: 50%;
-      background: #fff;
-      border: 2px solid var(--accent);
-      box-shadow: 0 0 10px rgba(0,255,153,0.25);
-      object-fit: cover;
-      flex-shrink: 0;
+      background: var(--accent);
+      border: 2px solid rgba(0,255,153,0.5);
+      box-shadow: 0 0 10px rgba(0,255,153,0.30);
+      overflow: hidden; flex-shrink: 0; display: flex;
+      align-items: center; justify-content: center;
       transition: box-shadow 0.3s, transform 0.3s;
     }
+    .brand-mascot img {
+      width: 88%; height: 88%; object-fit: contain; display: block;
+      mix-blend-mode: multiply;
+    }
     .brand-wrap:hover .brand-mascot {
-      box-shadow: 0 0 18px rgba(0,255,153,0.55);
-      transform: rotate(-8deg) scale(1.07);
+      box-shadow: 0 0 20px rgba(0,255,153,0.65);
+      transform: rotate(-8deg) scale(1.08);
     }
 
-    /* Badge mascota flotante sobre la foto del hero */
+    /* Wrapper badge flotante hero */
     .mascot-badge {
       position: absolute; bottom: -14px; right: -14px; z-index: 5;
       width: 72px; height: 72px; border-radius: 50%;
-      background: #fff;
-      border: 3px solid var(--accent);
-      box-shadow: 0 0 24px rgba(0,255,153,0.35), 0 8px 24px rgba(0,0,0,0.45);
-      object-fit: cover;
+      background: var(--accent);
+      border: 3px solid rgba(0,255,153,0.6);
+      box-shadow: 0 0 28px rgba(0,255,153,0.45), 0 8px 24px rgba(0,0,0,0.45);
+      overflow: hidden; display: flex; align-items: center; justify-content: center;
       animation: floatY 4s ease-in-out infinite;
     }
+    .mascot-badge img {
+      width: 88%; height: 88%; object-fit: contain; display: block;
+      mix-blend-mode: multiply;
+    }
     body.light .mascot-badge {
-      box-shadow: 0 0 18px rgba(0,138,80,0.3), 0 8px 20px rgba(0,0,0,0.12);
+      box-shadow: 0 0 20px rgba(0,138,80,0.4), 0 8px 20px rgba(0,0,0,0.14);
     }
     @media (max-width: 480px) {
       .mascot-badge { width: 52px; height: 52px; bottom: -10px; right: -10px; }
     }
 
-    /* Mascota en footer brand */
+    /* Wrapper footer brand */
     .footer-mascot {
-      width: 44px; height: 44px; border-radius: 50%;
-      background: #fff;
-      border: 2px solid var(--accent);
-      box-shadow: 0 0 12px rgba(0,255,153,0.2);
-      object-fit: cover; display: block;
-      margin-bottom: 12px;
-      transition: box-shadow 0.3s;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid rgba(0,255,153,0.5);
+      box-shadow: 0 0 14px rgba(0,255,153,0.25);
+      overflow: hidden; display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px; transition: box-shadow 0.3s;
     }
-    .footer-mascot:hover { box-shadow: 0 0 22px rgba(0,255,153,0.45); }
+    .footer-mascot img {
+      width: 88%; height: 88%; object-fit: contain; display: block;
+      mix-blend-mode: multiply;
+    }
+    .footer-mascot:hover { box-shadow: 0 0 24px rgba(0,255,153,0.50); }
 
     /* ============================================================
        IMPACT BAND
@@ -1118,7 +1137,9 @@
 ============================================================ -->
 <header id="top">
   <a href="#top" class="brand-wrap">
-    <img src="assets/logodev.png" alt="GussGtz mascot" class="brand-mascot" loading="eager" />
+    <div class="brand-mascot">
+      <img src="assets/logodev.png" alt="GussGtz mascot" loading="eager" />
+    </div>
     <span class="logo">&lt;GussGtz /&gt;</span>
   </a>
 
@@ -1208,7 +1229,9 @@
   <div class="hero-right" data-aos="fade-left" data-aos-duration="700" data-aos-delay="100">
     <div class="hero-photo-wrap">
       <img src="assets/gus-hero.png" alt="Gustavo Gutierrez" class="hero-photo" loading="eager" />
-      <img src="assets/logodev.png" alt="GussGtz logo" class="mascot-badge" loading="eager" />
+      <div class="mascot-badge">
+        <img src="assets/logodev.png" alt="GussGtz logo" loading="eager" />
+      </div>
     </div>
   </div>
 </section>
@@ -2109,7 +2132,9 @@
 
       <!-- Brand -->
       <div class="footer-brand">
-        <img src="assets/logodev.png" alt="GussGtz logo" class="footer-mascot" loading="lazy" />
+        <div class="footer-mascot">
+          <img src="assets/logodev.png" alt="GussGtz logo" loading="lazy" />
+        </div>
         <span class="logo">&lt;GussGtz /&gt;</span>
         <p data-i18n="footer.desc">Full Stack Developer especializado en Node.js, JavaScript y PostgreSQL. Construyo sistemas escalables con código limpio y buenas prácticas.</p>
       </div>
