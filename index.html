@@ -1187,12 +1187,13 @@
 
   <nav aria-label="Navegación principal">
     <ul class="nav-list" id="navList">
-      <li><a href="#about"      class="nav-link" data-i18n="nav.about">Sobre Mí</a></li>
-      <li><a href="#services"   class="nav-link" data-i18n="nav.services">Servicios</a></li>
+      <li><a href="#about"          class="nav-link" data-i18n="nav.about">Sobre Mí</a></li>
+      <li><a href="#services"       class="nav-link" data-i18n="nav.services">Servicios</a></li>
       <li><a href="#experience"     class="nav-link" data-i18n="nav.experience">Experiencia</a></li>
       <li><a href="#certifications" class="nav-link" data-i18n="nav.certs">Certificaciones</a></li>
+      <li><a href="#softskills"     class="nav-link" data-i18n="nav.softskills">Habilidades</a></li>
       <li><a href="#projects"       class="nav-link" data-i18n="nav.projects">Proyectos</a></li>
-      <li><a href="#contact"    class="nav-link" data-i18n="nav.contact">Contacto</a></li>
+      <li><a href="#contact"        class="nav-link" data-i18n="nav.contact">Contacto</a></li>
     </ul>
   </nav>
 
@@ -1249,8 +1250,6 @@
       <div class="stat-item">
         <span class="stat-number">7+</span>
         <span class="stat-label" data-i18n="hero.stat1">Años codificando</span>
-      </div>
-      <div class="stat-item">
       </div>
     </div>
     <div class="hero-cta">
@@ -1935,6 +1934,7 @@
       <div class="project-thumb">
         <img src="assets/videojuego.png" alt="Etaria · RPG de Plataformas 2D" loading="lazy" />
         <div class="project-overlay">
+          <a href="https://max-lara.itch.io/etaria" target="_blank" rel="noopener" class="overlay-btn" aria-label="Ver en itch.io"><i class="bi bi-controller"></i></a>
         </div>
       </div>
       <div class="project-body">
@@ -2265,12 +2265,13 @@
 const T = {
   es: {
     /* Nav */
-    'nav.about':      'Sobre Mí',
-    'nav.services':   'Servicios',
-    'nav.experience': 'Experiencia',
-    'nav.certs':      'Certificaciones',
-    'nav.projects':   'Proyectos',
-    'nav.contact':    'Contacto',
+    'nav.about':       'Sobre Mí',
+    'nav.services':    'Servicios',
+    'nav.experience':  'Experiencia',
+    'nav.certs':       'Certificaciones',
+    'nav.softskills':  'Habilidades',
+    'nav.projects':    'Proyectos',
+    'nav.contact':     'Contacto',
     'nav.hire':       'Contrátame',
     /* Hero */
     'hero.badge': 'Disponible para proyectos',
@@ -2485,12 +2486,13 @@ const T = {
 
   en: {
     /* Nav */
-    'nav.about':      'About',
-    'nav.services':   'Services',
-    'nav.experience': 'Experience',
-    'nav.certs':      'Certifications',
-    'nav.projects':   'Projects',
-    'nav.contact':    'Contact',
+    'nav.about':       'About',
+    'nav.services':    'Services',
+    'nav.experience':  'Experience',
+    'nav.certs':       'Certifications',
+    'nav.softskills':  'Skills',
+    'nav.projects':    'Projects',
+    'nav.contact':     'Contact',
     'nav.hire':       'Hire Me',
     /* Hero */
     'hero.badge': 'Available for projects',
@@ -2818,7 +2820,7 @@ document.addEventListener('click', e => {
 ================================================================ */
 const header   = document.querySelector('header');
 const navLinks = document.querySelectorAll('.nav-link');
-const sections = ['about','services','experience','certifications','skills','projects','contact']
+const sections = ['about','services','experience','certifications','skills','softskills','projects','contact']
   .map(id => document.getElementById(id)).filter(Boolean);
 
 function setActive() {
@@ -2928,18 +2930,26 @@ form.addEventListener('submit', async e => {
   };
 
   try {
-    const res = await fetch('/api/send', {
+    const res = await fetch('https://formsubmit.co/ajax/gutierrezgustavocanul@gmail.com', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        name:     data.name,
+        email:    data.email,
+        company:  data.company  || '—',
+        budget:   data.budget   || '—',
+        message:  data.message,
+        _subject: `Nuevo contacto desde portafolio: ${data.name}`,
+        _captcha: 'false',
+        _template: 'table'
+      })
     });
-    if (res.ok) {
+    const json = await res.json().catch(() => ({ success: res.ok }));
+    if (res.ok && json.success !== false) {
       iziToast.success({ title: dict['toast.ok.title'], message: dict['toast.ok.msg'], position: 'topRight', timeout: 4500, progressBar: true });
       form.reset();
       form.querySelector('input')?.focus();
     } else {
-      const errBody = await res.json().catch(() => ({}));
-      console.error('Send error:', res.status, errBody);
       throw new Error('Error ' + res.status);
     }
   } catch (err) {
