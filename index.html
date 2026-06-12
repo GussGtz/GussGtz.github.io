@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Gustavo Gutierrez · Full Stack Developer</title>
-  <meta name="description" content="Full Stack Developer especializado en Node.js, JavaScript y PostgreSQL. Construyo sistemas escalables y APIs robustas desde Cancún, México." />
+  <meta name="description" content="Full Stack Developer especializado en Node.js, NestJS, Vue.js, PostgreSQL y TypeScript. Construyo sistemas escalables, ERPs y apps en tiempo real desde Cancún, México." />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/logo-gg.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="assets/logo-gg.png" />
   <link rel="apple-touch-icon" href="assets/logo-gg.png" />
@@ -1648,6 +1648,14 @@
           <span class="skill-name"><i class="devicon-flutter-plain colored"></i> Flutter / Dart</span>
           <div class="skill-right"><div class="skill-segs"><span></span><span></span><span></span><span></span></div><span class="skill-badge badge-2" data-i18n="level.intermediate">Intermedio</span></div>
         </div>
+        <div class="skill-item" data-lvl="2">
+          <span class="skill-name"><i class="devicon-nestjs-plain colored"></i> NestJS</span>
+          <div class="skill-right"><div class="skill-segs"><span></span><span></span><span></span><span></span></div><span class="skill-badge badge-2" data-i18n="level.intermediate">Intermedio</span></div>
+        </div>
+        <div class="skill-item" data-lvl="2">
+          <span class="skill-name"><i class="devicon-typescript-plain colored"></i> TypeScript</span>
+          <div class="skill-right"><div class="skill-segs"><span></span><span></span><span></span><span></span></div><span class="skill-badge badge-2" data-i18n="level.intermediate">Intermedio</span></div>
+        </div>
       </div>
     </div>
 
@@ -1700,6 +1708,14 @@
         </div>
         <div class="skill-item" data-lvl="2">
           <span class="skill-name"><i class="devicon-docker-plain colored"></i> Docker</span>
+          <div class="skill-right"><div class="skill-segs"><span></span><span></span><span></span><span></span></div><span class="skill-badge badge-2" data-i18n="level.intermediate">Intermedio</span></div>
+        </div>
+        <div class="skill-item" data-lvl="2">
+          <span class="skill-name"><i class="devicon-prisma-original colored"></i> Prisma ORM</span>
+          <div class="skill-right"><div class="skill-segs"><span></span><span></span><span></span><span></span></div><span class="skill-badge badge-2" data-i18n="level.intermediate">Intermedio</span></div>
+        </div>
+        <div class="skill-item" data-lvl="2">
+          <span class="skill-name"><i class="bi bi-lightning-charge-fill" style="color:#00ff99"></i> Socket.io</span>
           <div class="skill-right"><div class="skill-segs"><span></span><span></span><span></span><span></span></div><span class="skill-badge badge-2" data-i18n="level.intermediate">Intermedio</span></div>
         </div>
       </div>
@@ -2269,10 +2285,10 @@
       <!-- Tecnologías -->
       <div class="footer-col">
         <h5 data-i18n="footer.col2">Tecnologías</h5>
-        <a href="#skills">Node.js · Express</a>
-        <a href="#skills">JavaScript · Vue / React</a>
-        <a href="#skills">PostgreSQL · MySQL</a>
-        <a href="#skills">Flutter · Mobile</a>
+        <a href="#skills">Node.js · NestJS · Express</a>
+        <a href="#skills">JavaScript · TypeScript · Vue / React</a>
+        <a href="#skills">PostgreSQL · MySQL · Prisma</a>
+        <a href="#skills">Flutter · Mobile · Socket.io</a>
       </div>
 
       <!-- Conectar -->
@@ -2554,7 +2570,7 @@ const T = {
     'cta.btn1':    'Escríbeme ahora',
     'cta.btn2':    'Descargar CV',
     /* Footer */
-    'footer.desc':  'Full Stack Developer especializado en Node.js, JavaScript y PostgreSQL. Construyo sistemas escalables con código limpio y buenas prácticas.',
+    'footer.desc':  'Full Stack Developer especializado en Node.js, NestJS, Vue.js y PostgreSQL. Construyo sistemas escalables con código limpio y buenas prácticas.',
     'footer.col1':  'Servicios',
     'footer.col2':  'Tecnologías',
     'footer.col3':  'Conectar',
@@ -2785,7 +2801,7 @@ const T = {
     'cta.btn1':    'Email me now',
     'cta.btn2':    'Download CV',
     /* Footer */
-    'footer.desc':  'Full Stack Developer specialized in Node.js, JavaScript and PostgreSQL. I build scalable systems with clean code and best practices.',
+    'footer.desc':  'Full Stack Developer specialized in Node.js, NestJS, Vue.js and PostgreSQL. I build scalable systems with clean code and best practices.',
     'footer.col1':  'Services',
     'footer.col2':  'Technologies',
     'footer.col3':  'Connect',
@@ -2843,8 +2859,8 @@ function applyLang(lang) {
   const metaDesc = document.querySelector('meta[name="description"]');
   if (metaDesc) {
     metaDesc.content = lang === 'es'
-      ? 'Full Stack Developer especializado en Node.js, JavaScript y PostgreSQL. Construyo sistemas escalables desde Cancún, México.'
-      : 'Full Stack Developer specialized in Node.js, JavaScript and PostgreSQL. Building scalable systems from Cancún, México.';
+      ? 'Full Stack Developer especializado en Node.js, NestJS, Vue.js y PostgreSQL. Construyo sistemas escalables desde Cancún, México.'
+      : 'Full Stack Developer specialized in Node.js, NestJS, Vue.js and PostgreSQL. Building scalable systems from Cancún, México.';
   }
 }
 
