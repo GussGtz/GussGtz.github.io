@@ -216,11 +216,11 @@
       background: #0a0f1e;
     }
 
-    /* Photo centered in hero, shows full body chest-up */
+    /* Photo floating centered between both columns — transparent PNG */
     .hero-center {
       position: absolute;
       top: 0; bottom: 0;
-      left: 8%; right: 30%;
+      left: 22%; right: 28%;
       z-index: 0;
       pointer-events: none;
     }
@@ -231,14 +231,11 @@
       object-position: center bottom;
       display: block;
     }
-    /* Subtle fade on edges */
+    /* Subtle bottom fade only — PNG has no background so sides are clean */
     .hero-center::after {
       content: '';
       position: absolute; inset: 0;
-      background:
-        linear-gradient(to right,  #0a0f1e 0%, transparent 18%, transparent 82%, #0a0f1e 100%),
-        linear-gradient(to bottom, transparent 70%, #0a0f1e 100%),
-        linear-gradient(to top,    transparent 85%, rgba(10,15,30,0.4) 100%);
+      background: linear-gradient(to bottom, transparent 72%, #0a0f1e 100%);
     }
 
     /* LEFT column */
