@@ -326,10 +326,10 @@
     .hero-panel-label {
       font-size: 0.7rem; font-weight: 700; letter-spacing: 2.5px;
       text-transform: uppercase; color: #fff; margin-bottom: 10px;
+    }
+    .hero-panel:nth-child(3) .hero-panel-label {
       animation: labelGlow 3s ease-in-out infinite;
     }
-    .hero-panel:nth-child(2) .hero-panel-label { animation-delay: 1s; }
-    .hero-panel:nth-child(3) .hero-panel-label { animation-delay: 2s; }
     @keyframes labelGlow {
       0%,100% { color: #fff; letter-spacing: 2.5px; }
       50%      { color: var(--accent); letter-spacing: 3.2px; }
