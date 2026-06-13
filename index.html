@@ -249,11 +249,13 @@
       object-position: center bottom;
       display: block;
     }
-    /* Subtle bottom fade only — PNG has no background so sides are clean */
+    /* Fade bottom and lower sides */
     .hero-center::after {
       content: '';
       position: absolute; inset: 0;
-      background: linear-gradient(to bottom, transparent 72%, #0a0f1e 100%);
+      background:
+        linear-gradient(to bottom, transparent 50%, #0d1526 92%),
+        linear-gradient(to right,  #0d1526 0%, transparent 15%, transparent 85%, #0d1526 100%);
     }
 
     /* LEFT column */
