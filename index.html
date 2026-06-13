@@ -1061,55 +1061,56 @@
 
       section { padding: 56px 20px; }
 
-      /* ── Hero mobile: foto arriba, texto abajo ── */
+      /* ── Hero mobile: foto full-width arriba, texto abajo ── */
       .hero {
-        display: flex;
-        flex-direction: column;
+        display: block;
         height: auto;
         min-height: 100svh;
         padding: 0;
         overflow: visible;
       }
 
-      /* La foto ocupa el 45% superior, con traslape hacia abajo */
+      /* Foto: ocupa ancho completo, ~55vh, cover para llenar sin encogerse */
       .hero-center {
         position: relative;
         left: auto; right: auto; top: auto; bottom: auto;
         width: 100%;
-        height: 52svh;
-        min-height: 260px;
-        order: 0;
+        height: 55svh;
+        min-height: 300px;
         z-index: 0;
-        margin-bottom: -32px; /* traslapa con el texto para eliminar el corte */
+      }
+      .hero-photo-wrap { width: 100%; height: 100%; }
+      .hero-photo {
+        object-fit: cover;
+        object-position: center top;
       }
       .hero-center::after {
         background:
-          linear-gradient(to bottom, transparent 25%, var(--bg) 80%),
-          linear-gradient(to right, var(--bg) 0%, transparent 10%, transparent 90%, var(--bg) 100%);
-      }
-      .hero-photo {
-        object-position: center top;
+          linear-gradient(to bottom, transparent 30%, var(--bg) 85%);
       }
 
-      /* Ocultar el duplicado light en mobile (usamos solo uno) */
+      /* Solo mostrar una foto (la dark), en ambos modos */
       .hero-center--light { display: none !important; }
       body.light .hero-center--dark  { display: block !important; }
       body.light .hero-center--light { display: none !important; }
 
-      /* El bloque de texto — encima de la parte baja de la foto gracias al traslape */
+      /* Texto: flujo normal debajo, con margen negativo para solapar el fade */
       .hero-left {
-        order: 1;
-        padding: 0 20px 28px;
-        z-index: 1;
         position: relative;
-        background: var(--bg);
+        z-index: 1;
+        padding: 0 20px 36px;
+        margin-top: -72px;
+        background: transparent;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
       }
-      .available-badge { margin-bottom: 14px; }
-
-      /* Ocultar paneles derecha en mobile */
-      .hero-right { display: none; }
-
+      .hero-left .available-badge { margin-bottom: 16px; }
+      .hero-name { font-size: clamp(1.9rem, 7vw, 2.6rem) !important; }
       .hero-desc  { max-width: 100%; }
+
+      /* Ocultar paneles derecha y orbs en mobile */
+      .hero-right { display: none; }
       .hero-orb-1, .hero-orb-2, .hero-orb-3 { display: none; }
 
       /* ── Impact band — 2 col ── */
