@@ -230,11 +230,6 @@
     body.light .hero-panel p { color: var(--muted); }
     body.light .hero-panel-link { color: var(--text); border-bottom-color: var(--border); }
     body.light .hero-social-row a { color: var(--muted); }
-    body.light .hero-center::after {
-      background:
-        linear-gradient(to bottom, var(--bg-0) 50%, var(--bg) 92%),
-        linear-gradient(to right,  var(--bg) 0%, var(--bg-0) 15%, var(--bg-0) 85%, var(--bg) 100%);
-    }
     /* Dark mode: show dark photo, hide light */
     .hero-center--light { display: none; }
     /* Light mode: show light photo, hide dark */
@@ -256,14 +251,8 @@
       object-position: center bottom;
       display: block;
     }
-    /* Fade bottom and lower sides */
-    .hero-center::after {
-      content: '';
-      position: absolute; inset: 0;
-      background:
-        linear-gradient(to bottom, var(--bg-0) 50%, var(--bg) 92%),
-        linear-gradient(to right,  var(--bg) 0%, var(--bg-0) 15%, var(--bg-0) 85%, var(--bg) 100%);
-    }
+    /* Sin overlay — el PNG tiene fondo transparente y hereda el bg del hero */
+    .hero-center::after { display: none; }
 
     /* LEFT column */
     .hero-left {
@@ -1086,10 +1075,6 @@
       .hero-photo {
         object-fit: cover;
         object-position: center top;
-      }
-      .hero-center::after {
-        background:
-          linear-gradient(to bottom, var(--bg-0) 30%, var(--bg) 85%);
       }
 
       /* Solo mostrar una foto (la dark), en ambos modos */
