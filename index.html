@@ -267,12 +267,27 @@
     .hero-name {
       font-size: clamp(2rem, 3.8vw, 3.4rem); font-weight: 800;
       line-height: 1.08; margin-bottom: 14px;
-      color: #fff; -webkit-text-fill-color: #fff; background: none;
+      background: linear-gradient(90deg, #fff 0%, #fff 40%, var(--accent) 55%, #fff 70%, #fff 100%);
+      background-size: 250% auto;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: nameShimmer 4s ease-in-out infinite;
+    }
+    @keyframes nameShimmer {
+      0%   { background-position: 200% center; }
+      100% { background-position: -50% center; }
     }
     .hero-desc {
       color: rgba(255,255,255,0.62); max-width: 380px;
       margin-bottom: 32px; font-size: 0.9rem; line-height: 1.7;
+      animation: descBreath 6s ease-in-out infinite;
     }
+    @keyframes descBreath {
+      0%,100% { opacity: 0.62; }
+      50%      { opacity: 0.85; }
+    }
+
+    /* Scroll btn — rebote continuo */
     .hero-scroll-btn {
       width: 60px; height: 60px; border-radius: 50%;
       background: var(--accent); color: #0F172A;
@@ -280,8 +295,13 @@
       font-size: 1.3rem; transition: var(--transition);
       border: none; cursor: pointer; text-decoration: none;
       box-shadow: 0 0 30px rgba(56,189,248,0.45);
+      animation: btnBounce 2.2s ease-in-out infinite;
     }
-    .hero-scroll-btn:hover { transform: translateY(5px); box-shadow: 0 0 50px rgba(56,189,248,0.6); }
+    @keyframes btnBounce {
+      0%,100% { transform: translateY(0);   box-shadow: 0 0 30px rgba(56,189,248,0.45); }
+      50%      { transform: translateY(8px); box-shadow: 0 0 48px rgba(56,189,248,0.7);  }
+    }
+    .hero-scroll-btn:hover { animation: none; transform: translateY(8px); box-shadow: 0 0 50px rgba(56,189,248,0.7); }
     .available-badge {
       display: inline-flex; align-items: center; gap: 8px;
       align-self: flex-start;
@@ -306,6 +326,13 @@
     .hero-panel-label {
       font-size: 0.7rem; font-weight: 700; letter-spacing: 2.5px;
       text-transform: uppercase; color: #fff; margin-bottom: 10px;
+      animation: labelGlow 3s ease-in-out infinite;
+    }
+    .hero-panel:nth-child(2) .hero-panel-label { animation-delay: 1s; }
+    .hero-panel:nth-child(3) .hero-panel-label { animation-delay: 2s; }
+    @keyframes labelGlow {
+      0%,100% { color: #fff; letter-spacing: 2.5px; }
+      50%      { color: var(--accent); letter-spacing: 3.2px; }
     }
     .hero-panel p {
       color: rgba(255,255,255,0.58); font-size: 0.88rem; line-height: 1.65; margin-bottom: 14px;
@@ -329,7 +356,20 @@
     .hero-panel-link:hover { color: var(--accent); border-bottom-color: var(--accent); gap: 12px; }
     .hero-panel-link:hover i { animation: none; transform: translateX(0); }
     .hero-social-row { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
-    .hero-social-row a { color: rgba(255,255,255,0.65); font-size: 1.3rem; transition: var(--transition); }
+    .hero-social-row a {
+      color: rgba(255,255,255,0.65); font-size: 1.3rem; transition: var(--transition);
+      animation: iconFloat 2.8s ease-in-out infinite;
+    }
+    .hero-social-row a:nth-child(1) { animation-delay: 0s; }
+    .hero-social-row a:nth-child(2) { animation-delay: 0.4s; }
+    .hero-social-row a:nth-child(3) { animation-delay: 0.8s; }
+    .hero-social-row a:nth-child(4) { animation-delay: 1.2s; }
+    .hero-social-row a:nth-child(5) { animation-delay: 1.6s; }
+    @keyframes iconFloat {
+      0%,100% { transform: translateY(0);    color: rgba(255,255,255,0.65); }
+      50%      { transform: translateY(-5px); color: var(--accent); }
+    }
+    .hero-social-row a:hover { animation: none; transform: translateY(-5px); color: var(--accent); }
     .hero-social-row a:hover { color: var(--accent); transform: translateY(-3px); }
 
     /* compat stubs */
