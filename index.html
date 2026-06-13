@@ -3082,7 +3082,9 @@ function applyTheme(dark) {
   icon.className = dark ? 'bi bi-moon-fill' : 'bi bi-sun-fill';
 }
 
-document.getElementById('themeToggle').addEventListener('click', () => applyTheme(!isDark));
+// Light mode desactivado temporalmente
+// document.getElementById('themeToggle').addEventListener('click', () => applyTheme(!isDark));
+document.getElementById('themeToggle').style.display = 'none';
 
 // Init theme
 applyTheme(isDark);
