@@ -317,7 +317,17 @@
       transition: var(--transition); text-decoration: none;
       border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 2px;
     }
+    .hero-panel-link i {
+      display: inline-block;
+      animation: arrowSlide 1.8s ease-in-out infinite;
+    }
+    .hero-panel:nth-child(2) .hero-panel-link i { animation-delay: 0.6s; }
+    @keyframes arrowSlide {
+      0%, 100% { transform: translateX(0);   opacity: 1; }
+      50%       { transform: translateX(6px); opacity: 0.6; }
+    }
     .hero-panel-link:hover { color: var(--accent); border-bottom-color: var(--accent); gap: 12px; }
+    .hero-panel-link:hover i { animation: none; transform: translateX(0); }
     .hero-social-row { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
     .hero-social-row a { color: rgba(255,255,255,0.65); font-size: 1.3rem; transition: var(--transition); }
     .hero-social-row a:hover { color: var(--accent); transform: translateY(-3px); }
