@@ -3046,7 +3046,8 @@ applyLang(currentLang);
    THEME SYSTEM
 ================================================================ */
 // Default: light mode. Only go dark if user explicitly chose dark before.
-let isDark = localStorage.getItem('theme') === 'dark';
+const savedTheme = localStorage.getItem('theme');
+let isDark = savedTheme !== null ? savedTheme === 'dark' : true;
 
 function applyTheme(dark) {
   isDark = dark;
