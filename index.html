@@ -1061,19 +1061,53 @@
 
       section { padding: 56px 20px; }
 
-      /* ── Hero ── */
+      /* ── Hero mobile: foto arriba, texto abajo ── */
       .hero {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+        height: auto;
         min-height: 100svh;
-        padding: 0 20px;
+        padding: 0;
+        overflow: visible;
       }
-      .hero-left  { padding: 120px 0 32px; }
-      .hero-right { padding: 32px 0 60px; }
-      .hero-panel { padding: 18px 0; }
-      .hero-desc  { max-width: 100%; }
+
+      /* La foto ocupa el 45% superior */
+      .hero-center {
+        position: relative;
+        left: auto; right: auto; top: auto; bottom: auto;
+        width: 100%;
+        height: 46svh;
+        min-height: 240px;
+        order: 0;
+        z-index: 0;
+      }
       .hero-center::after {
-        background: linear-gradient(to bottom, rgba(15,23,42,0.55) 0%, rgba(15,23,42,0.4) 50%, rgba(15,23,42,0.85) 100%);
+        background:
+          linear-gradient(to bottom, transparent 40%, var(--bg) 95%),
+          linear-gradient(to right, var(--bg) 0%, transparent 12%, transparent 88%, var(--bg) 100%);
       }
+      .hero-photo {
+        object-position: center top;
+      }
+
+      /* Ocultar el duplicado light en mobile (usamos solo uno) */
+      .hero-center--light { display: none !important; }
+      body.light .hero-center--dark  { display: block !important; }
+      body.light .hero-center--light { display: none !important; }
+
+      /* El bloque de texto */
+      .hero-left {
+        order: 1;
+        padding: 0 20px 28px;
+        z-index: 1;
+        position: relative;
+      }
+      .available-badge { margin-bottom: 14px; }
+
+      /* Ocultar paneles derecha en mobile */
+      .hero-right { display: none; }
+
+      .hero-desc  { max-width: 100%; }
       .hero-orb-1, .hero-orb-2, .hero-orb-3 { display: none; }
 
       /* ── Impact band — 2 col ── */
