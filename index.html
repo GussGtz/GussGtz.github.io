@@ -36,6 +36,7 @@
       --transition:   all 0.22s ease;
       --header-bg:    rgba(15,23,42,0.90);
       --footer-bg:    #0b1120;
+      --bg-0:         rgba(15,23,42,0);
     }
 
     /* ============================================================
@@ -54,6 +55,7 @@
       --card-shadow:  0 8px 32px rgba(15,23,42,0.08);
       --header-bg:    rgba(239,246,255,0.94);
       --footer-bg:    #dbeafe;
+      --bg-0:         rgba(239,246,255,0);
     }
 
     /* Extra overrides for light mode */
@@ -229,8 +231,9 @@
     body.light .hero-panel-link { color: var(--text); border-bottom-color: var(--border); }
     body.light .hero-social-row a { color: var(--muted); }
     body.light .hero-center::after {
-      background: linear-gradient(to right, var(--bg) 0%, transparent 20%, transparent 80%, var(--bg) 100%),
-                  linear-gradient(to bottom, transparent 72%, var(--bg) 100%);
+      background:
+        linear-gradient(to bottom, var(--bg-0) 50%, var(--bg) 92%),
+        linear-gradient(to right,  var(--bg) 0%, var(--bg-0) 15%, var(--bg-0) 85%, var(--bg) 100%);
     }
     /* Dark mode: show dark photo, hide light */
     .hero-center--light { display: none; }
@@ -258,8 +261,8 @@
       content: '';
       position: absolute; inset: 0;
       background:
-        linear-gradient(to bottom, transparent 50%, var(--bg) 92%),
-        linear-gradient(to right,  var(--bg) 0%, transparent 15%, transparent 85%, var(--bg) 100%);
+        linear-gradient(to bottom, var(--bg-0) 50%, var(--bg) 92%),
+        linear-gradient(to right,  var(--bg) 0%, var(--bg-0) 15%, var(--bg-0) 85%, var(--bg) 100%);
     }
 
     /* LEFT column */
@@ -1086,7 +1089,7 @@
       }
       .hero-center::after {
         background:
-          linear-gradient(to bottom, transparent 30%, var(--bg) 85%);
+          linear-gradient(to bottom, var(--bg-0) 30%, var(--bg) 85%);
       }
 
       /* Solo mostrar una foto (la dark), en ambos modos */
