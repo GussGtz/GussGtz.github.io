@@ -204,7 +204,8 @@
        HERO — dark fullscreen + centered photo + overlay text
     ============================================================ */
     .hero {
-      min-height: calc(100vh - 64px);
+      height: calc(100vh - 64px);
+      min-height: 560px;
       position: relative;
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -212,9 +213,9 @@
       max-width: none; width: 100%;
       padding: 0 max(var(--gap), calc((100vw - 1200px) / 2));
       overflow: hidden; isolation: isolate;
-      /* Always dark regardless of theme */
-      background: #0a0f1e;
+      background: #0d1526;
     }
+    body.light .hero { background: #1a2540; }
 
     /* Photo floating centered between both columns — transparent PNG */
     .hero-center {
@@ -242,20 +243,20 @@
     .hero-left {
       position: relative; z-index: 1;
       display: flex; flex-direction: column; justify-content: center;
-      padding: 100px 32px 100px 0;
+      padding: 40px 32px 40px 0;
     }
     .hero-accent-line {
       width: 52px; height: 3px; background: #fff;
-      border-radius: 2px; margin-bottom: 28px;
+      border-radius: 2px; margin-bottom: 18px;
     }
     .hero-name {
-      font-size: clamp(2.6rem, 4.5vw, 4.2rem); font-weight: 800;
-      line-height: 1.08; margin-bottom: 20px;
+      font-size: clamp(2rem, 3.8vw, 3.4rem); font-weight: 800;
+      line-height: 1.08; margin-bottom: 14px;
       color: #fff; -webkit-text-fill-color: #fff; background: none;
     }
     .hero-desc {
       color: rgba(255,255,255,0.62); max-width: 380px;
-      margin-bottom: 48px; font-size: 0.95rem; line-height: 1.75;
+      margin-bottom: 32px; font-size: 0.9rem; line-height: 1.7;
     }
     .hero-scroll-btn {
       width: 60px; height: 60px; border-radius: 50%;
@@ -279,10 +280,10 @@
     .hero-right {
       position: relative; z-index: 1;
       display: flex; flex-direction: column; justify-content: center;
-      padding: 100px 0 100px 64px; gap: 0;
+      padding: 40px 0 40px 56px; gap: 0;
     }
     .hero-panel {
-      padding: 26px 0;
+      padding: 18px 0;
       border-bottom: 1px solid rgba(255,255,255,0.1);
     }
     .hero-panel:first-child { border-top: 1px solid rgba(255,255,255,0.1); }
