@@ -213,7 +213,7 @@
       max-width: none; width: 100%;
       padding: 0 max(var(--gap), calc((100vw - 1200px) / 2));
       overflow: hidden; isolation: isolate;
-      background: #0d1526;
+      background: var(--bg);
     }
     body.light .hero { background: var(--bg); }
 
@@ -258,8 +258,8 @@
       content: '';
       position: absolute; inset: 0;
       background:
-        linear-gradient(to bottom, transparent 50%, #0d1526 92%),
-        linear-gradient(to right,  #0d1526 0%, transparent 15%, transparent 85%, #0d1526 100%);
+        linear-gradient(to bottom, transparent 50%, var(--bg) 92%),
+        linear-gradient(to right,  var(--bg) 0%, transparent 15%, transparent 85%, var(--bg) 100%);
     }
 
     /* LEFT column */
