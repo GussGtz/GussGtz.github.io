@@ -1133,32 +1133,36 @@
         overflow: visible;
       }
 
-      /* Foto: PRIMERO (order 0), full-width, ~55% viewport */
+      /* Foto: PRIMERO (order 0), PNG fluye naturalmente centrado */
       .hero-center {
         order: 0;
         position: relative !important;
         left: auto !important; right: auto !important;
         top: auto !important; bottom: auto !important;
         width: 100% !important;
-        height: 28svh !important;
-        min-height: 160px;
+        height: auto !important;
+        min-height: unset;
         z-index: 0;
+        display: flex !important;
+        justify-content: center;
         flex-shrink: 0;
       }
       /* Anular los tamaños fijos del breakpoint 480px */
       .hero-center .hero-photo-wrap {
-        width: 100% !important;
-        height: 100% !important;
+        width: auto !important;
+        height: auto !important;
         border-radius: 0 !important;
+        display: block !important;
       }
       .hero-center .hero-photo-wrap::before,
       .hero-center .hero-photo-wrap::after { display: none !important; }
       .hero-center .hero-photo {
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover !important;
-        object-position: 50% 5% !important;
+        width: auto !important;
+        height: 46svh !important;
+        max-height: 360px !important;
+        object-fit: contain !important;
         border-radius: 0 !important;
+        display: block !important;
       }
 
       /* Solo un elemento foto */
