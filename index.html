@@ -200,36 +200,39 @@
     /* ============================================================
        HERO
     ============================================================ */
+    /* ============================================================
+       HERO — 3-column layout (reference design)
+    ============================================================ */
     .hero {
       min-height: calc(100vh - 64px);
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 48px;
-      /* Full viewport width — padding keeps content within 1100px center */
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: stretch;
+      gap: 0;
       max-width: none;
       width: 100%;
-      padding: 64px max(var(--gap), calc((100vw - var(--max-width)) / 2));
+      padding: 0 max(var(--gap), calc((100vw - 1200px) / 2));
       position: relative; overflow: hidden; isolation: isolate;
     }
     .hero::before {
       content: ''; position: absolute; inset: 0; pointer-events: none;
       background:
-        radial-gradient(700px 400px at 0% 0%,    rgba(56,189,248,0.04) 0%, transparent 70%),
-        radial-gradient(500px 300px at 100% 100%, rgba(56,189,248,0.025) 0%, transparent 70%);
+        radial-gradient(700px 500px at 0% 50%, rgba(56,189,248,0.05) 0%, transparent 70%),
+        radial-gradient(500px 400px at 100% 50%, rgba(56,189,248,0.03) 0%, transparent 70%);
     }
-    .hero-left { flex: 1; min-width: 280px; z-index: 1; }
 
-    .available-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.22);
-      color: var(--accent); padding: 6px 14px; border-radius: 100px;
-      font-size: 0.8rem; font-weight: 600; margin-bottom: 24px;
+    /* LEFT column */
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 80px 48px 80px 0; z-index: 1;
     }
-    .available-badge .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
-    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
-
+    .hero-accent-line {
+      width: 48px; height: 3px; background: var(--accent);
+      border-radius: 2px; margin-bottom: 28px;
+    }
     .hero-name {
-      font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 800;
-      line-height: 1.05; margin-bottom: 10px;
+      font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 800;
+      line-height: 1.1; margin-bottom: 16px;
       background: linear-gradient(135deg, #F8FAFC 0%, #7DD3FC 40%, #38BDF8 70%, #F8FAFC 100%);
       background-size: 250% auto;
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
@@ -241,25 +244,29 @@
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
     @keyframes heroGrad { 0%,100%{background-position:0% center} 50%{background-position:100% center} }
-    .hero-role { font-size: clamp(1.1rem, 2.5vw, 1.4rem); font-weight: 600; color: var(--accent); margin-bottom: 18px; }
-    .hero-desc { color: var(--muted); max-width: 480px; margin-bottom: 32px; font-size: 0.97rem; }
+    .hero-role { font-size: 1rem; font-weight: 600; color: var(--accent); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
+    .hero-desc { color: var(--muted); max-width: 380px; margin-bottom: 40px; font-size: 0.93rem; line-height: 1.7; }
 
-    .hero-stats { display: flex; gap: 28px; margin-bottom: 36px; flex-wrap: wrap; align-items: center; }
-    .stat-item   { display: flex; flex-direction: column; gap: 2px; }
-    .stat-number { font-size: 1.9rem; font-weight: 800; color: var(--accent); line-height: 1; }
-    .stat-label  { font-size: 0.75rem; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.8px; }
-    .stat-divider{ width: 1px; height: 40px; background: var(--border); }
+    .hero-scroll-btn {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--accent); color: #0F172A;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; transition: var(--transition);
+      border: none; cursor: pointer; text-decoration: none;
+      box-shadow: 0 0 24px rgba(56,189,248,0.3);
+    }
+    .hero-scroll-btn:hover { transform: translateY(4px); box-shadow: 0 0 36px rgba(56,189,248,0.45); }
 
+    /* CTAs kept for mobile fallback */
     .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
     .btn-primary {
-      background: var(--accent); color: #0a0c0e;
+      background: var(--accent); color: #0F172A;
       padding: 13px 26px; border-radius: 10px; font-weight: 700; font-size: 0.95rem;
       display: inline-flex; align-items: center; gap: 8px;
       box-shadow: 0 0 30px rgba(56,189,248,0.12); transition: var(--transition);
       position: relative; overflow: hidden; border: none; cursor: pointer;
     }
     .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 40px rgba(56,189,248,0.22); }
-    body.light .btn-primary { color: #fff; }
     .btn-outline {
       background: transparent; color: var(--text);
       padding: 13px 26px; border-radius: 10px; font-weight: 600; font-size: 0.95rem;
@@ -268,44 +275,64 @@
     }
     .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
 
-    .hero-right { flex: 1; min-width: 260px; display: flex; justify-content: center; align-items: center; z-index: 1; }
-
-    /* ── Square photo frame ── */
-    .hero-photo-wrap {
-      position: relative; width: 300px; height: 300px;
-      border-radius: 22px;
+    /* CENTER — photo column */
+    .hero-center {
+      width: 340px; position: relative; z-index: 1;
+      display: flex; align-items: flex-end; justify-content: center;
     }
-    /* Animated border ring — dark mode */
-    .hero-photo-wrap::before {
-      content: ''; position: absolute; inset: -3px;
-      border-radius: 25px;
-      background: conic-gradient(var(--accent) 0deg, rgba(56,189,248,0.08) 160deg, var(--accent) 360deg);
-      animation: spinRing 8s linear infinite;
-    }
-    @keyframes spinRing { to { transform: rotate(360deg); } }
-    /* Gap between ring and photo */
-    .hero-photo-wrap::after {
-      content: ''; position: absolute; inset: 3px;
-      border-radius: 19px;
-      background: var(--bg);
-      transition: background 0.3s ease;
-    }
-    /* Photo itself */
     .hero-photo {
-      position: absolute; inset: 7px; z-index: 1;
-      width: calc(100% - 14px); height: calc(100% - 14px);
-      border-radius: 14px; object-fit: cover; object-position: center top;
-      animation: floatY 7s ease-in-out infinite;
+      width: 100%; height: 100%; max-height: calc(100vh - 64px);
+      object-fit: cover; object-position: center top;
+      display: block;
     }
-    @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    .hero-photo-wrap { width: 100%; height: 100%; }
 
-    /* Light mode: swap neon ring for a clean accent border + soft glow */
-    body.light .hero-photo-wrap::before {
-      background: conic-gradient(#0284C7 0deg, rgba(2,132,199,0.08) 160deg, #0284C7 360deg);
-      animation: spinRing 8s linear infinite;
+    /* RIGHT column — info panels */
+    .hero-right {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 80px 0 80px 48px; z-index: 1; gap: 0;
     }
-    body.light .hero-photo-wrap::after { background: var(--bg); }
-    body.light .hero-photo { box-shadow: 0 0 0 1px rgba(2,132,199,0.15); }
+    .hero-panel {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-panel:first-child { border-top: 1px solid var(--border); }
+    .hero-panel-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--text); margin-bottom: 10px;
+    }
+    .hero-panel p {
+      color: var(--muted); font-size: 0.88rem; line-height: 1.65; margin-bottom: 14px;
+    }
+    .hero-panel-link {
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--text);
+      display: inline-flex; align-items: center; gap: 6px;
+      transition: var(--transition); text-decoration: none;
+    }
+    .hero-panel-link:hover { color: var(--accent); gap: 10px; }
+    .hero-social-row {
+      display: flex; gap: 18px; align-items: center; flex-wrap: wrap;
+    }
+    .hero-social-row a {
+      color: var(--muted); font-size: 1.2rem; transition: var(--transition);
+    }
+    .hero-social-row a:hover { color: var(--accent); transform: translateY(-2px); }
+
+    /* stats (kept for compatibility) */
+    .hero-stats { display: none; }
+    .stat-item   { display: flex; flex-direction: column; gap: 2px; }
+    .stat-number { font-size: 1.9rem; font-weight: 800; color: var(--accent); line-height: 1; }
+    .stat-label  { font-size: 0.75rem; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.8px; }
+    .stat-divider{ width: 1px; height: 40px; background: var(--border); }
+    .available-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.22);
+      color: var(--accent); padding: 6px 14px; border-radius: 100px;
+      font-size: 0.8rem; font-weight: 600; margin-bottom: 20px;
+    }
+    .available-badge .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
 
     /* ============================================================
        ABOUT
@@ -1017,18 +1044,18 @@
 
       /* ── Hero ── */
       .hero {
-        flex-direction: column; text-align: center;
-        min-height: auto; padding: 48px 20px 56px; gap: 28px;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        text-align: center;
+        min-height: auto; padding: 48px 20px 56px; gap: 0;
       }
-      .hero-left  { min-width: 0; width: 100%; }
-      .hero-right { order: -1; }
-      .hero-photo-wrap { width: 200px; height: 200px; border-radius: 18px; }
-      .hero-photo-wrap::before { border-radius: 21px; }
-      .hero-photo-wrap::after  { border-radius: 15px; }
-      .hero-photo { border-radius: 11px; }
-      .hero-stats { justify-content: center; gap: 20px; }
-      .hero-cta   { justify-content: center; }
-      .hero-desc  { margin: 0 auto 28px; max-width: 100%; }
+      .hero-left  { padding: 40px 0 32px; align-items: center; }
+      .hero-center { width: 100%; max-width: 280px; margin: 0 auto; height: 320px; }
+      .hero-right { padding: 32px 0 40px; gap: 0; }
+      .hero-panel { padding: 20px 0; text-align: left; }
+      .hero-photo { object-fit: cover; object-position: center top; border-radius: 12px; }
+      .hero-desc  { margin: 0 auto 32px; max-width: 100%; }
+      .hero-accent-line { margin: 0 auto 28px; }
 
       /* Shrink orbs so they don't cause overflow */
       .hero-orb-1 { width: 200px; height: 200px; top: -60px; right: -60px; opacity: 0.09; }
@@ -1238,41 +1265,59 @@
     <div class="sh-wrap" style="top:53%;left:21%;"><div class="sh-dot op7" style="width:4px;height:4px;animation:shPls 5.5s ease-in-out infinite 1s;"></div></div>
     <div class="sh-wrap" style="top:62%;left:16%;"><div class="sh-dot op5" style="width:5px;height:5px;animation:shPls 6s ease-in-out infinite 2s;"></div></div>
   </div>
+  <!-- LEFT -->
   <div class="hero-left" data-aos="fade-right" data-aos-duration="700">
     <div class="available-badge">
       <span class="dot"></span>
       <span data-i18n="hero.badge">Disponible para proyectos</span>
     </div>
-    <h1 class="hero-name">Gustavo<br>Gutierrez</h1>
-    <p class="hero-role"><span id="typed-role">Full Stack Developer</span><span class="typed-cursor" aria-hidden="true"></span></p>
+    <div class="hero-accent-line"></div>
+    <h1 class="hero-name" data-i18n-html="hero.name">Soy Gustavo,<br>un Full Stack<br>Developer</h1>
     <p class="hero-desc" data-i18n="hero.desc">
       Construyo sistemas escalables y soluciones del mundo real. Backend sólido, frontend fluido y código que funciona en producción.
     </p>
-    <div class="hero-stats">
-      <div class="stat-item">
-        <span class="stat-number">7+</span>
-        <span class="stat-label" data-i18n="hero.stat1">Años codificando</span>
-      </div>
-    </div>
-    <div class="hero-cta">
-      <a href="#contact" class="btn-primary" data-ripple>
-        <i class="bi bi-envelope-fill" aria-hidden="true"></i>
-        <span data-i18n="hero.cta1">Iniciar Proyecto</span>
-      </a>
-      <a href="./assets/CV GUSTAVO.pdf" download class="btn-outline">
-        <i class="bi bi-download" aria-hidden="true"></i>
-        <span data-i18n="hero.cta2">Descargar CV</span>
-      </a>
+    <a href="#about" class="hero-scroll-btn" aria-label="Ver más">
+      <i class="bi bi-chevron-down"></i>
+    </a>
+  </div>
+
+  <!-- CENTER — foto -->
+  <div class="hero-center" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+    <div class="hero-photo-wrap">
+      <img src="assets/fotohero.png" alt="Gustavo Gutierrez" class="hero-photo" loading="eager" />
     </div>
   </div>
 
-  <div class="hero-right" data-aos="fade-left" data-aos-duration="700" data-aos-delay="100">
-    <div class="hero-photo-wrap">
-      <img src="assets/fotohero.png" alt="Gustavo Gutierrez" class="hero-photo" loading="eager" />
-      <div class="mascot-badge">
-        <img src="assets/logodev.png" alt="GussGtz logo" loading="eager" />
+  <!-- RIGHT — panels -->
+  <div class="hero-right" data-aos="fade-left" data-aos-duration="700" data-aos-delay="200">
+
+    <div class="hero-panel">
+      <p class="hero-panel-label" data-i18n="hero.panel1.title">Sobre Mí</p>
+      <p data-i18n="hero.panel1.desc">Ingeniero en Software con 7+ años de experiencia. Especializado en sistemas en tiempo real, ERPs y plataformas web de alto impacto.</p>
+      <a href="#about" class="hero-panel-link">
+        <span data-i18n="hero.panel1.link">Conocer más</span> <i class="bi bi-arrow-right"></i>
+      </a>
+    </div>
+
+    <div class="hero-panel">
+      <p class="hero-panel-label" data-i18n="hero.panel2.title">Mi Trabajo</p>
+      <p data-i18n="hero.panel2.desc">Proyectos reales en producción: torneos deportivos, ERPs de inventario, sistemas judiciales y más. Freelance y empresarial.</p>
+      <a href="#projects" class="hero-panel-link">
+        <span data-i18n="hero.panel2.link">Ver portafolio</span> <i class="bi bi-arrow-right"></i>
+      </a>
+    </div>
+
+    <div class="hero-panel">
+      <p class="hero-panel-label" data-i18n="hero.panel3.title">Sígueme</p>
+      <div class="hero-social-row">
+        <a href="https://www.linkedin.com/in/gustavo-gutierrez-canul-607341267/" target="_blank" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        <a href="https://twitter.com/GustavoGtzzz" target="_blank" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+        <a href="https://www.instagram.com/gtz_gustavo/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        <a href="https://www.tiktok.com/@gtz_gustavo" target="_blank" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+        <a href="https://github.com/GussGtz" target="_blank" aria-label="GitHub"><i class="bi bi-github"></i></a>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -2439,7 +2484,15 @@ const T = {
     /* Hero */
     'hero.badge': 'Disponible para proyectos',
     'hero.role':  'Full Stack Developer',
+    'hero.name':  'Soy Gustavo,<br>un Full Stack<br>Developer',
     'hero.desc':  'Construyo sistemas escalables y soluciones del mundo real. Backend sólido, frontend fluido y código que funciona en producción.',
+    'hero.panel1.title': 'Sobre Mí',
+    'hero.panel1.desc':  'Ingeniero en Software con 7+ años de experiencia. Especializado en sistemas en tiempo real, ERPs y plataformas web de alto impacto.',
+    'hero.panel1.link':  'Conocer más',
+    'hero.panel2.title': 'Mi Trabajo',
+    'hero.panel2.desc':  'Proyectos reales en producción: torneos deportivos, ERPs de inventario, sistemas judiciales y más. Freelance y empresarial.',
+    'hero.panel2.link':  'Ver portafolio',
+    'hero.panel3.title': 'Sígueme',
     'hero.stat1': 'Años codificando',
     'hero.stat2': 'Proyectos completados',
     'hero.stat3': 'Apps en producción',
@@ -2679,7 +2732,15 @@ const T = {
     /* Hero */
     'hero.badge': 'Available for projects',
     'hero.role':  'Full Stack Developer',
+    'hero.name':  'I\'m Gustavo,<br>a Full Stack<br>Developer',
     'hero.desc':  'I build scalable systems and real-world solutions. Solid backend, fluid frontend, and code that works in production.',
+    'hero.panel1.title': 'About Me',
+    'hero.panel1.desc':  'Software Engineer with 7+ years of experience. Specialized in real-time systems, ERPs, and high-impact web platforms.',
+    'hero.panel1.link':  'Learn more',
+    'hero.panel2.title': 'My Work',
+    'hero.panel2.desc':  'Real projects in production: sports tournaments, inventory ERPs, judicial systems and more. Freelance and enterprise.',
+    'hero.panel2.link':  'Browse portfolio',
+    'hero.panel3.title': 'Follow Me',
     'hero.stat1': 'Years coding',
     'hero.stat2': 'Projects completed',
     'hero.stat3': 'Apps in production',
