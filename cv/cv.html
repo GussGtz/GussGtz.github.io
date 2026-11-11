@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>CV · Gustavo Gutierrez Canul</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @page { size: Letter; margin: 0; }
+  :root { --ink:#0B1324; --body:#2B3447; --muted:#5B6578; --brand:#315BF2; --rule:#DCE3F0; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { background:#fff; }
+  body { font-family:"Inter", -apple-system, sans-serif; color:var(--body); font-size:9.3pt; line-height:1.38;
+         -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .page { width:8.5in; min-height:11in; padding:0.45in 0.55in 0.35in; position:relative; }
+  .page::before { content:""; position:absolute; left:0; top:0; right:0; height:5px;
+                  background:linear-gradient(90deg,#315BF2 0%,#2448D6 60%,#0F766E 100%); }
+  a { color:inherit; text-decoration:none; }
+
+  header { display:flex; justify-content:space-between; align-items:flex-end; gap:24px;
+           padding-bottom:10px; border-bottom:1.5px solid var(--ink); }
+  h1 { font-size:23pt; white-space:nowrap; font-weight:800; color:var(--ink); letter-spacing:-0.02em; line-height:1; }
+  .role { margin-top:6px; font-size:11pt; font-weight:600; color:var(--brand); }
+  .contact { text-align:right; font-size:8.4pt; color:var(--muted); line-height:1.6; white-space:nowrap; }
+  .contact b { color:var(--ink); font-weight:600; }
+
+  .summary { margin-top:9px; font-size:9.6pt; color:var(--ink); }
+  .summary strong { font-weight:700; }
+
+  h2 { margin:11px 0 5px; font-size:8.6pt; font-weight:800; letter-spacing:.14em; text-transform:uppercase;
+       color:var(--brand); display:flex; align-items:center; gap:10px; }
+  h2::after { content:""; flex:1; height:1px; background:var(--rule); }
+
+  .job { margin-bottom:7px; break-inside:avoid; }
+  .job-head { display:flex; justify-content:space-between; align-items:baseline; gap:12px; }
+  .job-title { font-size:10.2pt; font-weight:700; color:var(--ink); }
+  .job-title span { font-weight:500; color:var(--muted); }
+  .date { font-size:8.7pt; font-weight:600; color:var(--muted); white-space:nowrap; }
+  ul { margin-top:3px; padding-left:14px; }
+  li { margin:1.5px 0; }
+  li::marker { color:var(--brand); }
+  li b { color:var(--ink); font-weight:600; }
+  .stack { color:var(--muted); font-size:8.6pt; }
+
+  .grid { display:grid; grid-template-columns: 1fr 1fr; gap:4px 22px; }
+  .kv { display:grid; grid-template-columns:62px 1fr; gap:2px 10px; }
+  .kv dt { font-weight:700; color:var(--ink); font-size:8.8pt; }
+  .kv dd { font-size:9pt; }
+  .line { font-size:9.2pt; }
+  .line b { color:var(--ink); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <h1>Gustavo Gutierrez Canul</h1>
+      <div class="role">Desarrollador Full Stack · Cofundador de Atomyko</div>
+    </div>
+    <div class="contact">
+      Cancún, Q. Roo, México · Remoto / Híbrido<br>
+      <b>gutierrezgustavocanul@gmail.com</b> · +52 56 2969 0153<br>
+      <a href="https://www.linkedin.com/in/gustavo-gutierrez-canul-607341267/">linkedin.com/in/gustavo-gutierrez-canul-607341267</a><br>
+      <a href="https://gussgtz.github.io">gussgtz.github.io</a> · <a href="https://atomyko.com">atomyko.com</a>
+    </div>
+  </header>
+
+  <p class="summary">
+    Ingeniero en Desarrollo y Gestión de Software y cofundador de <strong>Atomyko</strong>, estudio de software y marketing digital.
+    Diseño y entrego de punta a punta <strong>ERPs, plataformas web, apps y automatizaciones</strong> que hoy operan en producción para
+    industria, gobierno y turismo, con <strong>Vue, Node.js, NestJS y PostgreSQL</strong>. Parto del problema de negocio antes que de la tecnología.
+  </p>
+
+  <h2>Experiencia</h2>
+
+  <div class="job">
+    <div class="job-head">
+      <div class="job-title">Cofundador · Desarrollo de Software y Marketing Digital <span>— Atomyko, Cancún</span></div>
+      <div class="date">Sep 2026 – Actualidad</div>
+    </div>
+    <ul>
+      <li>Cofundé y lidero el área de desarrollo de un estudio que integra <b>software a la medida y marketing digital</b> en un mismo equipo.</li>
+      <li>Dirijo cada proyecto de principio a fin: descubrimiento con el cliente, alcance, arquitectura, desarrollo, despliegue y soporte.</li>
+      <li>Proyectos entregados: <b>ERP para la industria del aluminio</b>, <b>sistema de apelaciones del TSJ de Quintana Roo</b>,
+          <b>Transfer-Cancun</b> (reservas en 4 idiomas + panel administrativo), GCS &amp; Asociados y reservas para barberías.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <div class="job-title">Desarrollador Full Stack <span>— Freelance, remoto</span></div>
+      <div class="date">Mar 2026 – Actualidad</div>
+    </div>
+    <ul>
+      <li><b>StockLock, ERP de inventario:</b> ventas, compras, producción, multi-almacén, cotizaciones en PDF, facturación <b>CFDI</b> y alertas en tiempo real.
+          <span class="stack">NestJS · Vue 3 · PostgreSQL · Prisma · Docker · WebSockets</span></li>
+      <li><b>ApelacionesQR, Tribunal Superior de Justicia de Quintana Roo:</b> control de expedientes, 3 roles de acceso, indicadores con gráficas,
+          importación desde Excel y generación de PDF; entregado a producción de forma independiente. <span class="stack">PHP 8.1 (MVC) · MySQL · Chart.js</span></li>
+      <li><b>JugarLaPelota:</b> plataforma de torneos con registro de equipos, calendario y tabla de posiciones en vivo, instalable como PWA.
+          <span class="stack">Vue 3 · Node.js · Socket.io · MySQL</span></li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <div class="job-title">Ingeniero de Software <span>— Glass Caribe S.A. de C.V., Cancún</span></div>
+      <div class="date">Ene – Abr 2026</div>
+    </div>
+    <ul>
+      <li>Centralicé la operación de la empresa en una sola plataforma y <b>digitalicé el 100 % del flujo de pedidos</b>, eliminando hojas de cálculo y correos de seguimiento.</li>
+      <li>Construí dashboards con KPIs en tiempo real y una <b>app Android con GPS en segundo plano</b> y notificaciones push que eliminó las llamadas de seguimiento de entregas.
+          <span class="stack">Vue 3 · Capacitor · Node.js · PostgreSQL · WebSockets</span></li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <div class="job-title">Desarrollador de Software (Prácticas) <span>— Glass Caribe S.A. de C.V., Cancún</span></div>
+      <div class="date">Sep – Dic 2024</div>
+    </div>
+    <ul>
+      <li>Desarrollé desde cero el <b>primer sistema digital de gestión de pedidos</b> de la empresa: actualizaciones en tiempo real, gráficas y control de acceso por roles.
+          <span class="stack">Node.js · Express · PostgreSQL · JWT · Chart.js</span></li>
+    </ul>
+  </div>
+
+  <h2>Habilidades</h2>
+  <div class="grid">
+    <dl class="kv">
+      <dt>Frontend</dt><dd>Vue 3, TypeScript, Pinia, Tailwind CSS</dd>
+      <dt>Backend</dt><dd>Node.js, NestJS, Express, APIs REST, WebSockets, JWT</dd>
+      <dt>Datos</dt><dd>PostgreSQL, MySQL, Prisma ORM</dd>
+    </dl>
+    <dl class="kv">
+      <dt>Entrega</dt><dd>Docker, Git / GitHub, deploy en la nube</dd>
+      <dt>Móvil</dt><dd>Capacitor (Android), PWA</dd>
+      <dt>Negocio</dt><dd>Requerimientos, alcance y gestión de proyectos</dd>
+    </dl>
+  </div>
+
+  <h2>Liderazgo</h2>
+  <ul>
+    <li><b>Etaria, videojuego 2D en Unity:</b> lideré un equipo de 5 personas de la idea a la expo pública en 3 meses (3 niveles, 3 jefes con IA).</li>
+    <li><b>Expo universitaria de videojuegos:</b> organicé logística, equipos y patrocinadores (incluido Battle Karts Cancún) para estudiantes, docentes y rectoría.</li>
+  </ul>
+
+  <h2>Formación</h2>
+  <div class="grid">
+    <div class="line"><b>Ing. en Desarrollo y Gestión de Software</b><br>Universidad Tecnológica de Cancún · 2022 – 2026</div>
+    <div class="line"><b>Cisco Networking Academy:</b> JavaScript Essentials 1 · NDG Linux Essentials (2023)<br><b>Idiomas:</b> Español nativo · Inglés B1</div>
+  </div>
+
+</div>
+</body>
+</html>
